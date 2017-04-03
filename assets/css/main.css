@@ -2624,7 +2624,7 @@
 	}
 
 		.wrapper h1, .wrapper h2, .wrapper h3, .wrapper h4, .wrapper h5 {
-			color: #25a2c3;
+			color: #f80909;
 		}
 
 		.wrapper.style1 {
@@ -2793,7 +2793,7 @@
 		-ms-transition: -ms-transform 0.5s ease, visibility 0.5s;
 		transition: transform 0.5s ease, visibility 0.5s;
 		-webkit-overflow-scrolling: touch;
-		background: #25a2c3;
+		background: #333;
 		color: #ffffff;
 		height: 100%;
 		max-width: 80%;
@@ -3138,7 +3138,7 @@
 		padding: 2em 0 2em 0;
 		background: #404040;
 		text-align: center;
-		color: #c8e7f0;
+		color: #f80909;
 	}
 
 		#footer h2 {
@@ -3160,7 +3160,7 @@
 
 		#footer .copyright {
 			display: inline-block;
-			color: #a7d9e7;
+			color: #f80909;
 			font-size: 0.75em;
 			margin: 0 0 2em 0;
 			padding: 0;

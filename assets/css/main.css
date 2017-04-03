@@ -2793,7 +2793,7 @@
 		-ms-transition: -ms-transform 0.5s ease, visibility 0.5s;
 		transition: transform 0.5s ease, visibility 0.5s;
 		-webkit-overflow-scrolling: touch;
-		background: #25a2c3;
+		background: #333;
 		color: #ffffff;
 		height: 100%;
 		max-width: 80%;

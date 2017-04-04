@@ -1,2 +1,3 @@
-# Adiraj22.github.io
-#This file is the website for Liberac.co.nz a new start up venture.
+# Liberac
+
+Node app that serves the Liberac website (and more soon...)

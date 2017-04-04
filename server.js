@@ -29,8 +29,8 @@ app.use((err, req, res, next) => {
   res.send(err)
 })
 
-app.listen(port, () => {
-  console.log(`Now available at http://localhost:${port}`)
+app.listen(process.env.PORT || port, () => {
+  console.log(`Liberac is now being served at http://localhost:${port}`)
 })
 
 module.exports = app

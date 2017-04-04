@@ -53,7 +53,7 @@
     <!-- Main -->
       <section id="main" class="wrapper">
         <div class="inner">
-          <header class="align-center" style="margin-bottom: 50px;">
+          <header class="align-center" style="margin-top: -45px; margin-bottom: 50px;">
             <h1>Provider Comparison</h1>
             <p></p>
             </header>
@@ -63,13 +63,25 @@
             <input type="text" id="liberac_pricing" value="$300" disabled>
           </div>
           <div class="align-right" style="float: right; margin-right: 8rem">
-            <h1 style="text-align: center;">Competitor</h1>
+            <h1>
+              <select name="select" id="competitor_options">
+                <option value="clickex">ClickEx</option>
+                <option value="westernunion">Western Union</option>
+              </select>
+            </h1>
             <input type="text" id="competitor_pricing" value="$400" disabled>
           </div>
           <div class="align-center" style="clear: both; margin-top: 200px;">
-            <label for="transfer-slider">Transfer Amount</label>
-            <input type="range" id="transfer-slider" min="10" max="1000" step="50" />
-            <div id="transfer-value">$600</div>
+            <label for="transfer-slider" style="font-size: 18px">Transfer Amount</label>
+            <input type="range" id="transfer-slider" min="200" max="1000" step="200" value="200" list="transfer-amounts" />
+            <datalist id="transfer-amounts">
+              <option>200</option>
+              <option>400</option>
+              <option>600</option>
+              <option>800</option>
+              <option>1000</option>
+            </datalist>
+            <div id="transfer-value" style="font-size: 20px">$100</div>
           </div>
           </p>
         </div>

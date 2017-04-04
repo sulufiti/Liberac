@@ -13,27 +13,41 @@ transferSlider.onchange = function() {
   transferReadout.innerHTML = '$' + transferSlider.value
   liberacPricing.value = getLiberacPrice(transferSlider.value)
 
-  switch(selectedCompetitor.value) {
-    case 'clickex':
-      competitorPricing.value = getClickexPrice(transferSlider.value)
-      break
-    case 'westernunion':
-      competitorPricing.value = getWesternUnionPrice(transferSlider.value)
-      break
-    default:
-      console.log('No competitor selected?!')
-  }
+  updateCompetitorPrice(selectedCompetitor.value)
+}
+
+selectedCompetitor.onchange = function() {
+  updateCompetitorPrice(selectedCompetitor.value)
 }
 
 function getLiberacPrice(value) {
   return '$' + (parseInt(value) + 10)
 }
 
-function getClickexPrice(value) {
+function getKlickexPrice(value) {
   return '$' + (parseInt(value) + 30)
+}
+
+function getSMPPrice(value) {
+  return '$' + (parseInt(value) + 50)
 }
 
 function getWesternUnionPrice(value) {
   return '$' + (parseInt(value) + 999)
+}
+
+function updateCompetitorPrice(competitor) {
+  switch(competitor) {
+    case 'klickex':
+      competitorPricing.value = getKlickexPrice(transferSlider.value)
+      break
+    case 'westernunion':
+      competitorPricing.value = getWesternUnionPrice(transferSlider.value)
+      break
+    case 'sendmoneypacific':
+      competitorPricing.value = getSMPPrice(transferSlider.value)
+    default:
+      console.log('No competitor selected?!')
+  }
 }
 

@@ -1,0 +1,23 @@
+{
+  "name": "liberac",
+  "version": "1.0.0",
+  "description": "The liberac site",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adiraj22/liberac.git"
+  },
+  "author": "Liberac",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adiraj22/liberac/issues"
+  },
+  "homepage": "https://github.com/adiraj22/liberac#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}

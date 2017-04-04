@@ -6,7 +6,7 @@
 -->
 <html>
   <head>
-    <title>Liberac</title>
+    <title>Liberac - Comparison</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -23,9 +23,9 @@
         <a href="index.html"><img src="ms-icon-full.jpg" alt="Liberac Logo" id="liberac-logo"></a>
         <nav class="right">
           <div class="icons" style="padding-top:10px; float:left;">
-            <a href="https://twitter.com/liberac_ltd" class=""> <img src="Twitter_Logo_Blue.png" alt="" style="width:50px;height:50px;margin-bottom:-10px;"/>  </a> 			<!--Twitter -->
-            <a href="https://www.facebook.com/LiberacLtd/" class=""> <img src="FB-f-Logo__blue_29.png" alt="" style=""	/>  </a> <!--Facebook -->
-            <a href="https://www.linkedin.com/company-beta/17943247/" class=""> <img src="In-2C-28px-TM.png" alt="" style="    padding-left: 10px;"	/>  </a> <!--linkedin -->
+            <a href="https://twitter.com/liberac_ltd" class=""> <img src="Twitter_Logo_Blue.png" alt="" style="width:50px;height:50px;margin-bottom:-10px;"/>  </a>       <!--Twitter -->
+            <a href="https://www.facebook.com/LiberacLtd/" class=""> <img src="FB-f-Logo__blue_29.png" alt="" style=""  />  </a> <!--Facebook -->
+            <a href="https://www.linkedin.com/company-beta/17943247/" class=""> <img src="In-2C-28px-TM.png" alt="" style="    padding-left: 10px;" />  </a> <!--linkedin -->
             <a href="https://www.instagram.com/liberac_ltd/" class=""> <img src="glyph-logo_May2016.png" alt="" style="width: 29px;margin-left: 7px;margin-right:10px;"/> </a> <!--Instagram -->
           </div>
           <a href="http://bit.ly/2oE0nkw" class="button alt">Sign Up</a>
@@ -53,13 +53,25 @@
     <!-- Main -->
       <section id="main" class="wrapper">
         <div class="inner">
-          <header class="align-center">
-            <h1>About us</h1>
+          <header class="align-center" style="margin-bottom: 50px;">
+            <h1>Provider Comparison</h1>
             <p></p>
-                    </header>
-          <p>Liberac is a local company using internet and block-chain technologies to reduce costs of money transfers, passing on these savings to our community of users. We aim to provide a secure service that ensures you receive the best currency exchange rates and the lowest fees possible.
-
-This means family back home will receive more of what you send than they have ever before, that's what we want to achieve. </p>
+            </header>
+          <p>
+          <div class="align-left" style="float: left; margin-left: 8rem">
+            <h1 style="text-align: center;">Liberac</h1>
+            <input type="text" id="liberac_pricing" value="$300" disabled>
+          </div>
+          <div class="align-right" style="float: right; margin-right: 8rem">
+            <h1 style="text-align: center;">Competitor</h1>
+            <input type="text" id="competitor_pricing" value="$400" disabled>
+          </div>
+          <div class="align-center" style="clear: both; margin-top: 200px;">
+            <label for="transfer-slider">Transfer Amount</label>
+            <input type="range" id="transfer-slider" min="10" max="1000" step="50" />
+            <div id="transfer-value">$600</div>
+          </div>
+          </p>
         </div>
       </section>
         <script>
@@ -97,6 +109,7 @@ This means family back home will receive more of what you send than they have ev
       <script src="assets/js/skel.min.js"></script>
       <script src="assets/js/util.js"></script>
       <script src="assets/js/main.js"></script>
+      <script src="assets/js/comparison-slider.js"></script>
 
   </body>
 </html>

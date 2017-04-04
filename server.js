@@ -30,7 +30,7 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(port, () => {
-  console.log(`Online and logged on at Port ${port}`)
+  console.log(`Now available at http://localhost:${port}`)
 })
 
 module.exports = app

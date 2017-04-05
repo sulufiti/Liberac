@@ -7,8 +7,8 @@ var liberacPricing = document.querySelector('#liberac_pricing')
 var competitorPricing = document.querySelector('#competitor_pricing')
 var selectedCompetitor = document.querySelector('#competitor_options')
 
-// Update the pricing displays when clicking the scale
-transferSlider.onclick = function() {
+// Update the pricing displays when dragging the scale
+transferSlider.onchange = function updateTransferSlider() {
   transferReadout.innerHTML = '$' + transferSlider.value
   updatePrice('liberac')
   console.log(selectedCompetitor.value)
@@ -16,7 +16,7 @@ transferSlider.onclick = function() {
 }
 
 // Update the pricing when flicking between competitors
-selectedCompetitor.onchange = function() {
+selectedCompetitor.onchange = function updateCompetitor() {
   updatePrice(selectedCompetitor.value)
 }
 
@@ -37,7 +37,7 @@ var fees = {
   "westernunion": {
     "fixed": 14.00,
     "exchange_rate": 1.70,
-    "fee_percentage": 13.40
+    "fee_percentage": 0.1340
   },
   "moneygram": {
     "fixed": 10.00,
@@ -80,4 +80,7 @@ function updatePrice(company) {
       break
   }
 }
+
+updatePrice('liberac')
+updatePrice(selectedCompetitor.value)
 

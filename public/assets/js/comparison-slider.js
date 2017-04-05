@@ -1,4 +1,4 @@
-// Transfer Funds Slider elements
+// Funds transfer slider elements
 var transferSlider = document.querySelector('#transfer-slider')
 var transferReadout = document.querySelector('#transfer-value')
 
@@ -7,24 +7,19 @@ var liberacPricing = document.querySelector('#liberac_pricing')
 var competitorPricing = document.querySelector('#competitor_pricing')
 var selectedCompetitor = document.querySelector('#competitor_options')
 
-// Update the pricing displays
+// Update the pricing displays when clicking the scale
 transferSlider.onchange = function() {
   transferReadout.innerHTML = '$' + transferSlider.value
-  liberacPricing.value = getLiberacPrice(transferSlider.value)
-  updateCompetitorPrice(selectedCompetitor.value)
+  updatePrice('liberac')
+  updatePrice(selectedCompetitor.value)
 }
 
 // Update the pricing when flicking between competitors
 selectedCompetitor.onchange = function() {
-  updateCompetitorPrice(selectedCompetitor.value)
+  updatePrice(selectedCompetitor.value)
 }
 
-// KlickEx
-// Western Union
-// Moneygram
-// Pacific Ezy
-// ANZ
-
+// Contains the different pricing "algorithms" from other competitors + liberac
 function getPrice(company, value) {
   switch(company) {
     case 'liberac':
@@ -51,22 +46,15 @@ function getPrice(company, value) {
   }
 }
 
-function updateCompetitorPrice(company) {
+// Updates the pricing display values with Liberac + competitors charges
+function updatePrice(company) {
   switch(company) {
     case 'liberac':
       liberacPricing.value = getPrice(company, parseInt(transferSlider.value))
     case 'klickex':
-      competitorPricing.value = getPrice(company, parseInt(transferSlider.value))
-      break
     case 'westernunion':
-      competitorPricing.value = getPrice(company, parseInt(transferSlider.value))
-      break
     case 'moneygram':
-      competitorPricing.value = getPrice(company, parseInt(transferSlider.value))
-      break
     case 'pacificezy':
-      competitorPricing.value = getPrice(company, parseInt(transferSlider.value))
-      break
     case 'anz':
       competitorPricing.value = getPrice(company, parseInt(transferSlider.value))
       break

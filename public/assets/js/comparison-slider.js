@@ -28,40 +28,59 @@ var fees = {
   "liberac": {
     "fixed": 2.00,
     "exchange_rate": 1.74,
-    "fee_percentage": 0.03
+    "higher_fee_percentage": 0.052,
+    "lower_fee_percentage": 0.042
   },
   "klickex": {
     "fixed": 3.00,
     "exchange_rate": 1.74,
-    "fee_percentage": 0.0588
+    "higher_fee_percentage": 0.0588,
+    "lower_fee_percentage": 0.0477
   },
   "westernunion": {
     "fixed": 14.00,
     "exchange_rate": 1.70,
-    "fee_percentage": 0.1340
+    "higher_fee_percentage": 0.1340,
+    "lower_fee_percentage": 0.0920
   },
   "moneygram": {
     "fixed": 10.00,
     "exchange_rate": 1.74,
-    "fee_percentage": 0.0936
+    "higher_fee_percentage": 0.0936,
+    "lower_fee_percentage": 0.0636
   },
   "pacificezy": {
     "fixed": 8.00,
     "exchange_rate": 1.75,
-    "fee_percentage": 0.0781
+    "higher_fee_percentage": 0.0781,
+    "lower_fee_percentage": 0.0541
   },
   "anz": {
     "fixed": 28.00,
     "exchange_rate": 1.71,
-    "fee_percentage": 0.2025
+    "higher_fee_percentage": 0.2025,
+    "lower_fee_percentage": 0.1185
   }
 }
 
 function calculateFees(company, value) {
-  var full_fees = value * fees[company].fee_percentage
-  var convertedCurrency = value * fees[company].exchange_rate
-  var total = convertedCurrency - full_fees
-  return new Intl.NumberFormat('latn', { style: 'currency', currency: 'WST' }).format(total)
+  console.log(company)
+  if (value < 199) {
+    let lower_fee = fees[company].lower_fee_percentage
+    return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * lower_fee) 
+  } else if (value === 200) {
+    let lower_fee = fees[company].lower_fee_percentage
+    return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * lower_fee)  
+  } else if (value > 200 && value < 499) {
+    let middle_fee = (fees[company].higher_fee_percentage + fees[company].lower_fee_percentage) / 2
+    return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * middle_fee)
+  } else if (value === 500) {
+    let higher_fee = fees[company].higher_fee_percentage
+    return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * higher_fee)
+  } else if (value > 500) {
+    let higher_fee = fees[company].higher_fee_percentage
+    return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * higher_fee)
+  }
 }
 
 // Updates the pricing display values with Liberac + competitors charges

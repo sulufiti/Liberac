@@ -53,14 +53,16 @@
     <!-- Main -->
       <section id="main" class="wrapper">
         <div class="inner">
-          <header class="align-center" style="margin-top: -45px; margin-bottom: 50px;">
+          <header class="align-center" style="margin-top: -65px; margin-bottom: 35px;">
             <h1>Provider Comparison</h1>
             <p></p>
             </header>
           <p>
           <div class="align-left" style="float: left; margin-left: 8rem">
             <h1 style="text-align: center; margin-bottom: 16%">Liberac</h1>
+            <label for="liberac_fees" style="text-align: center;">Fees</label>
             <input type="text" id="liberac_fees" value="" disabled>
+            <label for="liberac_total" style="text-align: center; margin-top: 20px;">Total</label>
             <input type="text" id="liberac_total" value="" disabled>
           </div>
           <div class="align-right" style="float: right; margin-right: 8rem">
@@ -71,11 +73,13 @@
               <option value="pacificezy">Pacific Ezy</option>
               <option value="anz">ANZ</option>
             </select>
+            <label for="competitor_fees" style="text-align: center;">Fees</label>
             <input type="text" id="competitor_fees" value="" disabled>
+            <label for="competitor_total" style="text-align: center; margin-top: 20px;">Total</label>
             <input type="text" id="competitor_total" value="" disabled>
           </div>
-          <div class="align-center" style="clear: both; margin-top: 200px;">
-            <label for="transfer-slider" style="font-size: 18px">Transfer Amount</label>
+          <div class="align-center" style="clear: both;">
+            <label for="transfer-slider" style="font-size: 18px; padding-top: 20px;">Transfer Amount</label>
             <input type="range" id="transfer-slider" min="100" max="1000" step="100" value="200" list="transfer-amounts" />
             <datalist id="transfer-amounts">
               <option>100</option>

@@ -68,16 +68,10 @@ function calculateFees(company, value) {
   if (value < 199) {
     let lower_fee = fees[company].lower_fee_percentage
     return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * lower_fee) 
-  } else if (value === 200) {
-    let lower_fee = fees[company].lower_fee_percentage
-    return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * lower_fee)  
-  } else if (value > 200 && value < 499) {
+  } else if (value >= 200 && value < 499) {
     let middle_fee = (fees[company].higher_fee_percentage + fees[company].lower_fee_percentage) / 2
     return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * middle_fee)
-  } else if (value === 500) {
-    let higher_fee = fees[company].higher_fee_percentage
-    return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * higher_fee)
-  } else if (value > 500) {
+  } else if (value >= 500) {
     let higher_fee = fees[company].higher_fee_percentage
     return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * higher_fee)
   }

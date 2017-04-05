@@ -9,8 +9,8 @@ exports.up = function(knex, Promise) {
     table.string('passport_url')
     table.string('address_proof')
   })
-};
+}
 
 exports.down = function(knex, Promise) {
   return knex.schema.dropTableIfExists('users')
-};
+}

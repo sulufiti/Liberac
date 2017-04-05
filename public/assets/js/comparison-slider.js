@@ -3,15 +3,16 @@ var transferSlider = document.querySelector('#transfer-slider')
 var transferReadout = document.querySelector('#transfer-value')
 
 // Pricing display elements
-var liberacPricing = document.querySelector('#liberac_pricing')
-var competitorPricing = document.querySelector('#competitor_pricing')
+var liberacFees = document.querySelector('#liberac_fees')
+var liberacTotal = document.querySelector('#liberac_total')
+var competitorFees = document.querySelector('#competitor_fees')
+var competitorTotal = document.querySelector('#competitor_total')
 var selectedCompetitor = document.querySelector('#competitor_options')
 
 // Update the pricing displays when dragging the scale
 transferSlider.onchange = function updateTransferSlider() {
   transferReadout.innerHTML = '$' + transferSlider.value
   updatePrice('liberac')
-  console.log(selectedCompetitor.value)
   updatePrice(selectedCompetitor.value)
 }
 
@@ -21,7 +22,7 @@ selectedCompetitor.onchange = function updateCompetitor() {
 }
 
 // Easiest to store all the fees as an object accessed in getPrice()
-// Obviously, these aren't *live* dates but it'll do for now
+// Obviously, these aren't *live* amounts but it'll do for now
 
 var fees = {
   "liberac": {
@@ -60,20 +61,22 @@ function calculateFees(company, value) {
   var full_fees = value * fees[company].fee_percentage
   var convertedCurrency = value * fees[company].exchange_rate
   var total = convertedCurrency - full_fees
-  return '$' + total
+  return new Intl.NumberFormat('latn', { style: 'currency', currency: 'WST' }).format(total)
 }
 
 // Updates the pricing display values with Liberac + competitors charges
 function updatePrice(company) {
   switch(company) {
     case 'liberac':
-      liberacPricing.value = calculateFees(company, parseInt(transferSlider.value))
+      liberacFees.value = new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(fees[company].fixed)
+      liberacTotal.value = calculateFees(company, parseInt(transferSlider.value))
     case 'klickex':
     case 'westernunion':
     case 'moneygram':
     case 'pacificezy':
     case 'anz':
-      competitorPricing.value = calculateFees(company, parseInt(transferSlider.value))
+      competitorFees.value = new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(fees[company].fixed)
+      competitorTotal.value = calculateFees(company, parseInt(transferSlider.value))
       break
     default:
       console.error('No competitor to update?')

@@ -9,7 +9,7 @@ knex('users')
   }
 })
 .then(() => {
-  knex.disconnect()
+  process.exit(0)
 })
 .catch((err) => {
   console.log(err)

@@ -8,9 +8,10 @@ var competitorPricing = document.querySelector('#competitor_pricing')
 var selectedCompetitor = document.querySelector('#competitor_options')
 
 // Update the pricing displays when clicking the scale
-transferSlider.onchange = function() {
+transferSlider.onclick = function() {
   transferReadout.innerHTML = '$' + transferSlider.value
   updatePrice('liberac')
+  console.log(selectedCompetitor.value)
   updatePrice(selectedCompetitor.value)
 }
 
@@ -19,44 +20,60 @@ selectedCompetitor.onchange = function() {
   updatePrice(selectedCompetitor.value)
 }
 
-// Contains the different pricing "algorithms" from other competitors + liberac
-function getPrice(company, value) {
-  switch(company) {
-    case 'liberac':
-      return '$' + (value + 100)
-      break
-    case 'klickex':
-      return '$' + (value + 200)
-      break
-    case 'westernunion':
-      return '$' + (value + 300)
-      break
-    case 'moneygram':
-      return '$' + (value + 400)
-      break
-    case 'pacificezy':
-      return '$' + (value + 500)
-      break
-    case 'anz':
-      return '$' + (value + 600)
-      break
-    default:
-      console.error('No competitor selected!')
-      break
+// Easiest to store all the fees as an object accessed in getPrice()
+// Obviously, these aren't *live* dates but it'll do for now
+
+var fees = {
+  "liberac": {
+    "fixed": 2.00,
+    "exchange_rate": 1.74,
+    "fee_percentage": 0.03
+  },
+  "klickex": {
+    "fixed": 3.00,
+    "exchange_rate": 1.74,
+    "fee_percentage": 0.0588
+  },
+  "westernunion": {
+    "fixed": 14.00,
+    "exchange_rate": 1.70,
+    "fee_percentage": 13.40
+  },
+  "moneygram": {
+    "fixed": 10.00,
+    "exchange_rate": 1.74,
+    "fee_percentage": 0.0936
+  },
+  "pacificezy": {
+    "fixed": 8.00,
+    "exchange_rate": 1.75,
+    "fee_percentage": 0.0781
+  },
+  "anz": {
+    "fixed": 28.00,
+    "exchange_rate": 1.71,
+    "fee_percentage": 0.2025
   }
+}
+
+function calculateFees(company, value) {
+  var full_fees = value * fees[company].fee_percentage
+  var convertedCurrency = value * fees[company].exchange_rate
+  var total = convertedCurrency - full_fees
+  return '$' + total
 }
 
 // Updates the pricing display values with Liberac + competitors charges
 function updatePrice(company) {
   switch(company) {
     case 'liberac':
-      liberacPricing.value = getPrice(company, parseInt(transferSlider.value))
+      liberacPricing.value = calculateFees(company, parseInt(transferSlider.value))
     case 'klickex':
     case 'westernunion':
     case 'moneygram':
     case 'pacificezy':
     case 'anz':
-      competitorPricing.value = getPrice(company, parseInt(transferSlider.value))
+      competitorPricing.value = calculateFees(company, parseInt(transferSlider.value))
       break
     default:
       console.error('No competitor to update?')

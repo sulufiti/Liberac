@@ -26,10 +26,7 @@ selectedCompetitor.onchange = function updateCompetitor() {
 
 var fees = {
   "liberac": {
-    "fixed": 2.00,
-    "exchange_rate": 1.74,
-    "higher_fee_percentage": 0.052,
-    "lower_fee_percentage": 0.042
+    "fixed": 8.00
   },
   "klickex": {
     "fixed": 3.00,
@@ -64,16 +61,17 @@ var fees = {
 }
 
 function calculateFees(company, value) {
-  console.log(company)
-  if (value < 199) {
-    let lower_fee = fees[company].lower_fee_percentage
-    return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * lower_fee) 
-  } else if (value >= 200 && value < 499) {
-    let middle_fee = (fees[company].higher_fee_percentage + fees[company].lower_fee_percentage) / 2
-    return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * middle_fee)
-  } else if (value >= 500) {
-    let higher_fee = fees[company].higher_fee_percentage
-    return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * higher_fee)
+  if (company !== 'liberac') {
+    if (value < 199) {
+      let lower_fee = fees[company].lower_fee_percentage
+      return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * lower_fee) 
+    } else if (value >= 200 && value < 499) {
+      let middle_fee = (fees[company].higher_fee_percentage + fees[company].lower_fee_percentage) / 2
+      return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * middle_fee)
+    } else if (value >= 500) {
+      let higher_fee = fees[company].higher_fee_percentage
+      return new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(value * higher_fee)
+    }
   }
 }
 
@@ -81,8 +79,8 @@ function calculateFees(company, value) {
 function updatePrice(company) {
   switch(company) {
     case 'liberac':
-      liberacFees.value = new Intl.NumberFormat('latn', { style: 'currency', currency: 'NZD' }).format(fees[company].fixed)
-      liberacTotal.value = calculateFees(company, parseInt(transferSlider.value))
+      liberacFees.value = '$8.00'
+      liberacTotal.value = '$8.00'
     case 'klickex':
     case 'westernunion':
     case 'moneygram':

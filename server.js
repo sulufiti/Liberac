@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', index)
 
 // Error handlers
+// TODO: Create error page for error handlers
 app.use((req, res, next) => {
   let err = new Error('Not Found')
   err.status = 404
@@ -39,7 +40,8 @@ app.use((err, req, res, next) => {
 
 // Listen on a server defined port if it exists
 app.listen(process.env.PORT || port, () => {
-  console.log(`Liberac is now being served at http://localhost:${port}`)
+  console.log(`Liberac is now being served at http://localhost:${port}\n`)
+  console.log(`Running in ${process.env.NODE_ENV} mode`)
 })
 
 module.exports = app

@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const passport = require('passport')
 const uuidV4 = require('uuid/v4')
 
 const Knex = require('knex')
@@ -27,5 +28,14 @@ router.post('/confirm', (req, res, next) => {
     res.json(user)
   })
 })
+
+router.get('/login', (req, res, next) => {
+  res.send('login')
+})
+
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/success',
+  failureRedirect: '/login' 
+}))
 
 module.exports = router

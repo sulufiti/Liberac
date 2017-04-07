@@ -17,7 +17,13 @@ const router = express.Router()
 let sessionSettings = {
   secret: process.env.EXPRESS_SESSION_SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {}
+}
+
+// Enable secure cookie in production (requires HTTPS so disabled on dev setup)
+if (app.get('env') === 'production') {
+  sessionSettings.cookie.secure = true
 }
 
 // Routes

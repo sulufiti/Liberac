@@ -11,11 +11,17 @@ const setupPassport = () => {
       users.findByUsername(username)
       .then((user) => {
         user = user[0]
-        if (!user) { console.log('no such user') } else { console.log(`User ${user.username} is valid`) }
-        if (!user) return done(null, false)
+
+        if (!user) {
+          return done(null, false, { message: 'Incorrect or non-existant username' })
+        }
+
         bcrypt.compare(password, user.password_hash, (err, res) => {
-          console.log('password correct', res)
-          return done(null, res && user)
+          if (!res) {
+            return done(null, false, { message: 'Incorrect password' })
+          } else {
+          return done(null, user)
+          }
         })
       })
       .catch((err) => {
@@ -25,15 +31,16 @@ const setupPassport = () => {
   ))
 
   passport.serializeUser((user, done) => {
-    done(null, user.id)
+    done(null, user)
   })
 
   passport.deserializeUser((id, done) => {
-    users.findByID(id)
-    .then(user => {
+    console.log('deserialize')
+    return users.findByID(id)
+    .then((user) => {
       return done(null, user)
     })
-    .catch(err => {
+    .catch((err) => {
       console.error('error deserializing user', err)
     })
   })

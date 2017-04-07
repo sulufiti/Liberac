@@ -1,4 +1,5 @@
 const express = require('express')
+const jsonfile = require('jsonfile')
 const router = express.Router()
 const passport = require('passport')
 const uuidV4 = require('uuid/v4')
@@ -34,13 +35,14 @@ router.get('/login', (req, res, next) => {
 })
 
 router.post('/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  (req, res, next) => {
-    res.redirect('/loggedin')
-})
+  passport.authenticate('local', {
+    successRedirect: '/loggedin', 
+    failureRedirect: '/login' 
+  })
+)
 
 router.get('/loggedin', (req, res, next) => {
-  res.send('you are now logged in')
+  res.send(`Welcome ${req.session.passport.user.first_name} ${req.session.passport.user.last_name}`)
 })
 
 router.get('/logout', (req, res, next) => {
@@ -49,7 +51,8 @@ router.get('/logout', (req, res, next) => {
 })
 
 router.get('/loggedout', (req, res, next) => {
-  res.send('you are now logged out')
+  fs.writeFileSync('logout.json', JSON.stringify(req))
+  res.send('logged out')
 })
 
 module.exports = router

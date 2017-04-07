@@ -14,7 +14,7 @@ const app = express()
 const jsonParser = bodyParser.json()
 const port = 3000
 const router = express.Router()
-let sessionSettings = {
+var sessionSettings = {
   secret: process.env.EXPRESS_SESSION_SECRET,
   resave: false,
   saveUninitialized: false,

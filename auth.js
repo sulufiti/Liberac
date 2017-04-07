@@ -10,17 +10,18 @@ const setupPassport = () => {
     (username, password, done) => {
       users.findByUsername(username)
       .then((user) => {
-        user = user[0]
-
         if (!user) {
-          return done(null, false, { message: 'Incorrect or non-existant username' })
+          // Return to /login if the username doesn't exist
+          return done(null, false)
         }
 
         bcrypt.compare(password, user.password, (err, res) => {
           if (!res) {
-            return done(null, false, { message: 'Incorrect password' })
+            // Return to /login if the password doesn't match
+            return done(null, false)
           } else {
-          return done(null, user)
+            // Go to /loggedin if passwords match
+            return done(null, user)
           }
         })
       })

@@ -13,11 +13,13 @@ const setupPassport = () => {
         user = user[0]
 
         if (!user) {
+          console.log('wrong username')
           return done(null, false, { message: 'Incorrect or non-existant username' })
         }
 
         bcrypt.compare(password, user.password_hash, (err, res) => {
           if (!res) {
+            console.log('wrong password')
             return done(null, false, { message: 'Incorrect password' })
           } else {
           return done(null, user)
@@ -36,7 +38,7 @@ const setupPassport = () => {
 
   passport.deserializeUser((id, done) => {
     console.log('deserialize')
-    return users.findByID(id)
+    users.findByID(id)
     .then((user) => {
       return done(null, user)
     })

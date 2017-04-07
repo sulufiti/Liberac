@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('users', (table) => {
     table.uuid('id').primary()
     table.string('username').unique().notNullable()
-    table.string('password_hash').notNullable()
+    table.string('password').notNullable()
     table.string('first_name').notNullable()
     table.string('last_name').notNullable()
     table.string('contact_number').unique().notNullable()

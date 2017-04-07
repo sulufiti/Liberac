@@ -14,9 +14,11 @@ router.get('/register', (req, res, next) => {
 })
 
 router.post('/confirm', (req, res, next) => {
+  console.log(req.body.password)
   hash(req.body.password)
   .then(hash => req.body.password = hash)
   .then(() => {
+    console.log(req.body.password)
     knex('users')
     .insert({
       id: uuidV4(),

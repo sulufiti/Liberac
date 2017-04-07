@@ -1,46 +1,24 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('passport')
-const uuidV4 = require('uuid/v4')
-
-const hash = require('../helpers/bcrypt').hash
-
-const Knex = require('knex')
-const knexConfig = require('../knexfile')
-const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
+const bcrypt = require('bcrypt')
+const user = require('../helpers/db_users.js')
+const saltRounds = 10
 
 router.get('/register', (req, res, next) => {
   res.render('register')
 })
 
 router.post('/confirm', (req, res, next) => {
-  console.log(req.body.password)
-  hash(req.body.password)
+  bcrypt.hash(req.body.password, saltRounds)
   .then(hash => req.body.password = hash)
   .then(() => {
-    console.log(req.body.password)
-    knex('users')
-    .insert({
-      id: uuidV4(),
-      username: req.body.username,
-      password: req.body.password,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      contact_number: req.body.phone,
-      email: req.body.email,
-      address: req.body.address, 
-      accepted_agreement: true
-    })
-    .then((result) => {
-      res.redirect('/login')
-    })
+    user.register(req.body)
+    .then(() => res.redirect('/login'))
     .catch((err) => {
-      res.send('error, non-unique username probably')
-      console.error('error inserting registration into db', err)
+      res.send('user already exists in database')
+      console.error(err)
     })
-  })
-  .catch((err) => {
-    console.error('error hashing before db insertion', err)
   })
 })
 
@@ -65,7 +43,6 @@ router.get('/logout', (req, res, next) => {
 })
 
 router.get('/loggedout', (req, res, next) => {
-  fs.writeFileSync('logout.json', JSON.stringify(req))
   res.send('logged out')
 })
 

@@ -38,9 +38,7 @@ const setupPassport = () => {
   passport.deserializeUser((id, done) => {
     console.log('deserialize')
     users.findByID(id)
-    .then((user) => {
-      return done(null, user)
-    })
+    .then((user) => { return done(null, user) })
     .catch((err) => {
       console.error('error deserializing user', err)
     })

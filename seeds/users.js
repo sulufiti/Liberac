@@ -1,8 +1,9 @@
 const uuidV4 = require('uuid/v4')
 
-// TODO: Change passport_url and address_proofs to point to placeholder Azure blobs
-
 /*
+
+TODO: Change passport_url and address_proofs to point to placeholder Azure blobs
+
 Test passwords are just the usernames hashed w/ 10 salt rounds
 (obviously, use strong passwords if you actually register...):
 

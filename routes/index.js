@@ -30,12 +30,26 @@ router.post('/confirm', (req, res, next) => {
 })
 
 router.get('/login', (req, res, next) => {
-  res.send('login')
+  res.render('login')
 })
 
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/success',
-  failureRedirect: '/login' 
-}))
+router.post('/login',
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  (req, res, next) => {
+    res.redirect('/loggedin')
+})
+
+router.get('/loggedin', (req, res, next) => {
+  res.send('you are now logged in')
+})
+
+router.get('/logout', (req, res, next) => {
+  req.logout()
+  res.redirect('/loggedout')
+})
+
+router.get('/loggedout', (req, res, next) => {
+  res.send('you are now logged out')
+})
 
 module.exports = router

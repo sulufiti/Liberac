@@ -1,9 +1,13 @@
 // Express imports
-const env = require('dotenv').config()
+require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
+const passport = require('passport')
 const path = require('path')
 const session = require('express-session')
+
+// Local imports
+const setupPassport = require('./auth').setupPassport
 
 // Setting up express middlewares
 const app = express()
@@ -13,8 +17,7 @@ const router = express.Router()
 let sessionSettings = {
   secret: process.env.EXPRESS_SESSION_SECRET,
   resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
+  saveUninitialized: false
 }
 
 // Routes
@@ -25,16 +28,12 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
 app.locals.pretty = true
 
-// Non-secure cookie if in development mode
-if (app.get('env') === 'development') {
-  sessionSettings.cookie.secure = false
-}
-
 // Enabling middlewares
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(passport.initialize())
 app.use(session(sessionSettings))
-
+setupPassport()
 
 // Serve static files and routes that use templates
 app.use(express.static(path.join(__dirname, 'public')))

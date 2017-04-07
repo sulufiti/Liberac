@@ -12,5 +12,5 @@ const findByID = (id) => {
 
 module.exports = {
   findByUsername,
-  findByUserID
+  findByID
 }

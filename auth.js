@@ -1,18 +1,25 @@
 const passport = require('passport')
+const bcrypt = require('bcrypt')
 const users = require('./helpers/db_users')
 const LocalStrategy = require('passport-local').Strategy
 
+// TODO: Remove console.logs
+
 const setupPassport = () => {
-  passport.use(new Strategy(
-    (username, password, callback) => {
+  passport.use(new LocalStrategy(
+    (username, password, done) => {
       users.findByUsername(username)
-      .then(user => {
+      .then((user) => {
         user = user[0]
-        if (!user) return done(null, { error: 'no such user' })
+        if (!user) { console.log('no such user') } else { console.log(`User ${user.username} is valid`) }
+        if (!user) return done(null, false)
         bcrypt.compare(password, user.password_hash, (err, res) => {
-          if (err) return console.error(err)
+          console.log('password correct', res)
           return done(null, res && user)
         })
+      })
+      .catch((err) => {
+        console.error('error in auth.js LocalStrategy', err)
       })
     }
   ))
@@ -27,7 +34,7 @@ const setupPassport = () => {
       return done(null, user)
     })
     .catch(err => {
-      console.error(err)
+      console.error('error deserializing user', err)
     })
   })
 }

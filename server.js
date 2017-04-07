@@ -28,7 +28,13 @@ if (app.get('env') === 'production') {
 
 // Routes
 const index = require('./routes/index')
-const facebook = require('./routes/facebook')
+
+// Experimental routes (eg; development only)
+if (app.get('env') === 'development') {
+  console.log('fb routes enabled')
+  const facebook = require('./routes/facebook')
+  app.use('/facebook', facebook)
+}
 
 // Template rendering
 app.set('views', path.join(__dirname, 'views'))
@@ -45,7 +51,6 @@ setupPassport()
 // Serve static files and routes that use templates
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', index)
-app.use('/facebook', facebook)
 
 // Error handlers
 // TODO: Create error page for error handlers

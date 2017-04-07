@@ -9,14 +9,15 @@ router.get('/login',
 )
 
 router.get('/return',
-  passport.authenticate('facebook', {
-    successRedirect: '/facebook/loggedin',
-    failureRedirect: '/facebook/login'
+  passport.authenticate('facebook', { 
+    failureRedirect: '/',
+    successRedirect: '/profile'
   })
 )
 
-router.get('/loggedin', (req, res, next) => {
+router.get('/profile', (req, res, next) => {
   console.log(req)
+  res.send('check terminal')
 })
 
 module.exports = router

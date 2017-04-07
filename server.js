@@ -31,7 +31,6 @@ const index = require('./routes/index')
 
 // Experimental routes (eg; development only)
 if (app.get('env') === 'development') {
-  console.log('fb routes enabled')
   const facebook = require('./routes/facebook')
   app.use('/facebook', facebook)
 }

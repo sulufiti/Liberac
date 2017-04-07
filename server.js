@@ -29,6 +29,12 @@ if (app.get('env') === 'production') {
 // Routes
 const index = require('./routes/index')
 
+// Experimental routes (eg; development only)
+if (app.get('env') === 'development') {
+  const facebook = require('./routes/facebook')
+  app.use('/facebook', facebook)
+}
+
 // Template rendering
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')

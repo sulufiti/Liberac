@@ -2,6 +2,7 @@ const passport = require('passport')
 const bcrypt = require('bcrypt')
 const users = require('./helpers/db_users')
 const LocalStrategy = require('passport-local').Strategy
+const FacebookStrategy = require('passport-facebook').Strategy
 
 // TODO: Remove console.logs
 
@@ -30,6 +31,15 @@ const setupPassport = () => {
       })
     }
   ))
+
+  passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: 'http://localhost:3000/facebook/return',
+    profileFields: ['id', 'email', 'name', 'friends']
+  }, (accessToken, refreshToken, profile, done) => {
+    return done(null, profile)
+  }))
 
   passport.serializeUser((user, done) => {
     done(null, user)

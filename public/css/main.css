@@ -104,7 +104,8 @@ body, h1, h2, h3, h4, h5, h6 {
 .content-section-a {
     background-color: #f8f8f8;
     margin-top: 70px;
-    padding-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 50px;
 }
 
 .content-section-b {

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const path = require('path')
 const session = require('express-session')
+const fileupload = require('express-fileupload')
 
 // Local imports
 const setupPassport = require('./auth').setupPassport
@@ -43,6 +44,7 @@ app.locals.pretty = true
 // Enabling middlewares
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(fileupload())
 app.use(passport.initialize())
 app.use(session(sessionSettings))
 setupPassport()

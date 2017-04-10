@@ -46,4 +46,12 @@ router.get('/loggedout', (req, res, next) => {
   res.send('logged out')
 })
 
+router.get('/fileupload', (req, res, next) => {
+  res.render('fileupload')
+})
+
+router.post('/fileupload', (req, res, next) => {
+  console.log(req.files)
+})
+
 module.exports = router

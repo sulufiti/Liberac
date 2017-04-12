@@ -1,0 +1,23 @@
+{{> navbar }}
+<div class="content-section-a">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <p>Hi {{first_name}}</p>
+        <p>Please upload your passport and address proof</p>
+        <p><a href="/loggedin">Click here</a> to go back if you're not ready just yet</p>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+          <label for="passport">Passport:</label>
+          <input type="file" name="passport" required>
+          <br />
+          <label for="addressproof">Proof of Address:</label>
+          <input type="file" name="addressproof" required>
+          <br />
+          <input type="hidden" name="userid" value="{{id}}">
+          <input type="submit" value="Upload">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{> footer }}

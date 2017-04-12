@@ -9,7 +9,8 @@ router.get('/register', (req, res, next) => {
   res.render('register')
 })
 
-router.post('/confirm', (req, res, next) => {
+router.post('/register', (req, res, next) => {
+  console.log(req.body)
   bcrypt.hash(req.body.password, saltRounds)
   .then(hash => req.body.password = hash)
   .then(() => {
@@ -34,7 +35,7 @@ router.post('/login',
 )
 
 router.get('/loggedin', (req, res, next) => {
-  res.send(`Welcome ${req.session.passport.user.first_name} ${req.session.passport.user.last_name}`)
+  res.render('loggedin', { first_name: req.session.passport.user.first_name })
 })
 
 router.get('/logout', (req, res, next) => {

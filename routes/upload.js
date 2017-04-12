@@ -9,7 +9,7 @@ const blobService = azure.createBlobService(process.env.AZURE_STORAGE_ACCOUNT, p
 router.get('/proof', (req, res, next) => {
   user.findByUsername('samuel1234')
   .then(user => {
-    res.render('fileupload', { id: user.id })
+    res.render('fileupload', { id: user.id, name: user.first_name })
   })
 })
 

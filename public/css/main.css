@@ -54,11 +54,11 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 #intro-message > h1 {
     margin: 0;
-    font-size: 5em;
-    letter-spacing: 20px;
+    font-size: 4em;
+    letter-spacing: 10px;
 }
 #intro-message > h2 {
-  letter-spacing: 8px;
+  letter-spacing: 5px;
   font-size: 1.7em;
   margin: 0;
   padding: 0;
@@ -104,7 +104,8 @@ body, h1, h2, h3, h4, h5, h6 {
 .content-section-a {
     background-color: #f8f8f8;
     margin-top: 70px;
-    padding-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 50px;
 }
 
 .content-section-b {

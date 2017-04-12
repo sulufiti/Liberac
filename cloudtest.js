@@ -1,5 +1,5 @@
-const crypto = require('crypto')
 require('dotenv').config()
+const crypto = require('crypto')
 const axios = require('axios')
 const hmac = crypto.createHmac('sha256', process.env.CLOUDCHECK_SECRET)
 const querystring = require('querystring')
@@ -7,69 +7,42 @@ const querystring = require('querystring')
 const user = {
   "details": {
     "address": {
-      "suburb": "St Johns",
-      "street": "5 Strong Street",
-      "streetnumber": "5",
-      "streetname": "Strong Street",
-      "postcode": "1072",
-      "city": "Auckland"
+      "streetnumber": "129",
+      "streetname": "Edinburgh Street",
+      "postcode": "4702",
+      "city": "Feilding"
     },
     "name": {
-      "given": "Arnold",
-      "middle": "xxx",
-      "family": "Schwarzenegger"
+      "given": "Jayden",
+      "family": "Edgerton"
     },
     "driverslicence": {
-      "number": "AB123456",
-      "version": "111"
+      "number": "AB654321",
+      "version": "002"
     },
-    "passport": {
-      "number": "US987654",
-      "expiry": "2020-02-20"
-    },
-    "citizenship": {
-      "certificatenumber" : "5556667778",
-      "countryofbirth" : "Austria"
-    },
-    "country": {
-      "residency" : "xxx",
-      "citizenship" : "xxx"
-    },
+    "passport": {},
+    "citizenship": {},
+    "country": {},
     "birthcertificate" : {
-      "registrationnumber" : "5556667778"
+      "registrationnumber" : "1994008521"
     },
-    "vehicle": {
-      "numberplate": "xxx"
-    },
-    "dateofbirth": "1947-07-30"
+    "vehicle": {},
+    "dateofbirth": "1994-04-04"
   },
-  "reference": "1",
+  "reference": "3",
   "consent": "Yes"
 }
 
-const current_time = 1491974411
+const current_time = Date.now()
 
-// hmac.update(`/verify/data=${JSON.stringify(user)};key=${process.env.CLOUDCHECK_API_KEY};nonce=1;timestamp=${current_time};`)
+hmac.update(`/verify/data=${JSON.stringify(user)};key=${process.env.CLOUDCHECK_API_KEY};nonce=6;timestamp=${current_time};`)
 
-// const hmac1 = hmac.digest('hex')
-// console.log('hmac1', hmac1)
+const cloudsignature = hmac.digest('hex')
 
-hmac.update(`/verify/data=${user};key=${process.env.CLOUDCHECK_API_KEY};nonce=1;timestamp=${current_time};`)
-
-const hmac2 = hmac.digest('hex')
-console.log('hmac2', hmac2)
-// const params = {
-//     data: JSON.stringify(user),
-//     key: process.env.CLOUDCHECK_API_KEY,
-//     nonce: 2,
-//     signature: hmacSignature,
-//     timestamp: current_time
-//   }
-
-// axios.post('https://api.cloudcheck.co.nz/verify/', querystring.stringify(params))
-// .then((res) => {
-//   console.log(res.data)
-// })
-// .catch((err) => {
-//   console.error(err)
-// })
+axios.post('https://api.cloudcheck.co.nz/verify/', querystring.stringify({ data: JSON.stringify(user), key: process.env.CLOUDCHECK_API_KEY, nonce: 6, signature: cloudsignature, timestamp: current_time }))
+.then((res) => {
+  console.log(res.data)
+})
+.catch((err) => {
+  console.error(err)
+})

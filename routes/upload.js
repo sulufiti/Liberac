@@ -16,11 +16,17 @@ router.get('/proof', (req, res, next) => {
 router.post('/proof', (req, res, next) => {
   blobService.createBlockBlobFromText('passports', req.body.userid, req.files.passport.data, (error, result, response) => {
     if (!error) {
-      console.log(result)
-      console.log(response)
-      res.send('file uploaded')
+      blobService.createBlockBlobFromText('addressproofs', req.body.userid, req.files.addressproof.data, (error, result, response) => {
+        if (!error) {
+          res.render('success')
+        }
+      })
     }
   })
+})
+
+router.get('/viewproofs', (req, res, next) => {
+  blobService.get
 })
 
 module.exports = router

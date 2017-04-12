@@ -2,6 +2,12 @@
 require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
+const passport = require('passport')
+const session = require('express-session')
+const fileupload = require('express-fileupload')
+
+// Local imports
+const setupPassport = require('./auth').setupPassport
 
 // Setting up express middlewares
 const app = express()
@@ -9,6 +15,17 @@ const jsonParser = bodyParser.json()
 const hbs = require('hbs')
 const port = 3000
 const router = express.Router()
+let sessionSettings = {
+    secret: process.env.EXPRESS_SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {}
+}
+
+// Routes
+const facebook = require('./routes/facebook')
+const auth = require('./routes/auth')
+const upload = require('./routes/upload')
 
 // Template rendering
 app.set('views', __dirname + '/views')
@@ -19,41 +36,16 @@ app.locals.pretty = true
 // Enabling middlewares
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-
-// Disable halfbaked features
-if (app.get('env') === 'development') {
-  const session = require('express-session')
-  const fileupload = require('express-fileupload')
-  const passport = require('passport')
-  const setupPassport = require('./auth').setupPassport
-  
-  const facebook = require('./routes/facebook')
-  const auth = require('./routes/auth')
-  const upload = require('./routes/upload')
-  
-  var sessionSettings = {
-    secret: process.env.EXPRESS_SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {}
-  }
-
-  app.use('/facebook', facebook)
-  app.use('/auth', auth)
-  app.use('/upload', upload)
-  app.use(fileupload())
-  app.use(passport.initialize())
-  app.use(session(sessionSettings))
-  setupPassport()
-}
-
-// Enable secure cookie in production (requires HTTPS so disabled on dev setup)
-// if (app.get('env') === 'production') {
-//   sessionSettings.cookie.secure = true
-// }
+app.use(passport.initialize())
+app.use(fileupload())
+app.use(session(sessionSettings))
+setupPassport()
 
 // Serve static files and routes that use templates
 app.use(express.static(__dirname + '/public'))
+app.use('/facebook', facebook)
+app.use('/', auth)
+app.use('/upload', upload)
 
 // Error handlers
 // TODO: Create error page for error handlers

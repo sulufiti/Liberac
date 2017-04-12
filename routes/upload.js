@@ -6,14 +6,14 @@ const user = require('../helpers/db_users.js')
 const router = express.Router()
 const blobService = azure.createBlobService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY)
 
-router.get('/proof', (req, res, next) => {
+router.get('/', (req, res, next) => {
   user.findByUsername('samuel1234')
   .then(user => {
-    res.render('fileupload', { id: user.id, name: user.first_name })
+    res.render('upload', { id: user.id, name: user.first_name })
   })
 })
 
-router.post('/proof', (req, res, next) => {
+router.post('/', (req, res, next) => {
   blobService.createBlockBlobFromText('passports', req.body.userid, req.files.passport.data, (error, result, response) => {
     if (!error) {
       blobService.createBlockBlobFromText('addressproofs', req.body.userid, req.files.addressproof.data, (error, result, response) => {
@@ -23,10 +23,6 @@ router.post('/proof', (req, res, next) => {
       })
     }
   })
-})
-
-router.get('/viewproofs', (req, res, next) => {
-  blobService.get
 })
 
 module.exports = router

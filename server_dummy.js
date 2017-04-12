@@ -10,6 +10,9 @@ const hbs = require('hbs')
 const port = 3000
 const router = express.Router()
 
+// Routes
+const index = require('./routes/index')
+
 // Template rendering
 app.set('views', __dirname + '/views')
 app.set('view engine', 'hbs')
@@ -19,6 +22,9 @@ app.locals.pretty = true
 // Enabling middlewares
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+
+// Enalbe routes
+app.use('/', index)
 
 // Serve static files and routes that use templates
 app.use(express.static(__dirname + '/public'))

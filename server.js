@@ -2,11 +2,11 @@
 require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
-const path = require('path')
 
 // Setting up express middlewares
 const app = express()
 const jsonParser = bodyParser.json()
+const hbs = require('hbs')
 const port = 3000
 const router = express.Router()
 
@@ -14,8 +14,9 @@ const router = express.Router()
 const index = require('./routes/index')
 
 // Template rendering
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', __dirname + '/views')
 app.set('view engine', 'hbs')
+hbs.registerPartials(__dirname + '/views/partials')
 app.locals.pretty = true
 
 // Enabling middlewares
@@ -51,7 +52,7 @@ if (app.get('env') === 'development') {
 // }
 
 // Serve static files and routes that use templates
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(__dirname + '/public'))
 app.use('/', index)
 
 // Error handlers

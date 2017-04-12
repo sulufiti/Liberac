@@ -9,7 +9,8 @@ router.get('/register', (req, res, next) => {
   res.render('register')
 })
 
-router.post('/confirm', (req, res, next) => {
+router.post('/register', (req, res, next) => {
+  console.log(req.body)
   bcrypt.hash(req.body.password, saltRounds)
   .then(hash => req.body.password = hash)
   .then(() => {

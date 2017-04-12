@@ -26,6 +26,7 @@ let sessionSettings = {
 const facebook = require('./routes/facebook')
 const auth = require('./routes/auth')
 const upload = require('./routes/upload')
+const rates = require('./routes/rates')
 
 // Template rendering
 app.set('views', __dirname + '/views')
@@ -46,6 +47,7 @@ app.use(express.static(__dirname + '/public'))
 app.use('/facebook', facebook)
 app.use('/', auth)
 app.use('/upload', upload)
+app.use('/rates', rates)
 
 // Error handlers
 // TODO: Create error page for error handlers

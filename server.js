@@ -10,9 +10,6 @@ const hbs = require('hbs')
 const port = 3000
 const router = express.Router()
 
-// Routes
-const index = require('./routes/index')
-
 // Template rendering
 app.set('views', __dirname + '/views')
 app.set('view engine', 'hbs')
@@ -32,6 +29,7 @@ if (app.get('env') === 'development') {
   
   const facebook = require('./routes/facebook')
   const auth = require('./routes/auth')
+  const upload = require('./routes/upload')
   
   var sessionSettings = {
     secret: process.env.EXPRESS_SESSION_SECRET,
@@ -42,6 +40,7 @@ if (app.get('env') === 'development') {
 
   app.use('/facebook', facebook)
   app.use('/auth', auth)
+  app.use('/upload', upload)
   app.use(fileupload())
   app.use(passport.initialize())
   app.use(session(sessionSettings))
@@ -55,7 +54,6 @@ if (app.get('env') === 'development') {
 
 // Serve static files and routes that use templates
 app.use(express.static(__dirname + '/public'))
-app.use('/', index)
 
 // Error handlers
 // TODO: Create error page for error handlers

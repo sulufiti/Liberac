@@ -1,17 +1,6 @@
 const uuidV4 = require('uuid/v4')
 
-/*
-
-TODO: Change passport_url and address_proofs to point to placeholder Azure blobs
-
-Test passwords are just the usernames hashed w/ 10 salt rounds
-(obviously, use strong passwords if you actually register...):
-
-samuel1234 : samuel1234
-alicia2345 : alicia2345
-alex3456 : alex3456
-花42 : 花42
-*/
+// Test passwords are the same as the usernames
 
 exports.seed = function(knex, Promise) {
   return knex('users').del()

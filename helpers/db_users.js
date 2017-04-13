@@ -38,7 +38,17 @@ const findByID = (id) => {
   .then((user) => { return user[0] })
 }
 
+const appendIDproof = (id, number, expiry) => {
+  knex('users')
+  .where('id', id)
+  .update({
+    passportnumber: number,
+    passportexpiry: expiry
+  })
+}
+
 module.exports = {
+  appendIDproof,
   findByUsername,
   findByID,
   register

@@ -3,32 +3,48 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <form method="POST" action="/register" >
-          <label for="username">Username</label>
-          <input type="text" name="username" placeholder="user1234" required>
-          <br />
-          <label for="password">Password</label>
-          <input type="password" name="password" placeholder="user1234" required>
-          <br />
-          <label for="first_name">First Name</label>
-          <input type="text" name="first_name" placeholder="Jamie" required>
-          <br />
-          <label for="last_name">Last Name</label>
-          <input type="text" name="last_name" placeholder="Human" required>
-          <br />
-          <label for="phone">Phone Number</label>
-          <input type="tel" name="phone" placeholder="0212345678" required>
-          <br />
-          <label for="email">Email Address</label>
-          <input type="email" name="email" placeholder="user@example.com" required>
-          <br />
-          <label for="address">Physical Address</label>
-          <input type="text" name="address" placeholder="1234 Example Street, Suburb, City, 1234" required>
-          <br />
-          <label for="agreement">Agree to T&amp;Cs</label>
-          <input type="checkbox" name="agreement" required>
-          <br />
-          <input type="submit" value="Send to database"></input>
+        <form method="POST" action="/register">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control"
+class="form-control" placeholder="user1234" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control"
+class="form-control" placeholder="user1234" required>
+          </div>
+          <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" class="form-control"
+class="form-control" placeholder="Jamie" required>
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" class="form-control"
+class="form-control" placeholder="Human" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="phone" class="form-control"
+class="form-control" placeholder="0212345678" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" name="email" class="form-control"
+class="form-control" placeholder="user@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="address">Physical Address</label>
+            <input type="text" name="address" class="form-control"
+class="form-control" placeholder="1234 Example Street, Suburb, City, 1234" required>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Agree to T&amp;Cs
+            </label>
+          </div>
+          <button type="submit" class="btn btn-default">Register</button>
         </form>
       </div>
     </div>

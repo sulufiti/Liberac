@@ -12,16 +12,20 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  user.appendIDproofs(req.body.userid, req.body.passportnumber, req.body.passportexpiry)
-  blobService.createBlockBlobFromText('passports', req.body.userid, req.files.passport.data, (error, result, response) => {
-    if (!error) {
-      blobService.createBlockBlobFromText('addressproofs', req.body.userid, req.files.addressproof.data, (error, result, response) => {
-        if (!error) {
-          res.render('success', { id: req.session.passport.user.id })
-        }
-      })
-    }
-  })
+  console.log(req.body)
+  user.appendIDproof(req.body.userid, req.body.passportnumber, req.body.passportexpiry)
+  .then(() => { res.send('updated') })
+  // .then(() => {
+  //   blobService.createBlockBlobFromText('passports', req.body.userid, req.files.passport.data, (error, result, response) => {
+  //     if (!error) {
+  //       blobService.createBlockBlobFromText('addressproofs', req.body.userid, req.files.addressproof.data, (error, result, response) => {
+  //         if (!error) {
+  //           res.render('success', { id: req.session.passport.user.id })
+  //         }
+  //       })
+  //     }
+  //   })
+  // })
 })
 
 module.exports = router

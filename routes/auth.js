@@ -43,6 +43,10 @@ router.get('/logout', (req, res, next) => {
   res.redirect('/loggedout')
 })
 
+router.get('/userinfo', (req, res, next) => {
+  res.render('userinfo', { user: req.session.passport.user })
+})
+
 router.get('/loggedout', (req, res, next) => {
   res.send('logged out')
 })

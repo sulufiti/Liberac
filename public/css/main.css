@@ -69,6 +69,10 @@ body, h1, h2, h3, h4, h5, h6 {
   margin: 10px 0px;
   padding: 0;
 }
+#intro-message > h3.whiteShawdow {
+  color: #000;
+  text-shadow: 1px 1px 10px #fff;
+}
 
 @media(max-width:767px) {
     .intro-message {

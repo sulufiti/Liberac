@@ -35,10 +35,6 @@ router.post('/login',
   })
 )
 
-router.get('/loggedin', (req, res, next) => {
-  res.render('loggedin', { first_name: req.session.passport.user.first_name })
-})
-
 router.get('/logout', (req, res, next) => {
   req.logout()
   res.redirect('/loggedout')

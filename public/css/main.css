@@ -202,3 +202,14 @@ a.redLink {
 a.redLink:hover {
     text-decoration: underline;
 }
+
+
+/* about us */
+#aboutUs.content-section-a {
+  background-color: #404040;
+  color: #fff;
+}
+
+#aboutUs cite {
+  font-style: normal;
+}

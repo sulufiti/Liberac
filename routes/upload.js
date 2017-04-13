@@ -8,19 +8,24 @@ const blobService = azure.createBlobService(process.env.AZURE_STORAGE_ACCOUNT, p
 
 router.get('/', (req, res, next) => {
   console.log(req.session)
-  res.render('upload', { id: req.session.passport.user.id, first_name: req.session.passport.user.first_name })
+  res.render('upload', { id: req.session.passport.user.id, first_name: req.session.passport.user.first_name, datepicker: true })
 })
 
 router.post('/', (req, res, next) => {
-  blobService.createBlockBlobFromText('passports', req.body.userid, req.files.passport.data, (error, result, response) => {
-    if (!error) {
-      blobService.createBlockBlobFromText('addressproofs', req.body.userid, req.files.addressproof.data, (error, result, response) => {
-        if (!error) {
-          res.render('success', { id: req.session.passport.user.id })
-        }
-      })
-    }
-  })
+  console.log(req.body)
+  user.appendIDproof(req.body.userid, req.body.passportnumber, req.body.passportexpiry)
+  .then(() => { res.send('updated') })
+  // .then(() => {
+  //   blobService.createBlockBlobFromText('passports', req.body.userid, req.files.passport.data, (error, result, response) => {
+  //     if (!error) {
+  //       blobService.createBlockBlobFromText('addressproofs', req.body.userid, req.files.addressproof.data, (error, result, response) => {
+  //         if (!error) {
+  //           res.render('success', { id: req.session.passport.user.id })
+  //         }
+  //       })
+  //     }
+  //   })
+  // })
 })
 
 module.exports = router

@@ -6,14 +6,26 @@
         <p>Please upload your passport and address proof</p>
         <p><a href="/loggedin">Click here</a> to go back if you're not ready just yet</p>
         <form action="/upload" method="POST" enctype="multipart/form-data">
-          <label for="passport">Passport:</label>
-          <input type="file" name="passport" required>
-          <br />
-          <label for="addressproof">Proof of Address:</label>
-          <input type="file" name="addressproof" required>
-          <br />
-          <input type="hidden" name="userid" value="{{id}}">
-          <input type="submit" value="Upload">
+          <div class="form-group">
+            <label for="passportnumber">Passport Number:</label>
+            <input type="text" name="passportnumber" required>
+          </div>
+          <div class="form-group">
+            <label for="passportexpiry">Passport Expiry Date:</label>
+            <input type="text" name="passportexpiry" id="datepicker" required>
+          </div>
+          <div class="form-group">
+            <label for="passport">Passport Photo/Scan:</label>
+            <input type="file" name="passport" required>
+          </div>
+          <div class="form-group">
+            <label for="addressproof">Proof of Address:</label>
+            <input type="file" name="addressproof" required>
+          </div>
+          <div class="form-group">
+            <input type="hidden" name="userid" value="{{id}}">
+            <input type="submit" value="Upload">
+          </div>
         </form>
       </div>
     </div>

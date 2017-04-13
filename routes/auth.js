@@ -3,10 +3,11 @@ const router = express.Router()
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const user = require('../helpers/db_users.js')
+const cloudcheck = require('../helpers/cloudcheck')
 const saltRounds = 10
 
 router.get('/register', (req, res, next) => {
-  res.render('register')
+  res.render('register' , { datepicker: true })
 })
 
 router.post('/register', (req, res, next) => {
@@ -41,6 +42,20 @@ router.get('/loggedin', (req, res, next) => {
 router.get('/logout', (req, res, next) => {
   req.logout()
   res.redirect('/loggedout')
+})
+
+router.get('/userinfo', (req, res, next) => {
+  res.render('userinfo', { user: req.session.passport.user })
+})
+
+router.get('/cloudcheck', (req, res, next) => {
+  cloudcheck.verifyUser(req.session.passport.user, 7)
+  .then((response) => {
+    console.log(response.data)
+  })
+  .catch((err) => {
+    console.error(err)
+  })
 })
 
 router.get('/loggedout', (req, res, next) => {

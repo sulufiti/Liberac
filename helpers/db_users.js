@@ -1,6 +1,7 @@
 const Knex = require('knex')
 const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
+const moment = require('moment')
 const uuidV4 = require('uuid/v4')
 
 const register = (registration) => {
@@ -15,7 +16,7 @@ const register = (registration) => {
     street: registration.street,
     city: registration.city,
     postcode: registration.postcode,
-    dateofbirth: registration.dateofbirth,
+    dateofbirth: moment(registration.dateofbirth).format('YYYY-MM-DD'),
     accepted_agreement: true
   }
 

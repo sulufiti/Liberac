@@ -23,6 +23,7 @@ let sessionSettings = {
 }
 
 // Routes
+const index = require('./routes/index')
 const facebook = require('./routes/facebook')
 const auth = require('./routes/auth')
 const upload = require('./routes/upload')
@@ -45,6 +46,7 @@ setupPassport()
 // Serve static files and routes that use templates
 app.use(express.static(__dirname + '/public'))
 app.use('/facebook', facebook)
+app.use('/', index)
 app.use('/', auth)
 app.use('/upload', upload)
 app.use('/rates', rates)

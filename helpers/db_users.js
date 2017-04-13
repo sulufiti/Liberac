@@ -4,8 +4,7 @@ const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
 const uuidV4 = require('uuid/v4')
 
 const register = (registration) => {
-  return knex('users')
-  .insert({
+  let user = {
     id: uuidV4(),
     username: registration.username,
     password: registration.password,
@@ -13,9 +12,19 @@ const register = (registration) => {
     last_name: registration.last_name,
     contact_number: registration.phone,
     email: registration.email,
-    address: registration.address, 
+    street: registration.street,
+    city: registration.city,
+    postcode: registration.postcode,
+    dateofbirth: registration.dateofbirth,
     accepted_agreement: true
-  })
+  }
+
+  // Optional fields
+  if (registration.middle_name) { user['middle_name'] = registration.middle_name }
+  if (registration.suburb) { user['suburb'] = registration.suburb }
+
+  return knex('users')
+  .insert(user)
 }
 
 const findByUsername = (username) => {

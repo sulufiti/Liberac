@@ -6,7 +6,7 @@ const user = require('../helpers/db_users.js')
 const saltRounds = 10
 
 router.get('/register', (req, res, next) => {
-  res.render('register')
+  res.render('register' , { register: true })
 })
 
 router.post('/register', (req, res, next) => {

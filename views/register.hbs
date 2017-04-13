@@ -18,7 +18,8 @@
           </div>
           <div class="form-group">
             <label for="middle_name">Middle Name</label>
-            <input type="text" name="middle_name" class="form-control" id="middle_name" placeholder="Sam" required>
+            <input type="text" name="middle_name" class="form-control" id="middle_name" placeholder="Sam">
+            <p class="help-block">Optional</p>
           </div>
           <div class="form-group">
             <label for="last_name">Last Name</label>
@@ -33,24 +34,29 @@
             <input type="email" name="email" class="form-control" id="email" placeholder="user@example.com" required>
           </div>
           <div class="form-group">
-            <label for="address">Street</label>
-            <input type="text" name="address" class="form-control" id="address" placeholder="123 Example Street" required>
+            <label for="street">Street</label>
+            <input type="text" name="street" class="form-control" id="street" placeholder="123 Example Street" required>
           </div>
           <div class="form-group">
             <label for="suburb">Suburb</label>
             <input type="text" name="suburb" class="form-control" id="suburb" placeholder="Lower Hutt">
+            <p class="help-block">Optional</p>
+          </div>
+          <div class="form-group">
+            <label for="dateofbirth">Date of Birth</label>
+            <input type="text" name="dateofbirth" id="datepicker">
           </div>
           <div class="form-group">
             <label for="city">City</label>
-            <input type="text" name="city" class="form-control" id="city" placeholder="Wellington">
+            <input type="text" name="city" class="form-control" id="city" placeholder="Wellington" required>
           </div>
           <div class="form-group">
             <label for="postcode">Postcode</label>
-            <input type="text" name="postcode" class="form-control" id="postcode" placeholder="1234">
+            <input type="text" name="postcode" class="form-control" id="postcode" placeholder="1234" required>
           </div>
           <div class="checkbox">
             <label>
-              <input type="checkbox"> Agree to T&amp;Cs
+              <input type="checkbox" required> Agree to T&amp;Cs
             </label>
           </div>
           <button type="submit" class="btn btn-default">Register</button>

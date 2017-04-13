@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/adiraj22/liberac#readme",
   "dependencies": {
+    "axios": "^0.16.1",
     "azure-storage": "^2.1.0",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",
@@ -39,6 +40,7 @@
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "pg": "^6.1.5",
+    "querystring": "^0.2.0",
     "sendgrid": "^5.0.0",
     "uuid": "^3.0.1",
     "x-ray": "^2.3.2"

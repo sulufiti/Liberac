@@ -9,4 +9,8 @@ router.get('/policy', (req, res, next) => {
   res.render('policy')
 })
 
+router.get('/about', (req, res, next) => {
+  res.render('about')
+})
+
 module.exports = router

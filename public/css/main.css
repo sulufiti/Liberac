@@ -17,6 +17,7 @@ body, h1, h2, h3, h4, h5, h6 {
 .navbar-header {
   float: none;
 }
+
 .navbar-default {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.075);
   text-align: center;
@@ -75,7 +76,7 @@ body, h1, h2, h3, h4, h5, h6 {
   text-shadow: 1px 1px 10px #fff;
 }
 
-@media(max-width:767px) {
+/*@media(max-width:767px) {
     .intro-message {
         padding-bottom: 15%;
     }
@@ -97,14 +98,14 @@ body, h1, h2, h3, h4, h5, h6 {
     .intro-divider {
         width: 100%;
     }
-}
+}*/
 
-.network-name {
+/*.network-name {
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 2px;
-}
+}*/
 
 .content-section-a,
 .content-section-b {
@@ -152,7 +153,7 @@ body, h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
 }
 
-@media(max-width:1199px) {
+/*@media(max-width:1199px) {
     ul.banner-social-buttons {
         float: left;
         margin-top: 15px;
@@ -164,7 +165,7 @@ body, h1, h2, h3, h4, h5, h6 {
         margin: 0;
         text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
         font-size: 3em;
-    }
+    }*/
 
     ul.banner-social-buttons > li {
         display: block;
@@ -232,4 +233,46 @@ a.redLink:hover {
 }
 #aboutUs img {
   margin-bottom: 15px;
+}
+
+
+/* media queries */
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+  .topnav {
+        /*background-color: brown;*/
+    }
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .topnav {
+        /*background-color: red;*/
+    }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+  .topnav {
+        /*background-color: blue;*/
+    }
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+  .topnav {
+        /*background-color: yellow;*/
+    }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+  .topnav {
+      /*background-color: green;*/
+      height: 50px;
+  }
+  .navbar-header img {
+    width: 190px;
+  } 
 }

@@ -24,7 +24,7 @@ body, h1, h2, h3, h4, h5, h6 {
 .topnav {
   border: 0;
   height: 70px;
-  background-color: rgba(255,255,255,.5);
+  background-color: #fff;
 }
 
 .lead {
@@ -107,7 +107,7 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .content-section-a {
-    background-color: #f8f8f8;
+    background-color: #fff;
     margin-top: 70px;
     padding-top: 30px;
     padding-bottom: 50px;
@@ -115,7 +115,7 @@ body, h1, h2, h3, h4, h5, h6 {
 
 .content-section-b {
   padding: 50px 0;
-  background-color: #f8f8f8;
+  background-color: #fff;
 }
 
 .section-heading {
@@ -197,12 +197,11 @@ p.copyright {
 /*privacy policy*/
 #privacyPolicy h3,
 #privacyPolicy h2 {
-  color: #c9302c;
+  color: #333;
 }
 
 /* MISC */
-.redText,
-#aboutUs h3 {
+.redText {
   color: #c9302c;
 }
 
@@ -215,18 +214,14 @@ a.redLink:hover {
 
 
 /* about us */
-#aboutUs.content-section-a {
+/*#aboutUs.content-section-a {
   background-color: #404040;
   color: #fff;
-}
+}*/
 
-#aboutUs p {
+/*#aboutUs p {
   font-size: 18px;
-}
-#aboutUs .img-thumbnail {
-  background-color: #c9302c;
-  border: 1px solid #c9302c;
+}*/
+#aboutUs img {
   margin-bottom: 15px;
-  border-radius: 0;
-  padding: 1px;
 }

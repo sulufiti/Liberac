@@ -215,6 +215,6 @@ a.redLink:hover {
   color: #fff;
 }
 
-#aboutUs cite {
-  font-style: normal;
+#aboutUs p {
+  font-size: 18px;
 }

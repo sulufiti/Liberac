@@ -1,14 +1,13 @@
 const crypto = require('crypto')
-const axios = require('axios')
+const got = require('got')
 const hmac = crypto.createHmac('sha256', process.env.CLOUDCHECK_SECRET)
-const querystring = require('querystring')
 
 const verifyUser = (user, nonce) => {
   const data = {
     "details": {
       "address": {
-        "street": user.street,
         "suburb": user.suburb,
+        "street": user.street,
         "postcode": user.postcode,
         "city": user.city
       },
@@ -17,23 +16,37 @@ const verifyUser = (user, nonce) => {
         "middle": user.middle_name,
         "family": user.last_name
       },
+      "driverslicence": {},
       "passport": {
         "number": user.passportnumber,
         "expiry": user.passportexpiry
       },
+      "citizenship": {},
+      "country": {},
+      "birthcertificate" : {},
+      "vehicle": {},
       "dateofbirth": user.dateofbirth
     },
-    "reference": "1",
+    "reference": "3",
     "consent": "Yes"
   }
 
   const current_time = Date.now()
+
   hmac.update(`/verify/data=${JSON.stringify(data)};key=${process.env.CLOUDCHECK_API_KEY};nonce=${nonce};timestamp=${current_time};`)
   const cloudsignature = hmac.digest('hex')
 
-  return axios.post('https://api.cloudcheck.co.nz/verify/', querystring.stringify({ data: JSON.stringify(data), key: process.env.CLOUDCHECK_API_KEY, nonce: nonce, signature: cloudsignature, timestamp: current_time }))
+  return got.post('https://api.cloudcheck.co.nz/verify/', {
+    body: {
+      key: process.env.CLOUDCHECK_API_KEY,
+      signature: cloudsignature,
+      nonce: nonce,
+      timestamp: current_time,
+      data: JSON.stringify(data)
+    }
+  })
   .catch((err) => {
-    console.error(err)
+    console.log(err)
   })
 }
 

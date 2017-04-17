@@ -34,6 +34,7 @@
     "express": "^4.15.2",
     "express-fileupload": "^0.1.2",
     "express-session": "^1.15.2",
+    "got": "^6.7.1",
     "hbs": "^4.0.1",
     "knex": "^0.12.9",
     "moment": "^2.18.1",

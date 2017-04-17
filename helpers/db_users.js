@@ -39,7 +39,7 @@ const findByID = (id) => {
 }
 
 const appendIDproof = (id, number, expiry) => {
-  knex('users')
+  return knex('users')
   .where('id', id)
   .update({
     passportnumber: number,

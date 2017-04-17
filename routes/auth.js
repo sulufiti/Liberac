@@ -45,12 +45,12 @@ router.get('/userinfo', (req, res, next) => {
 })
 
 router.get('/cloudcheck', (req, res, next) => {
-  cloudcheck.verifyUser(req.session.passport.user, 7)
+  cloudcheck.verifyUser(req.session.passport.user, req.query.nonce)
   .then((response) => {
-    console.log(response.data)
+    console.log('res from cloudcheck', response)
   })
   .catch((err) => {
-    console.error(err)
+    console.error('error verifying', err)
   })
 })
 

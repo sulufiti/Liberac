@@ -7,15 +7,17 @@ const hmac = crypto.createHmac('sha256', process.env.CLOUDCHECK_SECRET)
 // TODO: Generate unique references too
 
 const verifyUser = (user, nonce) => {
-  const data = {
+  let data = {
     "details": {
       "address": {
+        "suburb": user.suburb,
         "street": user.street,
         "postcode": user.postcode,
         "city": user.city
       },
       "name": {
         "given": user.first_name,
+        "middle": user.middle_name,
         "family": user.last_name
       },
       "driverslicence": {},
@@ -33,10 +35,8 @@ const verifyUser = (user, nonce) => {
     "consent": "Yes"
   }
 
-  if (user.middlename) { data.name["middle"] = user.middlename }
-  if (user.suburb) { data.address["suburb"] = user.suburb }
-
   const current_time = Date.now()
+  console.log(data)
 
   hmac.update(`/verify/data=${JSON.stringify(data)};key=${process.env.CLOUDCHECK_API_KEY};nonce=${nonce};timestamp=${current_time};`)
   const cloudsignature = hmac.digest('hex')

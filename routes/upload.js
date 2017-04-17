@@ -1,5 +1,6 @@
 const express = require('express')
 const passport = require('passport')
+const moment = require('moment')
 const bcrypt = require('bcrypt')
 const azure = require('azure-storage')
 const user = require('../helpers/db_users.js')
@@ -12,7 +13,6 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  console.log(req.body)
   user.appendIDproof(req.body.userid, req.body.passportnumber, req.body.passportexpiry)
   .then(() => {
     blobService.createBlockBlobFromText('passports', req.body.userid, req.files.passport.data, (error, result, response) => {

@@ -38,12 +38,14 @@ const findByID = (id) => {
   .then((user) => { return user[0] })
 }
 
+// TODO: Fix expiry date formatting
+
 const appendIDproof = (id, number, expiry) => {
   return knex('users')
   .where('id', id)
   .update({
     passportnumber: number,
-    passportexpiry: expiry
+    passportexpiry: moment(expiry).format('YYYY-MM-DD')
   })
 }
 

@@ -22,9 +22,6 @@
 
     <!-- Custom CSS -->
     <link href="/css/main.css" rel="stylesheet">
-    {{#if datepicker}}
-    <link href="/css/pikaday.css" rel="stylesheet">
-    {{/if}}
 
     <!-- Custom Fonts -->
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -88,17 +85,5 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
-
-    {{#if datepicker}}
-    <!-- Pikaday date picker -->
-    <script src="/js/moment.js"></script>
-    <script src="/js/pikaday.js"></script>
-    <script>
-        var picker = new Pikaday({
-          field: $('#datepicker')[0],
-          format: 'D MMM YYYY'
-        });
-    </script>
-    {{/if}}
   </body>
 </html>

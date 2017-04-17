@@ -227,4 +227,6 @@ a.redLink:hover {
   background-color: #c9302c;
   border: 1px solid #c9302c;
   margin-bottom: 15px;
+  border-radius: 0;
+  padding: 1px;
 }

@@ -106,17 +106,19 @@ body, h1, h2, h3, h4, h5, h6 {
     letter-spacing: 2px;
 }
 
-.content-section-a {
-    background-color: #fff;
-    margin-top: 70px;
+.content-section-a,
+.content-section-b {
     padding-top: 30px;
     padding-bottom: 50px;
 }
 
-.content-section-b {
-  padding: 50px 0;
-  background-color: #fff;
-}
+  .content-section-b {
+    background-color: #fff;
+  }
+  .content-section-a {
+    background-color: #404040;
+    color: #fff;
+  }
 
 .section-heading {
     margin-bottom: 30px;
@@ -195,6 +197,9 @@ p.copyright {
 }
 
 /*privacy policy*/
+#privacyPolicy {
+  margin-top: 40px;
+}
 #privacyPolicy h3,
 #privacyPolicy h2 {
   color: #333;
@@ -219,9 +224,12 @@ a.redLink:hover {
   color: #fff;
 }*/
 
-/*#aboutUs p {
-  font-size: 18px;
-}*/
+#aboutUs p {
+  font-size: 16px;
+}
+#aboutUs h2, h3 {
+  color: #c9302c;
+}
 #aboutUs img {
   margin-bottom: 15px;
 }

@@ -10,14 +10,12 @@ const verifyUser = (user, nonce) => {
   let data = {
     "details": {
       "address": {
-        "suburb": user.suburb,
         "street": user.street,
         "postcode": user.postcode,
         "city": user.city
       },
       "name": {
         "given": user.first_name,
-        "middle": user.middle_name,
         "family": user.last_name
       },
       "driverslicence": {},
@@ -34,6 +32,9 @@ const verifyUser = (user, nonce) => {
     "reference": "3",
     "consent": "Yes"
   }
+
+  if (user.suburb) { data.details.address.suburb = user.suburb }
+  if (user.middle_name) { data.details.name.middle = user.middle_name }
 
   const current_time = Date.now()
   console.log(data)

@@ -48,6 +48,7 @@ router.get('/cloudcheck', (req, res, next) => {
   cloudcheck.verifyUser(req.session.passport.user, req.query.nonce)
   .then((response) => {
     console.log('res from cloudcheck', response)
+    console.log(req.session.passport.user)
   })
   .catch((err) => {
     console.error('error verifying', err)

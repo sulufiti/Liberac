@@ -7,7 +7,7 @@ const cloudcheck = require('../helpers/cloudcheck')
 const saltRounds = 10
 
 router.get('/register', (req, res, next) => {
-  res.render('register' , { datepicker: true })
+  res.render('register')
 })
 
 router.post('/register', (req, res, next) => {

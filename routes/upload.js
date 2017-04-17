@@ -9,7 +9,7 @@ const blobService = azure.createBlobService(process.env.AZURE_STORAGE_ACCOUNT, p
 
 router.get('/', (req, res, next) => {
   console.log(req.session)
-  res.render('upload', { id: req.session.passport.user.id, first_name: req.session.passport.user.first_name, datepicker: true })
+  res.render('upload', { id: req.session.passport.user.id, first_name: req.session.passport.user.first_name })
 })
 
 router.post('/', (req, res, next) => {

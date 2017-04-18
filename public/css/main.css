@@ -361,9 +361,8 @@ img {
 }
 
 .navbar-default .navbar-nav>li>a {
-  color: #d9534f;
+  color: #f80909;
 }
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-nav>li>a:visited {
+.navbar-default .navbar-nav>li>a:hover {
   color: #c9302c;
 }

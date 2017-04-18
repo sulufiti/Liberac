@@ -102,12 +102,13 @@ body, h1, h2, h3, h4, h5, h6 {
     }
 }*/
 
-/*.network-name {
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 2px;
-}*/
+.network-name {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  padding: 0 10px;
+}
 
 .content-section-a,
 .content-section-b {
@@ -271,7 +272,6 @@ a.redLink:hover {
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
   .topnav {
-      /*background-color: green;*/
       height: 50px;
   }
   .navbar-header img {
@@ -282,8 +282,9 @@ a.redLink:hover {
   }   
   #intro-message > h3 {
     letter-spacing: 1px;
-    margin: 5px 0px;
+    margin: 1px 0px;
     padding: 0;
+    font-size: 12px;
   }
   .intro-header {
     padding-top: 145px;
@@ -293,5 +294,14 @@ a.redLink:hover {
     padding-top: 14%;
     padding-bottom: 0;
   }
+  #intro-message .btn {
+    padding: 3px 10px;
+  }
+  .network-name {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding: 0px;
+  }  
 
 }

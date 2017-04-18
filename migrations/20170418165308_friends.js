@@ -3,6 +3,7 @@ exports.up = function(knex, Promise) {
     table.increments('id').primary()
     table.uuid('user_a').notNullable()
     table.uuid('user_b').notNullable()
+    table.boolean('confirmed').defaultTo(false)
   })
 }
 

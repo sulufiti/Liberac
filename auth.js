@@ -1,6 +1,6 @@
 const passport = require('passport')
 const bcrypt = require('bcrypt')
-const users = require('./helpers/db_users')
+const users = require('./helpers/users')
 const LocalStrategy = require('passport-local').Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
 

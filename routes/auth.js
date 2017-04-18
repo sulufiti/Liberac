@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 const bcrypt = require('bcrypt')
-const user = require('../helpers/db_users.js')
+const users = require('../helpers/users')
+const friends = require('../helpers/friends')
 const cloudcheck = require('../helpers/cloudcheck')
 const saltRounds = 10
 
@@ -11,11 +12,10 @@ router.get('/register', (req, res, next) => {
 })
 
 router.post('/register', (req, res, next) => {
-  console.log('user registration', req.body)
   bcrypt.hash(req.body.password, saltRounds)
   .then(hash => req.body.password = hash)
   .then(() => {
-    user.register(req.body)
+    users.register(req.body)
     .then(() => res.redirect('/login'))
     .catch((err) => {
       res.send('user already exists in database')
@@ -25,7 +25,6 @@ router.post('/register', (req, res, next) => {
 })
 
 router.get('/login', (req, res, next) => {
-  console.log(req)
   res.render('login')
 })
 
@@ -37,6 +36,7 @@ router.post('/login',
 )
 
 router.get('/dashboard', (req, res, next) => {
+  // $0 becomes $0.00
   req.session.passport.user.balance.toFixed(2)
   res.render('dashboard', { user: req.session.passport.user })
 })
@@ -44,6 +44,16 @@ router.get('/dashboard', (req, res, next) => {
 router.get('/logout', (req, res, next) => {
   req.logout()
   res.redirect('/login')
+})
+
+router.get('/add', (req, res, next) => {
+  users.findByUsername('steve1234')
+  .then((user) => {
+    return friends.addFriend(req.session.passport.user.id, user.id)
+  })
+  .then((friendStatus) => {
+    console.log('added', friendStatus)
+  })
 })
 
 router.get('/cloudcheck', (req, res, next) => {

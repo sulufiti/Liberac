@@ -47,15 +47,6 @@ const appendIDproof = (id, number, expiry) => {
   })
 }
 
-const addFriend = (userID, friendID) => {
-  return knex('friends')
-  .returning('confirmed')
-  .insert({ user_a: userID, user_b: friendID })
-  .catch((err) => {
-    console.error('error adding friend', err)
-  })
-}
-
 module.exports = {
   appendIDproof,
   findByUsername,

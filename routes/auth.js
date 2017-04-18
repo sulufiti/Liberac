@@ -30,13 +30,13 @@ router.get('/login', (req, res, next) => {
 
 router.post('/login',
   passport.authenticate('local', {
-    successRedirect: '/loggedin', 
+    successRedirect: '/dashboard', 
     failureRedirect: '/login' 
   })
 )
 
-router.get('/loggedin', (req, res, next) => {
-  res.render('loggedin', {
+router.get('/dashboard', (req, res, next) => {
+  res.render('dashboard', {
     first_name: req.session.passport.user.first_name,
     balance: (req.session.passport.user.balance).toFixed(2),
     verified: req.session.passport.user.verified
@@ -45,7 +45,7 @@ router.get('/loggedin', (req, res, next) => {
 
 router.get('/logout', (req, res, next) => {
   req.logout()
-  res.redirect('/loggedout')
+  res.redirect('/login')
 })
 
 router.get('/userinfo', (req, res, next) => {
@@ -56,15 +56,15 @@ router.get('/cloudcheck', (req, res, next) => {
   cloudcheck.verifyUser(req.session.passport.user, req.query.nonce)
   .then((response) => {
     console.log('res from cloudcheck', response)
-    console.log(req.session.passport.user)
+    res.render('dashboard', {
+      first_name: req.session.passport.user.first_name,
+      balance: (req.session.passport.user.balance).toFixed(2),
+      verified: req.session.passport.user.verified
+    })
   })
   .catch((err) => {
     console.error('error verifying', err)
   })
-})
-
-router.get('/loggedout', (req, res, next) => {
-  res.send('logged out')
 })
 
 module.exports = router

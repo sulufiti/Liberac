@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     table.uuid('id').primary()
     table.string('username').unique().notNullable()
     table.string('password').notNullable()
+    table.float('balance').defaultTo(0.00).notNullable()
     table.string('first_name').notNullable()
     table.string('middle_name')
     table.string('last_name').notNullable()

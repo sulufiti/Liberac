@@ -29,6 +29,7 @@ exports.seed = function(knex, Promise) {
           id: uuidV4(),
           username: 'george1234',
           password: '$2a$10$s3El2HAbmTP1fB72kEXms.HbhDJ31kydURuqHqAnoz/cYzmWamGB2',
+          balance: 1234.56,
           first_name: 'George',
           middle_name: 'Walker',
           last_name: 'Bush',

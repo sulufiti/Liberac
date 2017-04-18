@@ -36,7 +36,11 @@ router.post('/login',
 )
 
 router.get('/loggedin', (req, res, next) => {
-  res.render('loggedin', { user: req.session.passport.user })
+  res.render('loggedin', {
+    first_name: req.session.passport.user.first_name,
+    balance: (req.session.passport.user.balance).toFixed(2),
+    verified: req.session.passport.user.verified
+  })
 })
 
 router.get('/logout', (req, res, next) => {

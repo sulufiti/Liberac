@@ -58,17 +58,17 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 #intro-message > h1 {
     margin: 0;
-    font-size: 4.4vw;
+    font-size: 4em;
     letter-spacing: 10px;
 }
 #intro-message > h2 {
   letter-spacing: 1px;
-  font-size: 1.8vw;
+  font-size: 1.7em;
   margin: 0;
   padding: 0;
 }
 #intro-message > h3 {
-  font-size: 1.7vw;
+  font-size: 1.5em;
   letter-spacing: 5px;
   margin: 10px 0px;
   padding: 0;
@@ -272,14 +272,19 @@ a.redLink:hover {
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
   .topnav {
-      height: 50px;
+    height: 50px;
   }
   .navbar-header img {
     width: 190px;
   }
   #intro-message > h1 {
     letter-spacing: 2px;
-  }   
+    font-size: 18px;
+  }
+  #intro-message > h2 {
+  letter-spacing: 1px;
+  font-size: 12px;
+}   
   #intro-message > h3 {
     letter-spacing: 1px;
     margin: 1px 0px;
@@ -287,16 +292,19 @@ a.redLink:hover {
     font-size: 12px;
   }
   .intro-header {
-    padding-top: 145px;
+    padding-top: 180px;
     padding-bottom: 0px;
   }
   #intro-message {
-    padding-top: 14%;
+    padding-top: 25px;
     padding-bottom: 0;
   }
   #intro-message .btn {
     padding: 3px 10px;
   }
+  #intro-message ul {
+    margin-bottom: 3px;
+  }  
   .network-name {
     font-size: 14px;
     font-weight: 400;

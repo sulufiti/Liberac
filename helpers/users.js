@@ -11,7 +11,7 @@ const register = (registration) => {
     password: registration.password,
     first_name: registration.first_name,
     last_name: registration.last_name,
-    contact_number: registration.phone,
+    phone: registration.phone,
     email: registration.email,
     street: registration.street,
     city: registration.city,

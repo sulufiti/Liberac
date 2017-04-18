@@ -22,8 +22,8 @@
         {{#if passport_number}}
         <div class="well" style="color: black">
           <p>Passport: {{user.passport_number}} Expiry: {{user.passport_expiry}}</p>
-          <img class="media-object" src="" alt="Passport">
-          <img class="media-object" src="" alt="Address Proof"
+          <img class="media-object" src="https://liberacfilestorage.blob.core.windows.net/passports/{{user.id}}" alt="Passport">
+          <img class="media-object" src="https://liberacfilestorage.blob.core.windows.net/addressproofs/{{user.id}}" alt="Address Proof"
         </div>
         {{/if}}
       </div>

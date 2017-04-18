@@ -238,6 +238,28 @@ a.redLink:hover {
   margin-bottom: 15px;
 }
 
+/* program logo */
+img {
+  /*filter: grayscale(100%);
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  -webkit-filter: grayscale(100%);*/
+}
+
+
+#programLogo img {
+  filter: grayscale(100%);
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  -webkit-filter: grayscale(100%);
+}
+#programLogo img:hover {
+  filter: grayscale(0);
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+  -webkit-filter: grayscale(0);
+}
+
 
 /* media queries */
 
@@ -310,6 +332,18 @@ a.redLink:hover {
     font-weight: 400;
     letter-spacing: 1px;
     padding: 0px;
+  }
+  .content-section-a, .content-section-b {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .section-heading {
+    margin: 5px 0;
+    text-align: center;
+  }
+  #aboutUs p {
+    font-size: 14px;
+    text-align: center;
   }  
 
 }

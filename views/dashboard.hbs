@@ -8,10 +8,25 @@
           <li role="presentation"><a href="/send">Send Money</a></li>
           <li role="presentation"><a href="/topup">Top Up</a></li>
         </ul>
-        <h1>Welcome {{first_name}}. Your current balance is ${{balance}}.</h1>
-        {{#unless verified}}
+        <h1>Welcome {{user.first_name}}. Your current balance is ${{user.balance}}.</h1>
+        {{#unless user.verified}}
         <div class="alert alert-warning" role="alert">Before we can get started, we'll need you to provide some identification for regulatory purposes. <a href="/upload">Click here</a> to get started.</div>
         {{/unless}}
+        <div class="well">
+          <h1>User Details</h1>
+          <p>Name: {{user.first_name}} {{user.middle_name}} {{user.last_name}}</p>
+          <p>Phone: {{user.contact_number}}</p>
+          <p>Email: {{user.email}}</p>
+          <p>Address: {{user.street}}, {{#if user.suburb}}{{user.suburb}},{{/if}} {{user.city}}, {{user.postcode}}</p>
+          <p>Date of Birth: {{user.dateofbirth}}</p>
+        </div>
+        {{#if passport_number}}
+        <div class="well">
+          <p>Passport: {{user.passport_number}} Expiry: {{user.passport_expiry}}</p>
+          <img class="media-object" src="" alt="Passport">
+          <img class="media-object" src="" alt="Address Proof"
+        </div>
+        {{/if}}
       </div>
     </div>
   </div>

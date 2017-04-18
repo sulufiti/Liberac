@@ -11,7 +11,7 @@ router.get('/register', (req, res, next) => {
 })
 
 router.post('/register', (req, res, next) => {
-  console.log(req.body)
+  console.log('user registration', req.body)
   bcrypt.hash(req.body.password, saltRounds)
   .then(hash => req.body.password = hash)
   .then(() => {
@@ -25,6 +25,7 @@ router.post('/register', (req, res, next) => {
 })
 
 router.get('/login', (req, res, next) => {
+  console.log(req)
   res.render('login')
 })
 
@@ -36,20 +37,13 @@ router.post('/login',
 )
 
 router.get('/dashboard', (req, res, next) => {
-  res.render('dashboard', {
-    first_name: req.session.passport.user.first_name,
-    balance: (req.session.passport.user.balance).toFixed(2),
-    verified: req.session.passport.user.verified
-  })
+  req.session.passport.user.balance.toFixed(2)
+  res.render('dashboard', { user: req.session.passport.user })
 })
 
 router.get('/logout', (req, res, next) => {
   req.logout()
   res.redirect('/login')
-})
-
-router.get('/userinfo', (req, res, next) => {
-  res.render('userinfo', { user: req.session.passport.user })
 })
 
 router.get('/cloudcheck', (req, res, next) => {

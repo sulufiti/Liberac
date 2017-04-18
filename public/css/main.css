@@ -18,16 +18,16 @@ body, h1, h2, h3, h4, h5, h6 {
   float: none;
 }
 .navbar-header img {
-  width: 270px;
+  width: 230px;
 }
 .navbar-default {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.075);
   text-align: center;
 }
 .topnav {
-  border: 0;
-  height: 70px;
-  background-color: #fff;
+  /*border: 0;
+  background-color: #fff;*/
+  height: 65px;
 }
 
 .lead {
@@ -238,6 +238,28 @@ a.redLink:hover {
   margin-bottom: 15px;
 }
 
+/* program logo */
+img {
+  /*filter: grayscale(100%);
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  -webkit-filter: grayscale(100%);*/
+}
+
+
+#programLogo img {
+  filter: grayscale(100%);
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  -webkit-filter: grayscale(100%);
+}
+#programLogo img:hover {
+  filter: grayscale(0);
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+  -webkit-filter: grayscale(0);
+}
+
 
 /* media queries */
 
@@ -310,6 +332,38 @@ a.redLink:hover {
     font-weight: 400;
     letter-spacing: 1px;
     padding: 0px;
+  }
+  .content-section-a, .content-section-b {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .section-heading {
+    margin: 5px 0;
+    text-align: center;
+  }
+  #aboutUs p {
+    font-size: 14px;
+    text-align: center;
   }  
 
+}
+
+
+.navbar-brand {
+  transform: translateX(-50%);
+  left: 50%;
+  position: absolute;
+  padding: 0;
+}
+
+#aboutLiberac.content-section-b {
+  background-color: #ddd;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #d9534f;
+}
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:visited {
+  color: #c9302c;
 }

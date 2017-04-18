@@ -53,15 +53,33 @@ app.use('/rates', rates)
 
 // Error handlers
 // TODO: Create error page for error handlers
-app.use((req, res, next) => {
-  let err = new Error('Not Found')
-  err.status = 404
-  next(err)
-})
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500)
+    res.render('error', {
+        message: err.message,
+        error: err
+    })
+  })
+}
 
-app.use((err, req, res, next) => {
-  res.status(err.status || 500)
-  res.send(err)
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500)
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
+});
+
+// 404 Handler
+app.get('*', (req, res, next) => {
+  console.log(req)
+  res.render('error', {
+    message: req.originalUrl,
+    error: '404 Not Found'
+  })
 })
 
 // Listen on a server defined port if it exists

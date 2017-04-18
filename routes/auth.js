@@ -35,6 +35,10 @@ router.post('/login',
   })
 )
 
+router.get('/loggedin', (req, res, next) => {
+  res.render('loggedin', { user: req.session.passport.user })
+})
+
 router.get('/logout', (req, res, next) => {
   req.logout()
   res.redirect('/loggedout')

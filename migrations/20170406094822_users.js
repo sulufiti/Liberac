@@ -23,6 +23,7 @@ exports.up = function(knex, Promise) {
     table.string('passportnumber').unique()
     table.string('passportexpiry')
     table.timestamp('join_date').defaultTo(knex.fn.now())
+    table.boolean('verified').defaultTo(false).notNullable()
     table.boolean('accepted_agreement').notNullable()
   })
 }

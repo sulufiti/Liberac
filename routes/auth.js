@@ -46,7 +46,7 @@ router.get('/logout', (req, res, next) => {
 })
 
 router.get('/payees', (req, res, next) => {
-  res.render('payees', { name: req.session.passport.user.name })
+  res.render('payees', { name: req.session.passport.user.first_name })
 })
 
 router.post('/payees', (req, res, next) => {
@@ -54,7 +54,7 @@ router.post('/payees', (req, res, next) => {
 })
 
 router.get('/payees/add', (req, res, next) => {
-  res.render('addpayee', { name: req.session.passport.user.name })
+  res.render('addpayee', { name: req.session.passport.user.first_name })
 })
 
 router.get('/cloudcheck', (req, res, next) => {

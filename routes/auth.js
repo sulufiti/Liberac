@@ -3,7 +3,6 @@ const router = express.Router()
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const users = require('../helpers/users')
-const friends = require('../helpers/friends')
 const cloudcheck = require('../helpers/cloudcheck')
 const saltRounds = 10
 
@@ -46,14 +45,16 @@ router.get('/logout', (req, res, next) => {
   res.redirect('/login')
 })
 
-router.get('/add', (req, res, next) => {
-  users.findByUsername('steve1234')
-  .then((user) => {
-    return friends.addFriend(req.session.passport.user.id, user.id)
-  })
-  .then((friendStatus) => {
-    console.log('added', friendStatus)
-  })
+router.get('/payees', (req, res, next) => {
+  res.render('payees', { name: req.session.passport.user.name })
+})
+
+router.post('/payees', (req, res, next) => {
+  console.log(req)
+})
+
+router.get('/payees/add', (req, res, next) => {
+  res.render('addpayee', { name: req.session.passport.user.name })
 })
 
 router.get('/cloudcheck', (req, res, next) => {

@@ -4,8 +4,6 @@ const users = require('./helpers/db_users')
 const LocalStrategy = require('passport-local').Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
 
-// TODO: Remove console.logs
-
 const setupPassport = () => {
   passport.use(new LocalStrategy(
     (username, password, done) => {

@@ -1,7 +1,3 @@
-// TODO: Remove passport_url and address_proof when storing as Azure blobs
-// TODO: Check pros and cons (if any) of default Knex UUID vs current UUID library
-// TODO: Can users onboard without accepting agreement in the first place?
-
 exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('users', (table) => {
     table.uuid('id').primary()

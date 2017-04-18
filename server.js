@@ -52,7 +52,6 @@ app.use('/upload', upload)
 app.use('/rates', rates)
 
 // Error handlers
-// TODO: Create error page for error handlers
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500)

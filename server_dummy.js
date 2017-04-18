@@ -30,7 +30,6 @@ app.use('/', index)
 app.use(express.static(__dirname + '/public'))
 
 // Error handlers
-// TODO: Create error page for error handlers
 app.use((req, res, next) => {
   let err = new Error('Not Found')
   err.status = 404

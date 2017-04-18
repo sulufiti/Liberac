@@ -2,10 +2,6 @@ const crypto = require('crypto')
 const got = require('got')
 const hmac = crypto.createHmac('sha256', process.env.CLOUDCHECK_SECRET)
 
-// TODO: User may not have a passport and/or drivers license. May also have vehicle and birth cert
-// TODO: Figure out a better way of storing nonces and keep verifications somewhere once using actual data
-// TODO: Generate unique references too
-
 const verifyUser = (user, nonce) => {
   let data = {
     "details": {

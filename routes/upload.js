@@ -20,7 +20,7 @@ router.post('/', (req, res, next) => {
       if (!error) {
         blobService.createBlockBlobFromText('addressproofs', req.body.userid, req.files.addressproof.data, (error, result, response) => {
           if (!error) {
-            res.redirect('/userinfo')
+            res.redirect('/dashboard')
           }
         })
       }

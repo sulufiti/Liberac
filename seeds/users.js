@@ -20,8 +20,8 @@ exports.seed = function(knex, Promise) {
           city: 'Auckland',
           postcode: '1062',
           dateofbirth: '1994-01-12',
-          passportnumber: 'PP888777',
-          passportexpiry: '2017-02-22',
+          passport_number: 'PP888777',
+          passport_expiry: '2017-02-22',
           accepted_agreement: true
         }),
 
@@ -40,8 +40,8 @@ exports.seed = function(knex, Promise) {
           city: 'Darfield',
           postcode: '7571',
           dateofbirth: '1946-07-06',
-          passportnumber: 'US112233',
-          passportexpiry: '2020-02-20',
+          passport_number: 'US112233',
+          passport_expiry: '2020-02-20',
           accepted_agreement: true
         })
       ])

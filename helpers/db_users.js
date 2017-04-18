@@ -44,8 +44,8 @@ const appendIDproof = (id, number, expiry) => {
   return knex('users')
   .where('id', id)
   .update({
-    passportnumber: number,
-    passportexpiry: moment(expiry).format('YYYY-MM-DD')
+    passport_number: number,
+    passport_expiry: moment(expiry).format('YYYY-MM-DD')
   })
 }
 

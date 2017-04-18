@@ -20,8 +20,8 @@ const verifyUser = (user, nonce) => {
       },
       "driverslicence": {},
       "passport": {
-        "number": user.passportnumber,
-        "expiry": user.passportexpiry
+        "number": user.passport_number,
+        "expiry": user.passport_expiry
       },
       "citizenship": {},
       "country": {},

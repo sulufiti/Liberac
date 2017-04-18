@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  user.appendIDproof(req.body.userid, req.body.passportnumber, req.body.passportexpiry)
+  user.appendIDproof(req.body.userid, req.body.passport_number, req.body.passport_expiry)
   .then((res) => {
     console.log(res)
     blobService.createBlockBlobFromText('passports', req.body.userid, req.files.passport.data, (error, result, response) => {

@@ -27,25 +27,6 @@ exports.seed = function(knex, Promise) {
 
         knex('users').insert({
           id: uuidV4(),
-          username: 'katie1234',
-          password: '$2a$10$y6Of8lflOt.nPnmNLoCv7uZWjIBmUkEja.aDyKEyNm0iTW0Qq2b0O',
-          first_name: 'Katie',
-          last_name: 'Bice',
-          contact_number: '0262946303',
-          email: 'KatieBice@armyspy.com',
-          street: '36 Sedgebrook Street',
-          suburb: 'Putiki',
-          city: 'Wanganui',
-          postcode: '4500',
-          dateofbirth: '1967-04-17',
-          driverslicensenumber: 'AB222222',
-          driverslicenseversion: '222',
-          vehicleregistration: 'VER947',
-          accepted_agreement: true
-        }),
-
-        knex('users').insert({
-          id: uuidV4(),
           username: 'george1234',
           password: '$2a$10$s3El2HAbmTP1fB72kEXms.HbhDJ31kydURuqHqAnoz/cYzmWamGB2',
           first_name: 'George',

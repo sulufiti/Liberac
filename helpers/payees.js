@@ -18,7 +18,27 @@ const addPayee = (userID, payee) => {
     postcode: payee.postcode
   })
   .catch((err) => {
-    console.error('error adding friend', err)
+    console.error('error adding payee', err)
+  })
+}
+
+const updatePayee = (userID, payee) => {
+  return knex('payees')
+  .insert({ 
+    user_id: userID,
+    nickname: payee.nickname,
+    first_name: payee.first_name,
+    middle_name: payee.middle_name,
+    last_name: payee.last_name,
+    phone: payee.phone,
+    email: payee.email,
+    street: payee.street,
+    suburb: payee.suburb,
+    city: payee.city,
+    postcode: payee.postcode
+  })
+  .catch((err) => {
+    console.error('error updating payee', err)
   })
 }
 
@@ -44,6 +64,7 @@ const getPayeeByNickname = (userID, nickname) => {
 
 module.exports = {
   addPayee,
+  updatePayee,
   getUsersPayees,
   getPayeeByNickname
 }

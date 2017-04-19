@@ -70,13 +70,23 @@ router.post('/payees/add', (req, res, next) => {
   })
 })
 
-router.get('/payees/edit/:name', (req, res, next) => {
+router.post('/payees/edit/:name', (req, res, next) => {
   payees.getPayeeByNickname(req.session.passport.user.id, req.params.name)
   .then((payeeDetails) => {
     res.render('addpayee', { name: req.session.passport.user.first_name, payee: payeeDetails })
   })
   .catch((err) => {
     console.error('error fetching payee by nickname', err)
+  })
+})
+
+router.post('/payees/update/:name', (req, res, next) => {
+  payees.updatePayee(req.session.passport.user.id, req.body)
+  .then(() => {
+    res.redirect('/payees')
+  })
+  .catch((err) => {
+    console.error('error redirecting to payees', err)
   })
 })
 

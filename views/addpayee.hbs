@@ -8,11 +8,12 @@
           <li role="presentation"><a href="/topup">Top Up</a></li>
         </ul>
         {{#if payee}}
-          <h1>Welcome {{name}}. Please provide the following information.</h1>
+        <h1>Edit Payee
+        <form method="POST" action="/payees/update/{{payee.nickname}}">
         {{else}}
-          <h1>Edit Payee
+        <h1>Welcome {{name}}. Please provide the following information.</h1>
+        <form method="POST" action="/payees/add">
         {{/if}}
-        <form method="POST" action="/payees">
           <div class="form-group">
             <label for="nickname">Nickname</label>
             <input type="text" name="nickname" class="form-control" id="nickname" placeholder="Mum" {{#if payee}}value={{payee.nickname}}{{/if}}>

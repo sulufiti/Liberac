@@ -10,8 +10,8 @@
         </ul>
         <h1>Welcome {{name}}.</h1>
         {{#if payees}}
-        <form action="/payees/edit/" method="POST">
-          <select class="form-control" name="payees" onchange="this.form.submit()">
+        <form method="POST" action="/payees/edit/{{payees.0.nickname}}">
+          <select class="form-control" name="payees" onchange="$('form').attr('action', $('select').val())">
           {{#each payees}}
             <option value="/payees/edit/{{this.nickname}}">{{this.nickname}}</option>
           {{/each}}

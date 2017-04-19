@@ -371,3 +371,10 @@ img {
 .navbar-default .navbar-nav>li>a:hover {
   color: #c9302c;
 }
+
+.navbar-collapse {
+  background-color: white;
+  top: 50px;
+  right: -50px;
+  position: relative;
+}

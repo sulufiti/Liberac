@@ -8,7 +8,6 @@ const router = express.Router()
 const blobService = azure.createBlobService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY)
 
 router.get('/', (req, res, next) => {
-  console.log(req.session)
   res.render('upload', { id: req.session.passport.user.id, first_name: req.session.passport.user.first_name })
 })
 

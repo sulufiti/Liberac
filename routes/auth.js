@@ -56,7 +56,11 @@ router.get('/payees', (req, res, next) => {
   })
 })
 
-router.post('/payees', (req, res, next) => {
+router.get('/payees/add', (req, res, next) => {
+  res.render('addpayee', { name: req.session.passport.user.first_name })
+})
+
+router.post('/payees/add', (req, res, next) => {
   payees.addPayee(req.session.passport.user.id, req.body)
   .then(() => {
     res.redirect('/payees')
@@ -66,14 +70,13 @@ router.post('/payees', (req, res, next) => {
   })
 })
 
-router.get('/payees/add', (req, res, next) => {
-  res.render('addpayee', { name: req.session.passport.user.first_name })
-})
-
 router.get('/payees/edit/:name', (req, res, next) => {
-  payees.getPayeeByNickname(req.params.name)
+  payees.getPayeeByNickname(req.session.passport.user.id, req.params.name)
   .then((payeeDetails) => {
     res.render('addpayee', { name: req.session.passport.user.first_name, payee: payeeDetails })
+  })
+  .catch((err) => {
+    console.error('error fetching payee by nickname', err)
   })
 })
 

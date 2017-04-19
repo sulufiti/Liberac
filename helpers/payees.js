@@ -36,6 +36,7 @@ const getPayeeByNickname = (userID, nickname) => {
     'user_id': userID,
     'nickname': nickname
   })
+  .then(payee => payee[0])
   .catch((err) => {
     console.error('error fetching payee by nickname', err)
   })
@@ -43,5 +44,6 @@ const getPayeeByNickname = (userID, nickname) => {
 
 module.exports = {
   addPayee,
-  getUsersPayees
+  getUsersPayees,
+  getPayeeByNickname
 }

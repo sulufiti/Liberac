@@ -10,15 +10,17 @@
         </ul>
         <h1>Welcome {{name}}.</h1>
         {{#if payees}}
-          <select class="form-control" name="payees">
+        <form action="/payees/edit/" method="POST">
+          <select class="form-control" name="payees" onchange="this.form.submit()">
           {{#each payees}}
-            <option value={{this.nickname}}>{{this.nickname}}</option>
+            <option value="/payees/edit/{{this.nickname}}">{{this.nickname}}</option>
           {{/each}}
           </select>
+          <button type="submit" class="btn btn-default">Edit Payee</button>
+        </form>
         {{else}}
           <p>Would you like to add your first payee?</p>
         {{/if}}
-        <p><a href="btn btn-primary" href="/payees/edit/{{this.nickname}}" role="button">Edit Payee</a></p>
         <p><a class="btn btn-primary" href="/payees/add" role="button">Add Payee</a></p>
       </div>
     </div>

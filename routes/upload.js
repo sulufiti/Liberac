@@ -1,7 +1,4 @@
 const express = require('express')
-const passport = require('passport')
-const moment = require('moment')
-const bcrypt = require('bcrypt')
 const azure = require('azure-storage')
 const users = require('../helpers/users')
 const router = express.Router()

@@ -1,6 +1,7 @@
 // Express imports
 require('dotenv').config()
 const express = require('express')
+const path = require('path')
 const bodyParser = require('body-parser')
 const passport = require('passport')
 const session = require('express-session')
@@ -11,15 +12,13 @@ const setupPassport = require('./auth').setupPassport
 
 // Setting up express middlewares
 const app = express()
-const jsonParser = bodyParser.json()
 const hbs = require('hbs')
 const port = 3000
-const router = express.Router()
 let sessionSettings = {
-    secret: process.env.EXPRESS_SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {}
+  secret: process.env.EXPRESS_SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {}
 }
 
 // Routes
@@ -32,9 +31,9 @@ const upload = require('./routes/upload')
 const rates = require('./routes/rates')
 
 // Template rendering
-app.set('views', __dirname + '/views')
+app.set('views', path.join(__dirname, '/views'))
 app.set('view engine', 'hbs')
-hbs.registerPartials(__dirname + '/views/partials')
+hbs.registerPartials(path.join(__dirname, '/views/partials'))
 app.locals.pretty = true
 
 // Enabling middlewares
@@ -46,7 +45,7 @@ app.use(session(sessionSettings))
 setupPassport()
 
 // Serve static files and routes that use templates
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(path.join(__dirname, '/public')))
 app.use('/facebook', facebook)
 app.use('/', index)
 app.use('/', auth)
@@ -57,24 +56,24 @@ app.use('/rates', rates)
 
 // Error handlers
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
+  app.use(function (err, req, res, next) {
     res.status(err.status || 500)
     res.render('error', {
-        message: err.message,
-        error: err
+      message: err.message,
+      error: err
     })
   })
 }
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500)
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500)
+  res.render('error', {
+    message: err.message,
+    error: {}
+  })
+})
 
 // 404 Handler
 app.get('*', (req, res, next) => {

@@ -10,7 +10,8 @@
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
     "resetdb": "npm run rollback && npm run migrate && npm run seed",
-    "reset": "npm run resetdb && npm start"
+    "reset": "npm run resetdb && npm start",
+    "lint": "standard"
   },
   "engines": {
     "node": "^7.0.0"
@@ -44,5 +45,15 @@
     "sendgrid": "^5.0.0",
     "uuid": "^3.0.1",
     "x-ray": "^2.3.2"
+  },
+  "devDependencies": {
+    "standard": "^10.0.2"
+  },
+  "standard": {
+    "ignore": [
+      "/public",
+      "knexfile.js",
+      "auth.js"
+    ]
   }
 }

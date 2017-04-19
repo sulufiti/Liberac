@@ -5,7 +5,7 @@ const uuidV4 = require('uuid/v4')
 
 const addPayee = (userID, payee) => {
   return knex('payees')
-  .insert({ 
+  .insert({
     id: uuidV4(),
     user_id: userID,
     nickname: payee.nickname,

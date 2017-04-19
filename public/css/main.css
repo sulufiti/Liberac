@@ -260,6 +260,10 @@ img {
   -webkit-filter: grayscale(0);
 }
 
+#programLogo .list-inline>li {
+  vertical-align: middle;
+}
+
 
 /* media queries */
 

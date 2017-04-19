@@ -70,6 +70,13 @@ router.get('/payees/add', (req, res, next) => {
   res.render('addpayee', { name: req.session.passport.user.first_name })
 })
 
+router.get('/payees/edit/:name', (req, res, next) => {
+  payees.getPayeeByNickname(req.params.name)
+  .then((payeeDetails) => {
+    res.render('addpayee', { name: req.session.passport.user.first_name, payee: payeeDetails })
+  })
+})
+
 router.get('/cloudcheck', (req, res, next) => {
   cloudcheck.verifyUser(req.session.passport.user, req.query.nonce)
   .then((response) => {

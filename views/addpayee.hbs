@@ -11,7 +11,7 @@
         <form method="POST" action="/payees">
           <div class="form-group">
             <label for="nickname">Nickname</label>
-            <input type="text" name="nickname" class="form-control" id="nickname" placeholder="Mum">
+            <input type="text" name="nickname" class="form-control" id="nickname" placeholder="Mum" {{#if payee}}value="{{payee.first_name}}"{{/if}}>
             <p class="help-block">An optional name we'll refer to this payee by</p>
           </div>
           <div class="form-group">
@@ -53,7 +53,13 @@
             <input type="text" name="postcode" class="form-control" id="postcode" placeholder="1234">
           </div>
           <p><a class="btn btn-danger" href="/payees" role="button">Go Back</a></p>
-          <button type="submit" class="btn btn-default">Add Payee</button>
+          <button type="submit" class="btn btn-default">
+            {{#if payee}}
+              Update Payee
+            {{else}}
+              Add Payee
+            {{/if}}
+          </button>
         </form>
       </div>
     </div>

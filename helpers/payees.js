@@ -30,6 +30,17 @@ const getUsersPayees = (userID) => {
   })
 }
 
+const getPayeeByNickname = (userID, nickname) => {
+  return knex('payees')
+  .where({
+    'user_id': userID,
+    'nickname': nickname
+  })
+  .catch((err) => {
+    console.error('error fetching payee by nickname', err)
+  })
+}
+
 module.exports = {
   addPayee,
   getUsersPayees

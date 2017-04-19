@@ -44,5 +44,13 @@
     "sendgrid": "^5.0.0",
     "uuid": "^3.0.1",
     "x-ray": "^2.3.2"
+  },
+  "devDependencies": {
+    "standard": "^10.0.2"
+  },
+  "standard": {
+    "ignore": [
+      "/public"
+    ]
   }
 }

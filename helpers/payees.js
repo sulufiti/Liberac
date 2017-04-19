@@ -1,10 +1,12 @@
 const Knex = require('knex')
 const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
+const uuidV4 = require('uuid/v4')
 
 const addPayee = (userID, payee) => {
   return knex('payees')
   .insert({ 
+    id: uuidV4(),
     user_id: userID,
     nickname: payee.nickname,
     first_name: payee.first_name,
@@ -24,7 +26,7 @@ const addPayee = (userID, payee) => {
 
 const updatePayee = (userID, payee) => {
   return knex('payees')
-  .insert({ 
+  .update({ 
     user_id: userID,
     nickname: payee.nickname,
     first_name: payee.first_name,

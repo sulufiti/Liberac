@@ -25,9 +25,13 @@ const addPayee = (userID, payee) => {
 }
 
 const updatePayee = (userID, payee) => {
+  console.log(payee)
   return knex('payees')
-  .update({ 
+  .where({
     user_id: userID,
+    id: payee.id
+  })
+  .update({
     nickname: payee.nickname,
     first_name: payee.first_name,
     middle_name: payee.middle_name,
@@ -40,7 +44,7 @@ const updatePayee = (userID, payee) => {
     postcode: payee.postcode
   })
   .catch((err) => {
-    console.error('error updating payee', err)
+    console.error('error updating payee. check that user id has that payee id', err)
   })
 }
 

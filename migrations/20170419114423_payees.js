@@ -1,6 +1,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('payees', (table) => {
-    table.increments('id').primary()
+    table.uuid('id').primary()
     table.uuid('user_id').notNullable()
     table.string('nickname')
     table.string('first_name').notNullable()

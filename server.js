@@ -25,6 +25,8 @@ let sessionSettings = {
 // Routes
 const index = require('./routes/index')
 const facebook = require('./routes/facebook')
+const payees = require('./routes/payees')
+const cloudcheck = require('./routes/cloudcheck')
 const auth = require('./routes/auth')
 const upload = require('./routes/upload')
 const rates = require('./routes/rates')
@@ -48,6 +50,8 @@ app.use(express.static(__dirname + '/public'))
 app.use('/facebook', facebook)
 app.use('/', index)
 app.use('/', auth)
+app.use('/', payees)
+app.use('/', cloudcheck)
 app.use('/upload', upload)
 app.use('/rates', rates)
 

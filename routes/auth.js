@@ -3,8 +3,6 @@ const router = express.Router()
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const users = require('../helpers/users')
-const payees = require('../helpers/payees')
-const cloudcheck = require('../helpers/cloudcheck')
 const saltRounds = 10
 
 router.get('/register', (req, res, next) => {
@@ -35,74 +33,9 @@ router.post('/login',
   })
 )
 
-router.get('/dashboard', (req, res, next) => {
-  // $0 becomes $0.00
-  req.session.passport.user.balance.toFixed(2)
-  res.render('dashboard', { user: req.session.passport.user })
-})
-
 router.get('/logout', (req, res, next) => {
   req.logout()
   res.redirect('/login')
-})
-
-router.get('/payees', (req, res, next) => {
-  payees.getUsersPayees(req.session.passport.user.id)
-  .then((usersPayees) => {
-    res.render('payees', { name: req.session.passport.user.first_name, payees: usersPayees })
-  })
-  .catch((err) => {
-    console.error('error fetching users payees', err)
-  })
-})
-
-router.get('/payees/add', (req, res, next) => {
-  res.render('addpayee', { name: req.session.passport.user.first_name })
-})
-
-router.post('/payees/add', (req, res, next) => {
-  payees.addPayee(req.session.passport.user.id, req.body)
-  .then(() => {
-    res.redirect('/payees')
-  })
-  .catch((err) => {
-    console.error('error redirecting to payees', err)
-  })
-})
-
-router.post('/payees/edit/:name', (req, res, next) => {
-  payees.getPayeeByNickname(req.session.passport.user.id, req.params.name)
-  .then((payeeDetails) => {
-    res.render('addpayee', { name: req.session.passport.user.first_name, payee: payeeDetails })
-  })
-  .catch((err) => {
-    console.error('error fetching payee by nickname', err)
-  })
-})
-
-router.post('/payees/update/:name', (req, res, next) => {
-  payees.updatePayee(req.session.passport.user.id, req.body)
-  .then(() => {
-    res.redirect('/payees')
-  })
-  .catch((err) => {
-    console.error('error redirecting to payees', err)
-  })
-})
-
-router.get('/cloudcheck', (req, res, next) => {
-  cloudcheck.verifyUser(req.session.passport.user, req.query.nonce)
-  .then((response) => {
-    console.log('res from cloudcheck', response)
-    res.render('dashboard', {
-      first_name: req.session.passport.user.first_name,
-      balance: (req.session.passport.user.balance).toFixed(2),
-      verified: req.session.passport.user.verified
-    })
-  })
-  .catch((err) => {
-    console.error('error verifying', err)
-  })
 })
 
 module.exports = router

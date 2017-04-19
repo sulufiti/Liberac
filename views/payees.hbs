@@ -10,9 +10,11 @@
         </ul>
         <h1>Welcome {{name}}.</h1>
         {{#if payees}}
+          <select class="form-control" name="payees">
           {{#each payees}}
-            <p>Nickname: {{this.nickname}}</p>
+            <option value={{this.nickname}}>{{this.nickname}}</option>
           {{/each}}
+          </select>
         {{else}}
           <p>Would you like to add your first payee?</p>
         {{/if}}

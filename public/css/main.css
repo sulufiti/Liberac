@@ -293,6 +293,12 @@ img {
   .topnav {
         /*background-color: yellow;*/
     }
+    .navbar-collapse {
+  background-color: white;
+  top: 50px;
+  right: -50px;
+  position: relative;
+}
 }
 
 /* Portrait phones and smaller */
@@ -300,6 +306,12 @@ img {
   .topnav {
     height: 50px;
   }
+  .navbar-collapse {
+  background-color: white;
+  top: 50px;
+  right: -50px;
+  position: relative;
+}
   .navbar-header img {
     width: 190px;
   }
@@ -370,11 +382,4 @@ img {
 }
 .navbar-default .navbar-nav>li>a:hover {
   color: #c9302c;
-}
-
-.navbar-collapse {
-  background-color: white;
-  top: 50px;
-  right: -50px;
-  position: relative;
 }

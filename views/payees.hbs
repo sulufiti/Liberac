@@ -1,0 +1,30 @@
+<div class="content-section-a">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="nav nav-tabs">
+          <li role="presentation"><a href="/dashboard">Home</a></li>
+          <li role="presentation" class="active"><a href="/payees">View Payees</a></li>
+          <li role="presentation"><a href="/send">Send Money</a></li>
+          <li role="presentation"><a href="/topup">Top Up</a></li>
+        </ul>
+        <h1>Welcome {{name}}.</h1>
+        {{#if payees}}
+        <form method="POST" action="/payees/edit/{{payees.0.nickname}}">
+          <select class="form-control" name="payees" onchange="$('form').attr('action', $('select').val())">
+          {{#each payees}}
+            <option value="/payees/edit/{{this.nickname}}">{{this.nickname}}</option>
+          {{/each}}
+          </select>
+          <p><a class="btn btn-primary" href="/payees/add" role="button">Add Payee</a></p>
+          <button type="submit" class="btn btn-warning">Edit Payee</button>
+          <!-- <p><a class="btn btn-danger" id="delete" href="/payees/delete/{{payees.0.nickname}}" role="button">Delete Payee</a></p> -->
+        </form>
+        {{else}}
+          <p>Would you like to add your first payee?</p>
+          <p><a class="btn btn-primary" href="/payees/add" role="button">Add Payee</a></p>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

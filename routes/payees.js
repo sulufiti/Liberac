@@ -14,7 +14,7 @@ router.get('/payees', (req, res, next) => {
 })
 
 router.get('/payees/add', (req, res, next) => {
-  res.render('addpayee', { name: req.session.passport.user.first_name })
+  res.render('addpayee')
 })
 
 router.post('/payees/add', (req, res, next) => {

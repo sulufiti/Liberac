@@ -8,10 +8,10 @@
           <li role="presentation"><a href="/topup">Top Up</a></li>
         </ul>
         {{#if payee}}
-        <h1>Edit Payee</h1>
+        <h1>Edit {{payee.nickname}}'s details</h1>
         <form method="POST" action="/payees/update/{{payee.nickname}}">
         {{else}}
-        <h1>Welcome {{name}}. Please provide the following information.</h1>
+        <h1>Add a payee</h1>
         <form method="POST" action="/payees/add">
         {{/if}}
           <div class="form-group">

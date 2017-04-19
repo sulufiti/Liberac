@@ -50,7 +50,7 @@ app.use('/facebook', facebook)
 app.use('/', index)
 app.use('/', auth)
 app.use('/', payees)
-app.use('/', cloudcheck)
+//app.use('/', cloudcheck)
 app.use('/upload', upload)
 app.use('/rates', rates)
 
@@ -83,10 +83,14 @@ app.get('*', (req, res, next) => {
   })
 })
 
-// Listen on a server defined port if it exists
-app.listen(process.env.PORT || port, () => {
+let server = require('http').createServer(app)
+
+exports.listen = function(port) {
+  server.listen(port)
   console.log(`Liberac is now being served at http://localhost:${port}`)
   console.log(`Running in ${app.get('env').toUpperCase()} mode`)
-})
+}
 
-module.exports = app
+exports.close = function() {
+  server.close()
+}

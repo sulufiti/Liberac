@@ -27,7 +27,7 @@ const getUsersPayees = (userID) => {
   .where('user_id', userID)
   .catch((err) => {
     console.error('error fetching payees', err)
-  }
+  })
 }
 
 module.exports = {

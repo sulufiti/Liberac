@@ -8,8 +8,14 @@
           <li role="presentation"><a href="/send">Send Money</a></li>
           <li role="presentation"><a href="/topup">Top Up</a></li>
         </ul>
-        <h1>Welcome {{name}}. You currently have 0 payees.</h1>
-        <p>Would you like to add your first payee?</p>
+        <h1>Welcome {{name}}.</h1>
+        {{#if payees}}
+          {{#each payees}}
+            <p>Nickname: {{this.nickname}}</p>
+          {{/each}}
+        {{else}}
+          <p>Would you like to add your first payee?</p>
+        {{/if}}
         <p><a class="btn btn-primary btn-lg" href="/payees/add" role="button">Add Payee</a></p>
       </div>
     </div>

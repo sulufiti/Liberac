@@ -3,6 +3,7 @@ const router = express.Router()
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const users = require('../helpers/users')
+const payees = require('../helpers/payees')
 const cloudcheck = require('../helpers/cloudcheck')
 const saltRounds = 10
 
@@ -46,11 +47,23 @@ router.get('/logout', (req, res, next) => {
 })
 
 router.get('/payees', (req, res, next) => {
-  res.render('payees', { name: req.session.passport.user.first_name })
+  payees.getUsersPayees(req.session.passport.user.id)
+  .then((usersPayees) => {
+    res.render('payees', { name: req.session.passport.user.first_name, payees: usersPayees })
+  })
+  .catch((err) => {
+    console.error('error fetching users payees', err)
+  })
 })
 
 router.post('/payees', (req, res, next) => {
-  console.log(req)
+  payees.addPayee(req.session.passport.user.id, req.body)
+  .then(() => {
+    res.redirect('/payees')
+  })
+  .catch((err) => {
+    console.error('error redirecting to payees', err)
+  })
 })
 
 router.get('/payees/add', (req, res, next) => {

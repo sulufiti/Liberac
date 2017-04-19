@@ -21,7 +21,7 @@ const verifyUser = (user, nonce) => {
       },
       'citizenship': {},
       'country': {},
-      'birthcertificate' : {},
+      'birthcertificate': {},
       'vehicle': {},
       'dateofbirth': user.dateofbirth
     },
@@ -43,7 +43,7 @@ const verifyUser = (user, nonce) => {
       key: process.env.CLOUDCHECK_API_KEY,
       signature: cloudsignature,
       nonce: nonce,
-      timestamp: current_time,
+      timestamp: currentTime,
       data: JSON.stringify(data)
     }
   })

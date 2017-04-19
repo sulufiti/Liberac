@@ -9,7 +9,7 @@ router.get('/login',
 )
 
 router.get('/return',
-  passport.authenticate('facebook', { 
+  passport.authenticate('facebook', {
     failureRedirect: '/',
     successRedirect: '/profile'
   })

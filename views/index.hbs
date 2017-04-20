@@ -8,9 +8,62 @@
                         <h1>GET READY FOR LIFT OFF!</h1>
                         <h3>AN EASIER WAY TO SEND MONEY TO THE PACIFIC ISLANDS</h3>
                         <ul class="list-inline intro-social-buttons">
-                            <li>
+                            {{!--<li>
                                 <a href="https://secureliberac.typeform.com/to/jjWBRa" class="btn btn-danger btn-md"><span class="network-name">JOIN NOW</span></a>
-                            </li>
+                            </li>--}}
+														{{!-- modal --}}
+														{{!-- Button trigger modal --}}
+														<li>
+															<button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#signUpForm">
+																<span class="network-name">JOIN NOW</span>
+															</button>
+														</li>
+
+														{{!-- Sign up form modal --}}
+														<div class="modal fade" id="signUpForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+															<div class="modal-dialog" role="document">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		{{!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+																		<h4 class="modal-title" id="myModalLabel">Come ride with Liberac and jump aboard our beta.</h4>
+																	</div>
+																	<form method="POST" action="/">
+                                    <div class="modal-body">
+																			<div class="row">
+																				<div class="col-md-6">
+																					<div class="form-group">
+																						<input type="text" class="form-control" id="firstName" name="firstName" tabindex="1" placeholder="First name">
+																					</div>
+																				</div>
+																				<div class="col-md-6">
+																					<div class="form-group">
+																						<input type="text" class="form-control" id="lastName" name="lastName" tabindex="2" placeholder="Last name">
+																					</div>
+																				</div>
+																			</div>
+																			<div class="row">
+																				<div class="col-md-12">
+																					<div class="form-group">
+																						<input type="email" class="form-control" id="emailAddress" name="email" tabindex="3" placeholder="Email address">
+																					</div>
+																				</div>
+																			</div>
+																			<div class="row">
+																				<div class="col-md-12">
+																					<p class="text-muted small redText">We respect your privacy. Your information will not be shared.</p>
+																				</div>
+																			</div>	
+  																	</div>
+  																	<div class="modal-footer">
+  																		<button type="button" class="btn btn-default" tabindex="5" data-dismiss="modal">Close</button>
+  																		<button type="submit" class="btn btn-danger" tabindex="4">Sign up</button>
+  																	</div>
+                                  </form> 
+																</div>
+															</div>
+														</div>
+														{{!-- /modal --}}
+
                         </ul>
                         <h2>LIBERAC IS LAUNCHING SOON AND WE WANT YOU TO COME ABOARD!</h2>
                         <h3 class="whiteShawdow">WE’RE CURRENTLY IN BETA</h3>

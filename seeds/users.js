@@ -2,7 +2,7 @@ const uuidV4 = require('uuid/v4')
 
 // Test passwords are the same as the usernames
 
-exports.seed = function(knex, Promise) {
+exports.seed = function (knex, Promise) {
   return knex('users').del()
     .then(function () {
       return Promise.all([
@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
           first_name: 'Steve',
           middle_name: 'Ashley',
           last_name: 'Smith',
-          contact_number: '0262946302',
+          phone: '0262946302',
           email: 'SteveSmith@armyspy.com',
           street: 'Flat 3, 12 Albert Street',
           suburb: 'Otahuhu',
@@ -33,7 +33,7 @@ exports.seed = function(knex, Promise) {
           first_name: 'George',
           middle_name: 'Walker',
           last_name: 'Bush',
-          contact_number: '0212345678',
+          phone: '0212345678',
           email: 'George@expresident.org',
           street: '1600 Clintons Road',
           suburb: 'RD1',
@@ -47,4 +47,3 @@ exports.seed = function(knex, Promise) {
       ])
     })
 }
-

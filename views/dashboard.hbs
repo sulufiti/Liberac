@@ -3,7 +3,8 @@
     <div class="row">
       <div class="col-lg-12">
         <ul class="nav nav-tabs">
-          <li role="presentation" class="active"><a href="#">Home</a></li>
+          <li role="presentation" class="active"><a href="/dashboard">Home</a></li>
+          <li role="presentation"><a href="/payees">View Payees</a></li>
           <li role="presentation"><a href="/send">Send Money</a></li>
           <li role="presentation"><a href="/topup">Top Up</a></li>
         </ul>
@@ -11,7 +12,7 @@
         {{#unless user.verified}}
         <div class="alert alert-warning" role="alert">Before we can get started, we'll need you to provide some identification for regulatory purposes. <a href="/upload">Click here</a> to get started.</div>
         {{/unless}}
-        <div class="well">
+        <div class="well" style="color: black">
           <h1>User Details</h1>
           <p>Name: {{user.first_name}} {{user.middle_name}} {{user.last_name}}</p>
           <p>Phone: {{user.contact_number}}</p>
@@ -20,10 +21,10 @@
           <p>Date of Birth: {{user.dateofbirth}}</p>
         </div>
         {{#if passport_number}}
-        <div class="well">
+        <div class="well" style="color: black">
           <p>Passport: {{user.passport_number}} Expiry: {{user.passport_expiry}}</p>
-          <img class="media-object" src="" alt="Passport">
-          <img class="media-object" src="" alt="Address Proof"
+          <img class="media-object" src="https://liberacfilestorage.blob.core.windows.net/passports/{{user.id}}" alt="Passport">
+          <img class="media-object" src="https://liberacfilestorage.blob.core.windows.net/addressproofs/{{user.id}}" alt="Address Proof"
         </div>
         {{/if}}
       </div>

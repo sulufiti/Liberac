@@ -1,8 +1,7 @@
 const passport = require('passport')
 const bcrypt = require('bcrypt')
-const users = require('./helpers/db_users')
+const users = require('./helpers/users')
 const LocalStrategy = require('passport-local').Strategy
-const FacebookStrategy = require('passport-facebook').Strategy
 
 const setupPassport = () => {
   passport.use(new LocalStrategy(
@@ -30,28 +29,11 @@ const setupPassport = () => {
     }
   ))
 
-  // passport.use(new FacebookStrategy({
-  //   clientID: process.env.FACEBOOK_APP_ID,
-  //   clientSecret: process.env.FACEBOOK_APP_SECRET,
-  //   callbackURL: 'http://localhost:3000/facebook/return',
-  //   profileFields: ['id', 'email', 'name', 'friends']
-  //   }, (accessToken, refreshToken, profile, done) => {
-  //     let user = {
-  //       'id': profile.id,
-  //       'first_name': profile.name.givenName,
-  //       'last_name': profile.name.familyName,
-  //       'email': profile.emails[0].value
-  //     }
-  //     return done(null, user)
-  //   }
-  // ))
-
   passport.serializeUser((user, done) => {
     done(null, user)
   })
 
   passport.deserializeUser((id, done) => {
-    console.log('deserialize')
     users.findByID(id)
     .then((user) => { return done(null, user) })
     .catch((err) => {
@@ -60,4 +42,6 @@ const setupPassport = () => {
   })
 }
 
-module.exports = { setupPassport }
+module.exports = {
+  setupPassport
+}

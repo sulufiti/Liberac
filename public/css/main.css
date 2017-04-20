@@ -62,8 +62,8 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 #intro-message > h1 {
     margin: 0;
-    font-size: 4em;
-    letter-spacing: 10px;
+    font-size: 3em;
+    letter-spacing: 5px;
 }
 #intro-message > h2 {
   letter-spacing: 1px;

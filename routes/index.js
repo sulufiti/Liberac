@@ -1,12 +1,26 @@
 const express = require('express')
 const router = express.Router()
+const Knex = require('knex')
+const knexConfig = require('../knexfile')
+const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
 
 router.get('/', (req, res, next) => {
   res.render('index')
 })
 
 router.post('/', (req, res, next) => {
-  res.render('index')
+  knex('contacts')
+  .insert({
+    first_name: req.body.firstName,
+    last_name: req.body.lastName,
+    email: req.body.email
+  })
+  .then(() => {
+    res.redirect('/')
+  })
+  .catch((err) => {
+    console.error('', err)
+  })
 })
 
 router.get('/policy', (req, res, next) => {

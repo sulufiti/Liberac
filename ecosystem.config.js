@@ -1,7 +1,7 @@
 module.exports = {
   apps: [{
     name: 'Staging',
-    script: './server_dummy.js',
+    script: './server.js',
     watch: true,
     env: {
       'NODE_ENV': 'staging',
@@ -9,7 +9,7 @@ module.exports = {
     }
   }, {
     name: 'Production',
-    script: './server.js',
+    script: './server_dummy.js',
     watch: true,
     env: {
       'NODE_ENV': 'production',

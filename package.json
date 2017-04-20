@@ -56,7 +56,8 @@
     "ignore": [
       "/public",
       "knexfile.js",
-      "auth.js"
+      "auth.js",
+      "test"
     ]
   }
 }

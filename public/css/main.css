@@ -60,6 +60,9 @@ body, h1, h2, h3, h4, h5, h6 {
     text-shadow: 1px 1px 10px #000;
     line-height: 1;
 }
+#intro-message h3 {
+    text-shadow: 1px 1px 3px #000;
+}
 #intro-message > h1 {
     margin: 0;
     font-size: 3em;
@@ -72,7 +75,7 @@ body, h1, h2, h3, h4, h5, h6 {
   padding: 0;
 }
 #intro-message > h3 {
-  font-size: 1.5em;
+  font-size: 2em;
   letter-spacing: 5px;
   margin: 10px 0px;
   padding: 0;

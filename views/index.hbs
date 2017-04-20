@@ -27,24 +27,24 @@
 																		{{!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
 																		<h4 class="modal-title" id="myModalLabel">Come ride with Liberac and jump aboard our beta.</h4>
 																	</div>
-																	<div class="modal-body">
-																		<form>
+																	<form method="POST" action="/">
+                                    <div class="modal-body">
 																			<div class="row">
 																				<div class="col-md-6">
 																					<div class="form-group">
-																						<input type="text" class="form-control" id="firstName" tabindex="1" placeholder="First name">
+																						<input type="text" class="form-control" id="firstName" name="firstName" tabindex="1" placeholder="First name">
 																					</div>
 																				</div>
 																				<div class="col-md-6">
 																					<div class="form-group">
-																						<input type="text" class="form-control" id="lastName" tabindex="2" placeholder="Last name">
+																						<input type="text" class="form-control" id="lastName" name="lastName" tabindex="2" placeholder="Last name">
 																					</div>
 																				</div>
 																			</div>
 																			<div class="row">
 																				<div class="col-md-12">
 																					<div class="form-group">
-																						<input type="email" class="form-control" id="emailAddress" tabindex="3" placeholder="Email address">
+																						<input type="email" class="form-control" id="emailAddress" name="email" tabindex="3" placeholder="Email address">
 																					</div>
 																				</div>
 																			</div>
@@ -52,13 +52,13 @@
 																				<div class="col-md-12">
 																					<p class="text-muted small redText">We respect your privacy. Your information will not be shared.</p>
 																				</div>
-																			</div>
-																		</form>		
-																	</div>
-																	<div class="modal-footer">
-																		<button type="button" class="btn btn-default" tabindex="5" data-dismiss="modal">Close</button>
-																		<button type="button" class="btn btn-danger" tabindex="4">Sign up</button>
-																	</div>
+																			</div>	
+  																	</div>
+  																	<div class="modal-footer">
+  																		<button type="button" class="btn btn-default" tabindex="5" data-dismiss="modal">Close</button>
+  																		<button type="submit" class="btn btn-danger" tabindex="4">Sign up</button>
+  																	</div>
+                                  </form> 
 																</div>
 															</div>
 														</div>

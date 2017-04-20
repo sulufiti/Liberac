@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const mailer = require('../helpers/mailer')
 const Knex = require('knex')
 const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
@@ -18,6 +19,9 @@ router.post('/', (req, res, next) => {
     })
     .then(() => {
       res.redirect('/')
+    })
+    .then(() => {
+      mailer.sendWelcome(`${req.body.firstName} ${req.body.lastName}`, req.body.email)
     })
     .catch((err) => {
       console.error('', err)

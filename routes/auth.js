@@ -16,7 +16,6 @@ router.post('/register', (req, res, next) => {
     users.register(req.body)
     .then(() => res.redirect('/login'))
     .catch((err) => {
-      res.send('user already exists in database')
       console.error(err)
     })
   })

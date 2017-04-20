@@ -9,18 +9,22 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  knex('contacts')
-  .insert({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
-    email: req.body.email
-  })
-  .then(() => {
+  if (req.body.firstName && req.body.lastName && req.body.email) {
+    knex('contacts')
+    .insert({
+      first_name: req.body.firstName,
+      last_name: req.body.lastName,
+      email: req.body.email
+    })
+    .then(() => {
+      res.redirect('/')
+    })
+    .catch((err) => {
+      console.error('', err)
+    })
+  } else {
     res.redirect('/')
-  })
-  .catch((err) => {
-    console.error('', err)
-  })
+  }
 })
 
 router.get('/policy', (req, res, next) => {

@@ -74,7 +74,6 @@ app.use(function(err, req, res, next) {
 
 // 404 Handler
 app.get('*', (req, res, next) => {
-  console.log(req)
   res.render('error', {
     message: req.originalUrl,
     error: '404 Not Found'

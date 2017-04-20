@@ -13,7 +13,6 @@ const setupPassport = require('./auth').setupPassport
 // Setting up express middlewares
 const app = express()
 const hbs = require('hbs')
-const port = 3000
 let sessionSettings = {
   secret: process.env.EXPRESS_SESSION_SECRET,
   resave: false,
@@ -25,7 +24,7 @@ let sessionSettings = {
 const index = require('./routes/index')
 const facebook = require('./routes/facebook')
 const payees = require('./routes/payees')
-const cloudcheck = require('./routes/cloudcheck')
+// const cloudcheck = require('./routes/cloudcheck')
 const auth = require('./routes/auth')
 const upload = require('./routes/upload')
 const rates = require('./routes/rates')
@@ -50,7 +49,7 @@ app.use('/facebook', facebook)
 app.use('/', index)
 app.use('/', auth)
 app.use('/', payees)
-//app.use('/', cloudcheck)
+// app.use('/', cloudcheck)
 app.use('/upload', upload)
 app.use('/rates', rates)
 
@@ -85,7 +84,7 @@ app.get('*', (req, res, next) => {
 
 let server = require('http').createServer(app)
 
-exports.listen = function(port, startupMessage) {
+exports.listen = function (port, startupMessage) {
   server.listen(port)
   if (startupMessage) {
     console.log(`Liberac is now being served at http://localhost:${port}`)
@@ -93,6 +92,6 @@ exports.listen = function(port, startupMessage) {
   }
 }
 
-exports.close = function() {
+exports.close = function () {
   server.close()
 }

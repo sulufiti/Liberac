@@ -14,7 +14,7 @@ body, h1, h2, h3, h4, h5, h6 {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.navbar-header {
+/*.navbar-header {
   float: none;
 }
 .navbar-header img {
@@ -28,7 +28,11 @@ body, h1, h2, h3, h4, h5, h6 {
   border: 0;
   background-color: #fff;
   height: 65px;
-}
+}*/
+
+/*.navbar-header img {
+  width: 230px;
+}*/
 
 .lead {
   font-size: 18px;
@@ -239,12 +243,12 @@ a.redLink:hover {
 }
 
 /* program logo */
-img {
-  /*filter: grayscale(100%);
+/*img {
+  filter: grayscale(100%);
   opacity: 0.5;
   filter: alpha(opacity=50);
-  -webkit-filter: grayscale(100%);*/
-}
+  -webkit-filter: grayscale(100%);
+}*/
 
 
 #programLogo img {
@@ -293,28 +297,16 @@ img {
   .topnav {
         /*background-color: yellow;*/
     }
-    .navbar-collapse {
-  background-color: white;
-  top: 50px;
-  right: -50px;
-  position: relative;
-}
 }
 
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
-  .topnav {
+  /*.topnav {
     height: 50px;
-  }
-  .navbar-collapse {
-  background-color: white;
-  top: 50px;
-  right: -50px;
-  position: relative;
-}
-  .navbar-header img {
+  }*/
+  /*.navbar-header img {
     width: 190px;
-  }
+  }*/
   #intro-message > h1 {
     letter-spacing: 2px;
     font-size: 18px;
@@ -371,6 +363,12 @@ img {
   position: absolute;
   padding: 0;
 }
+.nav>li {
+  display: inline-block;
+}
+.navbar-collapse {
+  text-align: center;
+}
 
 #aboutLiberac.content-section-b {
   background-color: #ddd;
@@ -382,4 +380,11 @@ img {
 }
 .navbar-default .navbar-nav>li>a:hover {
   color: #c9302c;
+}
+.navbar-nav {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.navbar-default {
+  background-color: #fff;
 }

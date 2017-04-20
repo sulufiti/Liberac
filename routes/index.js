@@ -9,7 +9,18 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  res.render('index')
+  knex('contacts')
+  .insert({
+    first_name: req.body.firstName,
+    last_name: req.body.lastName,
+    email: req.body.email
+  })
+  .then(() => {
+    res.redirect('/')
+  })
+  .catch((err) => {
+    console.error('', err)
+  })
 })
 
 router.get('/policy', (req, res, next) => {

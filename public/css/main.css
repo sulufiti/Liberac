@@ -192,10 +192,10 @@ footer {
     padding: 50px 0;
     background-color: #404040;
     text-align: center;
-    color: #c9302c;
+    color: #f80909;
 }
 footer a {
-    color: #c9302c;
+    color: #f80909;
 }
 footer a:hover {
     color: #c9302c;
@@ -204,7 +204,7 @@ footer a:hover {
 
 p.copyright {
     margin: 15px 0 0;
-    color: #c9302c;
+    color: #f80909;
 }
 
 /*privacy policy*/
@@ -218,11 +218,11 @@ p.copyright {
 
 /* MISC */
 .redText {
-  color: #c9302c;
+  color: #f80909;
 }
 
 a.redLink {
-    color: #c9302c;
+    color: #f80909;
 }
 a.redLink:hover {
     text-decoration: underline;
@@ -239,7 +239,7 @@ a.redLink:hover {
   font-size: 16px;
 }
 #aboutUs h2, h3 {
-  color: #c9302c;
+  color: #f80909;
 }
 #aboutUs img {
   margin-bottom: 15px;
@@ -394,7 +394,7 @@ a.redLink:hover {
 
 /* modal */
 #signUpForm {
-  color: #c9302c;
+  color: #f80909;
 }
 .form-control:focus {
   border-color: #d43f3a;

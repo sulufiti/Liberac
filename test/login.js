@@ -1,13 +1,19 @@
 const Nightmare = require('nightmare')
 const expect = require('chai').expect
 require('dotenv').config({path: '../.env'})
+const server = require('../serverSetup')
 
 describe('Login tests', function() {
   this.timeout(0)
   let nightmare = null
 
   beforeEach(() => {
+    server.listen(3000, false)
     nightmare = new Nightmare({ show: false })
+  })
+
+  afterEach(() => {
+    server.close()
   })
 
   describe('Login page rejects upon incorrect details', function() {

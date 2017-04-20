@@ -5,13 +5,14 @@
   "private": true,
   "main": "server.js",
   "scripts": {
-    "start": "node launchServer.js",
+    "start": "node server.js",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
     "resetdb": "npm run rollback && npm run migrate && npm run seed",
     "reset": "npm run resetdb && npm start",
-    "lint": "standard"
+    "lint": "standard",
+    "test": "mocha test"
   },
   "engines": {
     "node": "^7.0.0"

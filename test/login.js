@@ -1,9 +1,12 @@
 const Nightmare = require('nightmare')
 const expect = require('chai').expect
 require('dotenv').config({path: '../.env'})
-const server = require('../serverSetup')
+const server = require('../servercfg')
+const Knex = require('knex')
+const knexConfig = require('../knexfile')
+const knex = Knex(knexConfig['development'])
 
-describe('Login tests', function() {
+describe('Sign up tests', function() {
   this.timeout(0)
   let nightmare = null
 

@@ -25,6 +25,7 @@ const setupPassport = () => {
         })
       })
       .catch((err) => {
+        console.error(err)
         Raven.captureException(err)
       })
     }
@@ -38,6 +39,7 @@ const setupPassport = () => {
     users.findByID(id)
     .then((user) => { return done(null, user) })
     .catch((err) => {
+      console.error(err)
       Raven.captureException(err)
     })
   })

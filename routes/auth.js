@@ -17,6 +17,7 @@ router.post('/register', (req, res, next) => {
     users.register(req.body)
     .then(() => res.redirect('/login'))
     .catch((err) => {
+      console.error(err)
       Raven.captureException(err)
     })
   })

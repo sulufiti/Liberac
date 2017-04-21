@@ -14,6 +14,7 @@ router.get('/cloudcheck', (req, res, next) => {
     })
   })
   .catch((err) => {
+    console.error(err)
     Raven.captureException(err)
   })
 })

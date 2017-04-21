@@ -9,6 +9,7 @@ router.get('/payees', (req, res, next) => {
     res.render('payees', { name: req.session.passport.user.first_name, payees: usersPayees })
   })
   .catch((err) => {
+    console.error(err)
     Raven.captureException(err)
   })
 })
@@ -23,6 +24,7 @@ router.post('/payees/add', (req, res, next) => {
     res.redirect('/payees')
   })
   .catch((err) => {
+    console.error(err)
     Raven.captureException(err)
   })
 })
@@ -33,6 +35,7 @@ router.post('/payees/edit/:name', (req, res, next) => {
     res.render('addpayee', { name: req.session.passport.user.first_name, payee: payeeDetails })
   })
   .catch((err) => {
+    console.error(err)
     Raven.captureException(err)
   })
 })
@@ -43,6 +46,7 @@ router.post('/payees/update/:name', (req, res, next) => {
     res.redirect('/payees')
   })
   .catch((err) => {
+    console.error(err)
     Raven.captureException(err)
   })
 })

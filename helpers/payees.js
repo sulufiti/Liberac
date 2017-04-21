@@ -1,6 +1,7 @@
 const Knex = require('knex')
 const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
+const Raven = require('raven')
 const uuidV4 = require('uuid/v4')
 
 const addPayee = (userID, payee) => {
@@ -20,6 +21,12 @@ const addPayee = (userID, payee) => {
     postcode: payee.postcode
   })
   .catch((err) => {
+    Raven.captureException(err, {
+      user: {
+        id: userID,
+        payee: payee
+      }
+    })
     console.error('error adding payee', err)
   })
 }
@@ -44,6 +51,12 @@ const updatePayee = (userID, payee) => {
     postcode: payee.postcode
   })
   .catch((err) => {
+    Raven.captureException(err, {
+      user: {
+        userID,
+        payee
+      }
+    })
     console.error('error updating payee. check that user id has that payee id', err)
   })
 }
@@ -52,6 +65,9 @@ const getUsersPayees = (userID) => {
   return knex('payees')
   .where('user_id', userID)
   .catch((err) => {
+    Raven.captureException(err, {
+      user: userID
+    })
     console.error('error fetching payees', err)
   })
 }
@@ -64,6 +80,12 @@ const getPayeeByNickname = (userID, nickname) => {
   })
   .then(payee => payee[0])
   .catch((err) => {
+    Raven.captureException(err, {
+      user: {
+        userID,
+        nickname
+      }
+    })
     console.error('error fetching payee by nickname', err)
   })
 }

@@ -21,6 +21,9 @@ router.post('/', (req, res, next) => {
     .then(() => {
       res.redirect('/')
     })
+    .then(() => {
+      mailer.sendWelcome(`${req.body.firstName} ${req.body.lastName}`, req.body.email)
+    })
     .catch((err) => {
       console.error(err)
       Raven.captureException(err, {

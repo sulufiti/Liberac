@@ -1,7 +1,6 @@
-require('dotenv').config({ path: '../.env' })
 const Raven = require('raven')
 const mandrill = require('mandrill-api/mandrill')
-const mandrillClient = new mandrill.Mandrill(process.env.MANDRILL_API_KEY)
+const mandrillClient = new mandrill.Mandrill(process.env.MANDRILL_TEST_KEY)
 
 const sendWelcome = (name, email) => {
   const templateName = 'Welcome to Liberac'
@@ -62,7 +61,7 @@ const sendWelcome = (name, email) => {
     'send_at': sendAt
   }, (res) => {
     console.log(res)
-  }, function (err) {
+  }, (err) => {
     Raven.captureException(err, {
       user: {
         name: name,

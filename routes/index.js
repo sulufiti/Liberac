@@ -23,11 +23,23 @@ router.post('/', (req, res, next) => {
     })
     .catch((err) => {
       console.error(err)
-      Raven.captureException(err)
+      Raven.captureException(err, {
+        level: 'warning',
+        user: {
+          name: `${req.body.firstName} ${req.body.lastName}`,
+          email: req.body.email
+        }
+      })
       res.redirect('/')
     })
   } else {
-    Raven.captureMessage('Tried to send an empty sign up. Spam bot?')
+    Raven.captureMessage('Tried to send an empty sign up. Spam bot?', {
+      level: 'warning',
+      user: {
+        name: `${req.body.firstName} ${req.body.lastName}`,
+        email: req.body.email
+      }
+    })
     res.redirect('/')
   }
 })

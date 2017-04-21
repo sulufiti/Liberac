@@ -8,6 +8,7 @@ addons:
     packages:
       - xvfb
 before_script:
+  - sudo apt-get install -y g++ make python
   - npm install
   - psql -c 'create database liberac;' -U postgres
 install:

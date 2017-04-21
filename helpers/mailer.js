@@ -1,4 +1,5 @@
 require('dotenv').config({ path: '../.env' })
+const Raven = require('raven')
 const mandrill = require('mandrill-api/mandrill')
 const mandrillClient = new mandrill.Mandrill(process.env.MANDRILL_API_KEY)
 
@@ -61,8 +62,14 @@ const sendWelcome = (name, email) => {
     'send_at': sendAt
   }, (res) => {
     console.log(res)
-  }, function (e) {
-    console.error('A mandrill error occurred: ' + e.name + ' - ' + e.message)
+  }, function (err) {
+    Raven.captureException(err, {
+      user: {
+        name: name,
+        email: email
+      }
+    })
+    console.error('A mandrill error occurred: ' + err.name + ' - ' + err.message)
   })
 }
 

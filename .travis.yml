@@ -8,6 +8,7 @@ addons:
     packages:
       - xvfb
 before_script:
+  - npm install
   - psql -c 'create database liberac;' -U postgres
 install:
   - export DISPLAY=':99.0'

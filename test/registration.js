@@ -8,7 +8,7 @@ const knex = Knex(knexConfig['development'])
 
 describe('Registration tests', function() {
   this.timeout(0)
-  let nightmare = new Nightmare({ show: false })
+  let nightmare = null
 
   beforeEach((done) => {
     nightmare = new Nightmare({ show: false })

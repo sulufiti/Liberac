@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   if (req.body.firstName && req.body.lastName && req.body.email) {
-    knex('contacts')
+    knex('sontacts')
     .insert({
       first_name: req.body.firstName,
       last_name: req.body.lastName,

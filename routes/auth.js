@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const Raven = require('raven')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const users = require('../helpers/users')
@@ -16,7 +17,7 @@ router.post('/register', (req, res, next) => {
     users.register(req.body)
     .then(() => res.redirect('/login'))
     .catch((err) => {
-      console.error(err)
+      Raven.captureException(err)
     })
   })
 })

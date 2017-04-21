@@ -1,5 +1,6 @@
 const passport = require('passport')
 const bcrypt = require('bcrypt')
+const Raven = require('raven')
 const users = require('./helpers/users')
 const LocalStrategy = require('passport-local').Strategy
 
@@ -24,7 +25,7 @@ const setupPassport = () => {
         })
       })
       .catch((err) => {
-        console.error('error in auth.js LocalStrategy', err)
+        Raven.captureException(err)
       })
     }
   ))
@@ -37,7 +38,7 @@ const setupPassport = () => {
     users.findByID(id)
     .then((user) => { return done(null, user) })
     .catch((err) => {
-      console.error('error deserializing user', err)
+      Raven.captureException(err)
     })
   })
 }

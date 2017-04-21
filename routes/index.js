@@ -1,4 +1,5 @@
 const express = require('express')
+const Raven = require('raven')
 const router = express.Router()
 const mailer = require('../helpers/mailer')
 const Knex = require('knex')
@@ -20,11 +21,9 @@ router.post('/', (req, res, next) => {
     .then(() => {
       res.redirect('/')
     })
-    .then(() => {
-      mailer.sendWelcome(`${req.body.firstName} ${req.body.lastName}`, req.body.email)
-    })
     .catch((err) => {
-      console.error('', err)
+      Raven.captureException(err)
+      res.redirect('/')
     })
   } else {
     res.redirect('/')

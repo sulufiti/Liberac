@@ -1,6 +1,7 @@
 // Express imports
 require('dotenv').config()
 const express = require('express')
+const Raven = require('raven')
 const path = require('path')
 const bodyParser = require('body-parser')
 const passport = require('passport')
@@ -12,6 +13,7 @@ const setupPassport = require('./auth').setupPassport
 
 // Setting up express middlewares
 const app = express()
+Raven.config(process.env.SENTRY_DSN).install()
 const hbs = require('hbs')
 let sessionSettings = {
   secret: process.env.EXPRESS_SESSION_SECRET,
@@ -36,6 +38,7 @@ hbs.registerPartials(path.join(__dirname, '/views/partials'))
 app.locals.pretty = true
 
 // Enabling middlewares
+app.use(Raven.requestHandler())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize())
@@ -54,6 +57,8 @@ app.use('/upload', upload)
 app.use('/rates', rates)
 
 // Error handlers
+app.use(Raven.errorHandler())
+
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
     res.status(err.status || 500)

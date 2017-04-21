@@ -1,4 +1,5 @@
 const express = require('express')
+const Raven = require('raven')
 const router = express.Router()
 const mailer = require('../helpers/mailer')
 const Knex = require('knex')
@@ -24,9 +25,24 @@ router.post('/', (req, res, next) => {
       mailer.sendWelcome(`${req.body.firstName} ${req.body.lastName}`, req.body.email)
     })
     .catch((err) => {
-      console.error('', err)
+      console.error(err)
+      Raven.captureException(err, {
+        level: 'warning',
+        user: {
+          name: `${req.body.firstName} ${req.body.lastName}`,
+          email: req.body.email
+        }
+      })
+      res.redirect('/')
     })
   } else {
+    Raven.captureMessage('Tried to send an empty sign up. Spam bot?', {
+      level: 'warning',
+      user: {
+        name: `${req.body.firstName} ${req.body.lastName}`,
+        email: req.body.email
+      }
+    })
     res.redirect('/')
   }
 })

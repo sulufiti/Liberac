@@ -16,7 +16,6 @@ router.get('/return',
 )
 
 router.get('/profile', (req, res, next) => {
-  console.log(req)
   res.send('check terminal')
 })
 

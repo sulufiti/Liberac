@@ -1,5 +1,6 @@
 const express = require('express')
 const azure = require('azure-storage')
+const Raven = require('raven')
 const users = require('../helpers/users')
 const router = express.Router()
 const blobService = azure.createBlobService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY)
@@ -17,13 +18,21 @@ router.post('/', (req, res, next) => {
         blobService.createBlockBlobFromText('addressproofs', req.body.userid, req.files.addressproof.data, (error, result, response) => {
           if (!error) {
             res.redirect('/dashboard')
+          } else {
+            console.error(err)
+            Raven.captureException(error)
           }
         })
+      } else {
+        console.error(err)
+        Raven.captureException(error)
       }
     })
   })
   .catch((err) => {
-    console.log('upload error: ', err)
+    console.error(err)
+    Raven.captureException(err)
+    res.redirect('/')
   })
 })
 

@@ -19,12 +19,12 @@ router.post('/', (req, res, next) => {
           if (!error) {
             res.redirect('/dashboard')
           } else {
-            console.error(err)
+            console.error(error)
             Raven.captureException(error)
           }
         })
       } else {
-        console.error(err)
+        console.error(error)
         Raven.captureException(error)
       }
     })

@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "7"
+services:
+  - postgresql
+addons:
+  apt:
+    packages:
+      - xvfb
+before_script:
+  - psql -c 'create database liberac;' -U postgres
+install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &

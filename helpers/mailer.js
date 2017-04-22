@@ -10,7 +10,7 @@ const sendWelcome = (name, email) => {
     'text': null,
     'subject': 'Welcome',
     'from_email': 'welcome@liberac.co.nz',
-    'from_name': 'The Team at Liberac',
+    'from_name': 'From the Liberac team',
     'to': [{
       'email': email,
       'name': name,

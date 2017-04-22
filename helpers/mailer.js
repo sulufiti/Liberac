@@ -1,6 +1,6 @@
 const Raven = require('raven')
 const mandrill = require('mandrill-api/mandrill')
-const mandrillClient = new mandrill.Mandrill(process.env.MANDRILL_TEST_KEY)
+const mandrillClient = new mandrill.Mandrill(process.env.MANDRILL_API_KEY)
 
 const sendWelcome = (name, email) => {
   const templateName = 'Welcome to Liberac'

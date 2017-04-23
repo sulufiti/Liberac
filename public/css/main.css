@@ -124,7 +124,7 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
   .content-section-b {
-    background-color: #fff;
+    background-color: #ddd;
   }
   .content-section-a {
     background-color: #404040;
@@ -371,11 +371,6 @@ a.redLink:hover {
 .navbar-collapse {
   text-align: center;
 }
-
-#aboutLiberac.content-section-b {
-  background-color: #ddd;
-}
-
 .navbar-default .navbar-nav>li>a,
 .navbar-default .navbar-nav>li>a:visited {
   color: #f80909;
@@ -383,7 +378,6 @@ a.redLink:hover {
 .navbar-default .navbar-nav>li>a:hover {
   color: #c9302c;
 }
-
 .navbar-nav {
   margin-top: 0;
   margin-bottom: 0;

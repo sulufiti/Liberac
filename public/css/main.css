@@ -246,14 +246,6 @@ a.redLink:hover {
 }
 
 /* program logo */
-/*img {
-  filter: grayscale(100%);
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-  -webkit-filter: grayscale(100%);
-}*/
-
-
 #programLogo img {
   filter: grayscale(100%);
   opacity: 0.5;
@@ -266,11 +258,9 @@ a.redLink:hover {
   filter: alpha(opacity=100);
   -webkit-filter: grayscale(0);
 }
-
 #programLogo .list-inline>li {
   vertical-align: middle;
 }
-
 
 /* media queries */
 

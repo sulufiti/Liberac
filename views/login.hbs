@@ -1,19 +1,35 @@
-<div class="content-section-a">
+<div id="loginPage" class="content-section-b section-heading">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12">
-        <form action="/login" method="POST">
-          <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" class="form-control" name="username" id="username" required>
-          </div>
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" name="password" id="password" required>
-          </div>
-          <button type="submit" class="btn btn-default" id="login">Log in</button>
-        </form>
+      <div class="col-lg-6">
+        <div class="well">
+          <form action="/login" method="POST">
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" class="form-control" name="username" id="username" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" name="password" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-danger" id="login">Log in</button>
+          </form>
+        </div>
       </div>
+      <div class="col-lg-6">
+        <div class="well">
+          <h3 style="margin-top:0;">Register Now!</h3>
+          <ul>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis</li>
+          </ul>
+          <ul>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis</li>
+          </ul>
+          <ul>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis</li>
+          </ul>
+          <button type="submit" class="btn btn-danger">Register</button>
+        </div>
     </div>
   </div>
 </div>

@@ -6,6 +6,12 @@
 - [Prerequisites](#prerequisites)
   - [Node](#node)
     - [Mac](#node-for-mac)
+  - [Environment Variables](#environment-variables)
+    - [Azure Storage](#azure-storage)
+    - [Express Session](#express-session)
+    - [Mandrill](#mandrill)
+    - [PostgreSQL](#postgresql)
+    - [Sentry](#sentry)
   - [Docker](#docker)
     - [Mac](#docker-for-mac)
 - [Populating the database](#populating-the-database)
@@ -46,6 +52,20 @@ brew install node@7
 Usually for ongoing development, I would recommend [nvm](https://github.com/creationix/nvm) for managing Node versions but we're only using Node v7 for this MVP which is just above the current LTS. You should be perfectly fine with the Brew version.
 
 Once that's done, double check that your terminal returns 'v7.0.0' when you run `node -v`
+
+### Environment Variables
+
+Coming soon...
+
+Check example.env
+
+#### Azure Storage
+
+#### Mandrill
+
+#### PostgreSQL
+
+#### Sentry
 
 ### Docker
 

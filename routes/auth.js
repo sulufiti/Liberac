@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const Raven = require('raven')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const users = require('../helpers/users')
@@ -16,9 +17,26 @@ router.post('/register', (req, res, next) => {
     users.register(req.body)
     .then(() => res.redirect('/login'))
     .catch((err) => {
-      res.send('user already exists in database')
-      console.error(err)
+      Raven.captureException(err)
     })
+  })
+  .catch((err) => {
+    Raven.captureException(err, {
+        user: {
+          username: req.body.username,
+          password: req.body.password,
+          firstName: req.body.first_name,
+          middleName: req.body.middle_name,
+          lastName: req.body.last_name,
+          phone: req.body.phone,
+          email: req.body.email,
+          street: req.body.street,
+          suburb: req.body.suburb,
+          dateofbirth: req.body.dateofbirth,
+          city: req.body.city,
+          postcode: req.body.city
+        }
+      })
   })
 })
 

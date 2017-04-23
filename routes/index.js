@@ -1,5 +1,7 @@
 const express = require('express')
+const Raven = require('raven')
 const router = express.Router()
+const mailer = require('../helpers/mailer')
 const Knex = require('knex')
 const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
@@ -9,18 +11,40 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  knex('contacts')
-  .insert({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
-    email: req.body.email
-  })
-  .then(() => {
+  if (req.body.firstName && req.body.lastName && req.body.email) {
+    knex('contacts')
+    .insert({
+      first_name: req.body.firstName,
+      last_name: req.body.lastName,
+      email: req.body.email
+    })
+    .then(() => {
+      res.redirect('/')
+    })
+    .then(() => {
+      mailer.sendWelcome(`${req.body.firstName} ${req.body.lastName}`, req.body.email)
+    })
+    .catch((err) => {
+      console.error(err)
+      Raven.captureException(err, {
+        level: 'warning',
+        user: {
+          name: `${req.body.firstName} ${req.body.lastName}`,
+          email: req.body.email
+        }
+      })
+      res.redirect('/')
+    })
+  } else {
+    Raven.captureMessage('Tried to send an empty sign up. Spam bot?', {
+      level: 'warning',
+      user: {
+        name: `${req.body.firstName} ${req.body.lastName}`,
+        email: req.body.email
+      }
+    })
     res.redirect('/')
-  })
-  .catch((err) => {
-    console.error('', err)
-  })
+  }
 })
 
 router.get('/policy', (req, res, next) => {

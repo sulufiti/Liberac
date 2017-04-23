@@ -37,12 +37,12 @@
     "got": "^6.7.1",
     "hbs": "^4.0.1",
     "knex": "^0.12.9",
+    "mandrill-api": "^1.0.45",
     "moment": "^2.18.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "pg": "^6.1.5",
-    "sendgrid": "^5.0.0",
     "uuid": "^3.0.1",
     "x-ray": "^2.3.2"
   },
@@ -50,6 +50,7 @@
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "nightmare": "^2.10.0",
+    "raven": "^1.2.1",
     "standard": "^10.0.2"
   },
   "standard": {

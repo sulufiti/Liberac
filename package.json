@@ -43,6 +43,7 @@
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "pg": "^6.1.5",
+    "pushover-promise": "^1.0.0",
     "uuid": "^3.0.1",
     "x-ray": "^2.3.2"
   },

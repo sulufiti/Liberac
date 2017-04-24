@@ -60,24 +60,28 @@ app.use('/rates', rates)
 
 // Error handlers
 app.use(Raven.errorHandler())
-
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
-    res.status(err.status || 500)
-    res.render('error', {
-      message: err.message,
-      error: err
-    })
+    if (!req.session.authenticated) {
+      res.redirect('/login')
+    } else {
+      res.status(err.status || 500)
+      res.render('error', {
+        message: err.message,
+        error: err
+      })
+    }
   })
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
+  console.log(req)
   res.status(err.status || 500)
   res.render('error', {
     message: err.message,
-    error: {}
+    error: ''
   })
 })
 

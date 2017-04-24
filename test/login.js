@@ -10,9 +10,19 @@ describe('Sign up tests', function() {
   this.timeout(0)
   let nightmare = null
 
-  beforeEach(() => {
-    server.listen(3000, false)
+  beforeEach((done) => {
     nightmare = new Nightmare({ show: false })
+    knex.migrate.rollback()
+    .then(function() {
+      knex.migrate.latest()
+      .then(function() {
+        knex.seed.run()
+        .then(function() {
+          server.listen(3000, false)
+          done()
+        })
+      })
+    })
   })
 
   afterEach(() => {

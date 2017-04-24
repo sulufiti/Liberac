@@ -1,5 +1,7 @@
 const express = require('express')
 const Raven = require('raven')
+const Message = require('pushover-promise').Message
+const msg = new Message(process.env.PUSHOVER_USER, process.env.PUSHOVER_TOKEN)
 const router = express.Router()
 const mailer = require('../helpers/mailer')
 const Knex = require('knex')
@@ -20,6 +22,12 @@ router.post('/', (req, res, next) => {
     })
     .then(() => {
       res.redirect('/')
+    })
+    .then(() => {
+      msg.push(`${req.body.firstName} ${req.body.lastName} just registered their interest!`)
+    })
+    .then(() => {
+      mailer.notifyTeam(`${req.body.firstName} ${req.body.lastName}`, req.body.email)
     })
     .then(() => {
       mailer.sendWelcome(`${req.body.firstName} ${req.body.lastName}`, req.body.email)

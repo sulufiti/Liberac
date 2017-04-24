@@ -72,4 +72,31 @@ const sendWelcome = (name, email) => {
   })
 }
 
-module.exports = { sendWelcome }
+const notifyTeam = (name, email) => {
+  var message = {
+    "text": `New User: ${name} <${email}>`,
+    "subject": `${name} is now onboard`,
+    "from_email": "usersignups@liberac.co.nz",
+    "from_name": "User Signups",
+    "to": [{
+            "email": "contact@liberac.co.nz",
+            "name": "Liberac",
+            "type": "to"
+        }]
+  }
+
+  mandrillClient.messages.send({ "message": message }, (res) => {}, (err) => {
+    Raven.captureException(err, {
+      user: {
+        name: name,
+        email: email
+      }
+    })
+    console.error('A mandrill error occurred: ' + err.name + ' - ' + err.message);
+  });
+}
+
+module.exports = { 
+  sendWelcome,
+  notifyTeam
+}

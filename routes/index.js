@@ -30,7 +30,7 @@ router.post('/', (req, res, next) => {
       mailer.notifyTeam(`${req.body.firstName} ${req.body.lastName}`, req.body.email)
     })
     .then(() => {
-      mailer.sendWelcome(`${req.body.firstName} ${req.body.lastName}`, req.body.email)
+      mailer.sendWelcome(req.body.firstName, req.body.lastName, req.body.email)
     })
     .catch((err) => {
       console.error(err)

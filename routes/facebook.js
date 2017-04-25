@@ -4,7 +4,7 @@ const passport = require('passport')
 
 router.get('/login',
   passport.authenticate('facebook', {
-    scope: ['email', 'user_friends']
+    scope: ['email', 'user_friends', 'about']
   })
 )
 

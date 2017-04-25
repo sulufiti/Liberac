@@ -58,13 +58,19 @@ router.get('/activate/:id', (req, res, next) => {
 })
 
 router.get('/login', (req, res, next) => {
+  if (req.session.flash) {
+    let messages = req.session.flash.error
+    let latestMessage = messages[messages.length - 1]
+    console.log('Latest: ', latestMessage)
+  }
   res.render('login')
 })
 
 router.post('/login',
   passport.authenticate('local', {
     successRedirect: '/dashboard',
-    failureRedirect: '/login'
+    failureRedirect: '/login',
+    failureFlash: true
   })
 )
 

@@ -13,9 +13,7 @@ const setupPassport = require('./auth').setupPassport
 
 // Setting up express middlewares
 const app = express()
-Raven.config(process.env.SENTRY_DSN, {
-  captureUnhandledRejections: true
-}).install()
+Raven.config(process.env.SENTRY_DSN).install()
 const hbs = require('hbs')
 let sessionSettings = {
   secret: process.env.EXPRESS_SESSION_SECRET,
@@ -59,9 +57,9 @@ app.use('/upload', upload)
 app.use('/rates', rates)
 
 // Error handlers
-app.use(Raven.errorHandler())
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
+    console.log(err)
     if (!req.session.authenticated) {
       res.redirect('/login')
     } else {

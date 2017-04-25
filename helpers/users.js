@@ -47,8 +47,17 @@ const appendIDproof = (id, number, expiry) => {
   })
 }
 
+const activateUser = (id) => {
+  return knex('users')
+  .where('id', id)
+  .update({
+    activated: true
+  })
+}
+
 module.exports = {
   appendIDproof,
+  activateUser,
   findByUsername,
   findByID,
   register

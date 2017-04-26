@@ -76,7 +76,7 @@ const notifyTeam = (name, email) => {
 const sendActivation = (id, firstName, lastName, email) => {
   const templateName = 'Activation Email'
   const templateContent = [{}]
-  const root = ''
+  let root = ''
 
   switch(process.env.NODE_ENV) {
     case 'development':

@@ -42,6 +42,7 @@ router.post('/register', (req, res, next) => {
 })
 
 router.get('/activate/:id', (req, res, next) => {
+  console.log(`activated ${req.params.id}`)
   users.findByID(req.params.id)
   .then((user) => {
     return users.activateUser(req.params.id)

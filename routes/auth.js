@@ -16,7 +16,7 @@ router.post('/register', (req, res, next) => {
   .then(hash => req.body.password = hash)
   .then(() => {
     return users.register(req.body)
-    .then(() => res.redirect('/login'))
+    .then(() => res.redirect('/login?activation_prompt=show'))
     .then(() => {
       if (process.env.NODE_ENV !== 'development') {
         users.findByEmail(req.body.email)
@@ -59,6 +59,11 @@ router.get('/login', (req, res, next) => {
     let messages = req.session.flash.error
     latestMessage = messages[messages.length - 1]
   }
+
+  if (req.query.activation_prompt === 'show') {
+    latestMessage = 'Please check your email for an account activation link.'
+  }
+
   res.render('login', { message: latestMessage })
 })
 

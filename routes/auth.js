@@ -47,7 +47,7 @@ router.get('/activate/:id', (req, res, next) => {
   })
   .then(() => {
     if (req.session.flash) {
-      req.session.flash = []
+      req.session.flash.error = []
     }
     res.redirect('/login')
   })

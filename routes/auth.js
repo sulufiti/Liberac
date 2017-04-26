@@ -42,7 +42,6 @@ router.post('/register', (req, res, next) => {
 })
 
 router.get('/activate/:id', (req, res, next) => {
-  console.log(`activated ${req.params.id}`)
   users.findByID(req.params.id)
   .then((user) => {
     return users.activateUser(req.params.id)
@@ -65,7 +64,7 @@ router.get('/activate/:id', (req, res, next) => {
 router.get('/validate', (req, res, next) => {
   users.findByUsername('steve1234')
   .then((user) => {
-    mailer.sendActivation(user.id, user.first_name, user.last_name, 'marcus@thingsima.de')
+    mailer.sendActivation(user.id, user.first_name, user.last_name, 'contact@liberac.co.nz')
   })
   .then(() => {
     res.send('email sent')

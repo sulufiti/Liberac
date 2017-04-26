@@ -134,6 +134,7 @@ body, h1, h2, h3, h4, h5, h6 {
   .content-section-c {
     margin-top: 50px;
     background-color: #ddd;
+    min-height: 500px;
   }
 
 .section-heading {
@@ -336,10 +337,11 @@ a.redLink:hover {
     letter-spacing: 1px;
     padding: 0px;
   }
-  .content-section-a, .content-section-b {
+  /*.content-section-a, 
+  .content-section-b {
     padding-top: 10px;
     padding-bottom: 10px;
-  }
+  }*/
   .section-heading {
     margin: 5px 0;
     text-align: center;
@@ -407,4 +409,20 @@ a.redLink:hover {
 #loginPage {
   padding-top: 100px;
   padding-bottom: 50px;
+}
+
+label.requiredField:after {
+    color: #e32;
+    content: ' *';
+    display: inline;
+}
+
+/* dashboard */
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  color: #333;
+  cursor: default;
+   background-color: transparent; 
+   border: none; 
+   border-bottom-color: transparent; 
 }

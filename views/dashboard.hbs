@@ -3,10 +3,18 @@
     <div class="row">
       <div class="col-lg-12">
         <ul class="nav nav-tabs">
-          <li role="presentation" class="active"><a href="/dashboard">Home</a></li>
-          <li role="presentation"><a href="/payees">Contacts</a></li>
-          <li role="presentation"><a href="#">Send Money</a></li>
-          <li role="presentation"><a href="/compare">Compare</a></li>
+          <li role="presentation" class="active">
+            <a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i></i> Home</a>
+          </li>
+          <li role="presentation">
+            <a href="/payees"><i class="fa fa-users" aria-hidden="true"></i> Contacts</a>
+          </li>
+          <li role="presentation">
+            <a href="/send"><i class="fa fa-heart" aria-hidden="true"></i> Send Money</a>
+          </li>
+          <li role="presentation">
+            <a href="/compare"><i class="fa fa-exchange" aria-hidden="true"></i></i> Compare</a>
+          </li>
           <li role="presentation">
             <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
               Profile <span class="caret"></span>
@@ -19,26 +27,36 @@
               <li><a href="/logout">Sign Out</a></li>
             </ul>
           </li>
+          {{!--<li role="presentation">
+            <a href="/topup"><i class="fa fa-money" aria-hidden="true"></i> Top Up</a>
+          </li>--}}
         </ul>
-        <h1>Welcome {{user.first_name}}. Your current balance is ${{user.balance}}.</h1>
+        <h2>Welcome {{user.first_name}}! Your current balance is ${{user.balance}}.</h2>
         {{#unless user.verified}}
         <div class="alert alert-warning" role="alert">Before we can get started, we'll need you to provide some identification for regulatory purposes. <a href="/upload">Click here</a> to get started.</div>
         {{/unless}}
-        <div class="well" style="color: black">
-          <h1>User Details</h1>
-          <p>Name: {{user.first_name}} {{user.middle_name}} {{user.last_name}}</p>
-          <p>Phone: {{user.phone}}</p>
-          <p>Email: {{user.email}}</p>
-          <p>Address: {{user.street}}, {{#if user.suburb}}{{user.suburb}},{{/if}} {{user.city}}, {{user.postcode}}</p>
-          <p>Date of Birth: {{user.dateofbirth}}</p>
-        </div>
-        {{#if passport_number}}
-        <div class="well" style="color: black">
-          <p>Passport: {{user.passport_number}} Expiry: {{user.passport_expiry}}</p>
-          <img class="media-object" src="https://liberacfilestorage.blob.core.windows.net/passports/{{user.id}}" alt="Passport">
-          <img class="media-object" src="https://liberacfilestorage.blob.core.windows.net/addressproofs/{{user.id}}" alt="Address Proof"
-        </div>
-        {{/if}}
+        <div class="well">
+
+
+          <div class="row">
+            <div class="col-lg-12"><h3>User Details</h3></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2 text-right">Name:</div><div class="col-sm-10">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</div>
+            <div class="col-sm-2 text-right">Phone:</div><div class="col-sm-10">{{user.phone}}</div>
+            <div class="col-sm-2 text-right">Email address:</div><div class="col-sm-10">{{user.email}}</div>
+            <div class="col-sm-2 text-right">Address:</div><div class="col-sm-10">{{user.street}}, {{#if user.suburb}}{{user.suburb}},{{/if}} {{user.city}}, {{user.postcode}}</div>
+            <div class="col-sm-2 text-right">Date of birth:</div><div class="col-sm-10">{{user.dateofbirth}}</div>
+            {{#if user.passport_number}}
+              <div class="col-sm-12">&nbsp;</div>
+              <div class="col-sm-2 text-right">Passport number:</div><div class="col-sm-10">{{user.passport_number}}</div>
+              <div class="col-sm-2 text-right">Expiry date:</div><div class="col-sm-10">{{user.passport_expiry}}</div>
+              <div class="col-sm-offset-2 col-sm-10">
+                <img class="media-object" src="https://liberacfilestorage.blob.core.windows.net/passports/{{user.id}}" alt="Passport">
+                <img class="media-object" src="https://liberacfilestorage.blob.core.windows.net/addressproofs/{{user.id}}" alt="Address Proof">
+              </div>
+            {{/if}}
+          </div>
       </div>
     </div>
   </div>

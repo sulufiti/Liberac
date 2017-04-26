@@ -63,7 +63,7 @@ app.use('/rates', rates)
 
 // Clear flash messages
 app.get('*', (req, res, next) => {
-  console.log('route')
+  console.log('cleared flash')
   req.session.flash = []
   next()
 })

@@ -13,12 +13,16 @@ module.exports.register = function(registration) {
     last_name: registration.last_name
   }
 
+  if (process.env.NODE_ENV === 'development') {
+    user.activated = true
+  }
+
   return knex('users')
   .insert(user)
 }
 
-module.exports.findByUsername = function (username) {
-  return knex('users').where('username', username)
+module.exports.findByEmail = function (email) {
+  return knex('users').where('email', email)
   .then((user) => { return user[0] })
 }
 
@@ -40,6 +44,7 @@ module.exports.activateUser = function (id) {
   return knex('users')
   .where('id', id)
   .update({
-    activated: true
+    activated: true,
+    activation_date: Date.now()
   })
 }

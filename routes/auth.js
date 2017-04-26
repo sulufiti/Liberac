@@ -64,7 +64,7 @@ router.get('/activate/:id', (req, res, next) => {
 router.get('/validate', (req, res, next) => {
   users.findByUsername('steve1234')
   .then((user) => {
-    mailer.sendActivation(user.id, user.first_name, user.last_name, 'contact@liberac.co.nz')
+    mailer.sendActivation(user.id, user.first_name, user.last_name, user.email)
   })
   .then(() => {
     res.send('email sent')

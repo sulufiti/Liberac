@@ -3,6 +3,7 @@ const router = express.Router()
 const Raven = require('raven')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
+const mailer = require('../helpers/mailer')
 const users = require('../helpers/users')
 const saltRounds = 10
 
@@ -57,6 +58,19 @@ router.get('/activate/:id', (req, res, next) => {
         id: req.params.id
       }
     })
+  })
+})
+
+router.get('/validate', (req, res, next) => {
+  users.findByUsername('steve1234')
+  .then((user) => {
+    mailer.sendActivation(user.id, user.first_name, user.last_name, 'marcus@thingsima.de')
+  })
+  .then(() => {
+    res.send('email sent')
+  })
+  .catch((err) => {
+    console.error('validation error', err)
   })
 })
 

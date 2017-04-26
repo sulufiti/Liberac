@@ -14,7 +14,10 @@ const setupPassport = require('./auth').setupPassport
 
 // Setting up express middlewares
 const app = express()
-Raven.config(process.env.SENTRY_DSN).install()
+
+if (app.get('env') !== 'development') { Raven.config(process.env.SENTRY_DSN).install() }
+
+
 const hbs = require('hbs')
 let sessionSettings = {
   secret: process.env.EXPRESS_SESSION_SECRET,

@@ -31,6 +31,7 @@ const register = (registration) => {
 const findByUsername = (username) => {
   return knex('users').where('username', username)
   .then((user) => { return user[0] })
+  .catch((err) => { console.error(err) })
 }
 
 const findByID = (id) => {

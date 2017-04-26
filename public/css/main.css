@@ -426,3 +426,11 @@ label.requiredField:after {
    border: none; 
    border-bottom-color: transparent; 
 }
+
+#compareProvider {
+
+}
+
+#compareProvider .form-inline .form-control {
+  width: 120px;
+}

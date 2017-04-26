@@ -7,7 +7,18 @@
           <li role="presentation"><a href="/payees">Contacts</a></li>
           <li role="presentation"><a href="#">Send Money</a></li>
           <li role="presentation"><a href="/compare">Compare</a></li>
-          <li role="presentation"><a href="#">Profile</a></li>
+          <li role="presentation">
+            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
+              Profile <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">My Details</a></li>
+              <li><a href="#">Account &amp; Billing</a></li>
+              <li><a href="#">Payment Settings</a></li>
+              <li><a href="#">Referral</a></li>
+              <li><a href="/logout">Sign Out</a></li>
+            </ul>
+          </li>
         </ul>
         <h1>Welcome {{user.first_name}}. Your current balance is ${{user.balance}}.</h1>
         {{#unless user.verified}}

@@ -4,7 +4,8 @@ const Raven = require('raven')
 const contacts = require('../helpers/contacts')
 
 router.get('/contacts', (req, res, next) => {
-  contacts.getUserscontacts(req.session.passport.user.id)
+  console.log(req)
+  contacts.getUsersContacts(req.session.passport.user.id)
   .then((userscontacts) => {
     res.render('contacts', { name: req.session.passport.user.first_name, contacts: userscontacts })
   })
@@ -19,7 +20,7 @@ router.get('/contacts/add', (req, res, next) => {
 })
 
 router.post('/contacts/add', (req, res, next) => {
-  contacts.addcontact(req.session.passport.user.id, req.body)
+  contacts.addContact(req.session.passport.user.id, req.body)
   .then(() => {
     res.redirect('/contacts')
   })
@@ -30,7 +31,7 @@ router.post('/contacts/add', (req, res, next) => {
 })
 
 router.post('/contacts/edit/:name', (req, res, next) => {
-  contacts.getcontactByNickname(req.session.passport.user.id, req.params.name)
+  contacts.getContactByNickname(req.session.passport.user.id, req.params.name)
   .then((contactDetails) => {
     res.render('addcontact', { name: req.session.passport.user.first_name, contact: contactDetails })
   })
@@ -41,7 +42,7 @@ router.post('/contacts/edit/:name', (req, res, next) => {
 })
 
 router.post('/contacts/update/:name', (req, res, next) => {
-  contacts.updatecontact(req.session.passport.user.id, req.body)
+  contacts.updateContact(req.session.passport.user.id, req.body)
   .then(() => {
     res.redirect('/contacts')
   })

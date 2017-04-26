@@ -5,7 +5,7 @@ const Raven = require('raven')
 const uuidV4 = require('uuid/v4')
 
 module.exports.addContact = function (userID, contact) {
-  return knex('contacts')
+  return knex('usercontacts')
   .insert({
     id: uuidV4(),
     user_id: userID,
@@ -33,7 +33,7 @@ module.exports.addContact = function (userID, contact) {
 
 module.exports.updateContact = function (userID, contact) {
   console.log(contact)
-  return knex('contacts')
+  return knex('usercontacts')
   .where({
     user_id: userID,
     id: contact.id
@@ -62,7 +62,7 @@ module.exports.updateContact = function (userID, contact) {
 }
 
 module.exports.getUsersContacts = function (userID) {
-  return knex('contacts')
+  return knex('usercontacts')
   .where('user_id', userID)
   .catch((err) => {
     Raven.captureException(err, {
@@ -73,7 +73,7 @@ module.exports.getUsersContacts = function (userID) {
 }
 
 module.exports.getContactByNickname = function (userID, nickname) {
-  return knex('contacts')
+  return knex('usercontacts')
   .where({
     'user_id': userID,
     'nickname': nickname

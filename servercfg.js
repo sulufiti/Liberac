@@ -29,7 +29,7 @@ let sessionSettings = {
 // Routes
 const index = require('./routes/index')
 const facebook = require('./routes/facebook')
-const payees = require('./routes/payees')
+const contacts = require('./routes/contacts')
 // const cloudcheck = require('./routes/cloudcheck')
 const auth = require('./routes/auth')
 const upload = require('./routes/upload')
@@ -56,17 +56,10 @@ app.use(express.static(path.join(__dirname, '/public')))
 app.use('/facebook', facebook)
 app.use('/', index)
 app.use('/', auth)
-app.use('/', payees)
+app.use('/', contacts)
 // app.use('/', cloudcheck)
 app.use('/upload', upload)
 app.use('/rates', rates)
-
-// Clear flash messages
-app.get('*', (req, res, next) => {
-  console.log('cleared flash')
-  req.session.flash = []
-  next()
-})
 
 // Error handlers
 if (app.get('env') === 'development') {

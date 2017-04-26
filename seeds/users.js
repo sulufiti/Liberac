@@ -16,7 +16,6 @@ exports.seed = function (knex, Promise) {
 
         knex('users').insert({
           id: uuidV4(),
-          username: 'george1234',
           email: 'george@bush.com',
           password: '$2a$10$s3El2HAbmTP1fB72kEXms.HbhDJ31kydURuqHqAnoz/cYzmWamGB2',
           balance: 1234.56,

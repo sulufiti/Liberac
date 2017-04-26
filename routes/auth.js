@@ -15,13 +15,14 @@ router.post('/register', (req, res, next) => {
   bcrypt.hash(req.body.password, saltRounds)
   .then(hash => req.body.password = hash)
   .then(() => {
-    users.register(req.body)
+    return users.register(req.body)
     .then(() => res.redirect('/login'))
     .catch((err) => {
       Raven.captureException(err)
     })
   })
   .catch((err) => {
+    console.log(err)
     Raven.captureException(err, { user: req.body })
   })
 })

@@ -4,7 +4,7 @@ const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
 const moment = require('moment')
 const uuidV4 = require('uuid/v4')
 
-module.exports.register = (registration) => {
+module.exports.register = function(registration) {
   let user = {
     id: uuidV4(),
     email: registration.email,
@@ -17,17 +17,17 @@ module.exports.register = (registration) => {
   .insert(user)
 }
 
-const findByUsername = (username) => {
+module.exports.findByUsername = function (username) {
   return knex('users').where('username', username)
   .then((user) => { return user[0] })
 }
 
-const findByID = (id) => {
+module.exports.findByID = function (id) {
   return knex('users').where('id', id)
   .then((user) => { return user[0] })
 }
 
-const appendIDproof = (id, number, expiry) => {
+module.exports.appendIDproof = function (id, number, expiry) {
   return knex('users')
   .where('id', id)
   .update({
@@ -36,17 +36,10 @@ const appendIDproof = (id, number, expiry) => {
   })
 }
 
-const activateUser = (id) => {
+module.exports.activateUser = function (id) {
   return knex('users')
   .where('id', id)
   .update({
     activated: true
   })
-}
-
-module.exports = {
-  appendIDproof,
-  activateUser,
-  findByUsername,
-  findByID
 }

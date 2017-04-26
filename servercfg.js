@@ -71,7 +71,6 @@ app.get('*', (req, res, next) => {
 // Error handlers
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
-    console.log(err)
     if (!req.session.authenticated) {
       res.redirect('/login')
     } else {
@@ -87,7 +86,6 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
-  console.log(req)
   res.status(err.status || 500)
   res.render('error', {
     message: err.message,

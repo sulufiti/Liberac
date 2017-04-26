@@ -63,6 +63,10 @@ router.get('/about', (req, res, next) => {
   res.render('about')
 })
 
+router.get('/compare', (req, res, next) => {
+  res.render('compare', { comparison: true })
+})
+
 router.get('/dashboard', (req, res, next) => {
   // $0 becomes $0.00
   req.session.passport.user.balance.toFixed(2)

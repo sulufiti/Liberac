@@ -54,6 +54,7 @@ router.get('/activate/:id', (req, res, next) => {
 })
 
 router.get('/login', (req, res, next) => {
+  console.log(req)
   let latestMessage = ''
   if (req.session.flash && req.session.flash.length !== 0) {
     let messages = req.session.flash.error

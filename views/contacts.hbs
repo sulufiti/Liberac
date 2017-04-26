@@ -4,7 +4,7 @@
       <div class="col-lg-12">
         <ul class="nav nav-tabs">
           <li role="presentation"><a href="/dashboard">Home</a></li>
-          <li role="presentation" class="active"><a href="/payees">Contacts</a></li>
+          <li role="presentation" class="active"><a href="/contacts">Contacts</a></li>
           <li role="presentation"><a href="#" disabled>Send Money</a></li>
           <li role="presentation"><a href="/compare">Compare</a></li>
           <li role="presentation">
@@ -21,20 +21,20 @@
           </li>
         </ul>
         <h1>Contacts</h1>
-        {{#if payees}}
-        <form method="POST" action="/payees/edit/{{payees.0.nickname}}">
-          <select class="form-control" name="payees" onchange="$('form').attr('action', $('select').val())">
-          {{#each payees}}
-            <option value="/payees/edit/{{this.nickname}}">{{this.nickname}}</option>
+        {{#if contacts}}
+        <form method="POST" action="/contacts/edit/{{contacts.0.nickname}}">
+          <select class="form-control" name="contacts" onchange="$('form').attr('action', $('select').val())">
+          {{#each contacts}}
+            <option value="/contacts/edit/{{this.nickname}}">{{this.nickname}}</option>
           {{/each}}
           </select>
-          <p><a class="btn btn-primary" href="/payees/add" role="button">Add Payee</a></p>
-          <button type="submit" class="btn btn-warning">Edit Payee</button>
-          <!-- <p><a class="btn btn-danger" id="delete" href="/payees/delete/{{payees.0.nickname}}" role="button">Delete Payee</a></p> -->
+          <p><a class="btn btn-primary" href="/contacts/add" role="button">Add Contact</a></p>
+          <button type="submit" class="btn btn-warning">Edit Contact</button>
+          <!-- <p><a class="btn btn-danger" id="delete" href="/contacts/delete/{{contacts.0.nickname}}" role="button">Delete Payee</a></p> -->
         </form>
         {{else}}
-          <p>Would you like to add your first payee?</p>
-          <p><a class="btn btn-primary" href="/payees/add" role="button">Add Payee</a></p>
+          <p>Would you like to add your first contact?</p>
+          <p><a class="btn btn-primary" href="/contacts/add" role="button">Add Contact</a></p>
         {{/if}}
       </div>
     </div>

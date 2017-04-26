@@ -61,11 +61,12 @@ app.use('/', payees)
 app.use('/upload', upload)
 app.use('/rates', rates)
 
-// // Clear flash messages
-// app.get('*', (req, res, next) => {
-//   req.session.flash = []
-//   next()
-// })
+// Clear flash messages
+app.get('*', (req, res, next) => {
+  console.log('cleared flash')
+  req.session.flash = []
+  next()
+})
 
 // Error handlers
 if (app.get('env') === 'development') {

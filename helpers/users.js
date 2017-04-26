@@ -4,42 +4,34 @@ const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
 const moment = require('moment')
 const uuidV4 = require('uuid/v4')
 
-const register = (registration) => {
+module.exports.register = function(registration) {
   let user = {
     id: uuidV4(),
-    username: registration.username,
+    email: registration.email,
     password: registration.password,
     first_name: registration.first_name,
-    last_name: registration.last_name,
-    phone: registration.phone,
-    email: registration.email,
-    street: registration.street,
-    city: registration.city,
-    postcode: registration.postcode,
-    dateofbirth: moment(registration.dateofbirth).format('YYYY-MM-DD'),
-    accepted_agreement: true
+    last_name: registration.last_name
   }
 
-  // Optional fields
-  if (registration.middle_name) { user['middle_name'] = registration.middle_name }
-  if (registration.suburb) { user['suburb'] = registration.suburb }
+  if (process.env.NODE_ENV === 'development') {
+    user.activated = true
+  }
 
   return knex('users')
   .insert(user)
 }
 
-const findByUsername = (username) => {
-  return knex('users').where('username', username)
+module.exports.findByEmail = function (email) {
+  return knex('users').where('email', email)
   .then((user) => { return user[0] })
-  .catch((err) => { console.error(err) })
 }
 
-const findByID = (id) => {
+module.exports.findByID = function (id) {
   return knex('users').where('id', id)
   .then((user) => { return user[0] })
 }
 
-const appendIDproof = (id, number, expiry) => {
+module.exports.appendIDproof = function (id, number, expiry) {
   return knex('users')
   .where('id', id)
   .update({
@@ -48,18 +40,11 @@ const appendIDproof = (id, number, expiry) => {
   })
 }
 
-const activateUser = (id) => {
+module.exports.activateUser = function (id) {
   return knex('users')
   .where('id', id)
   .update({
-    activated: true
+    activated: true,
+    activation_date: Date.now()
   })
-}
-
-module.exports = {
-  appendIDproof,
-  activateUser,
-  findByUsername,
-  findByID,
-  register
 }

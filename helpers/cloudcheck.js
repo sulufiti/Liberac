@@ -2,7 +2,7 @@ const crypto = require('crypto')
 const got = require('got')
 const hmac = crypto.createHmac('sha256', process.env.CLOUDCHECK_SECRET)
 
-const verifyUser = (user, nonce) => {
+module.exports.verifyUser = function (user, nonce) {
   let data = {
     'details': {
       'address': {
@@ -50,8 +50,4 @@ const verifyUser = (user, nonce) => {
   .catch((err) => {
     console.log(err)
   })
-}
-
-module.exports = {
-  verifyUser
 }

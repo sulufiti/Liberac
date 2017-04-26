@@ -15,29 +15,15 @@ router.post('/register', (req, res, next) => {
   bcrypt.hash(req.body.password, saltRounds)
   .then(hash => req.body.password = hash)
   .then(() => {
-    users.register(req.body)
+    return users.register(req.body)
     .then(() => res.redirect('/login'))
     .catch((err) => {
       Raven.captureException(err)
     })
   })
   .catch((err) => {
-    Raven.captureException(err, {
-        user: {
-          username: req.body.username,
-          password: req.body.password,
-          firstName: req.body.first_name,
-          middleName: req.body.middle_name,
-          lastName: req.body.last_name,
-          phone: req.body.phone,
-          email: req.body.email,
-          street: req.body.street,
-          suburb: req.body.suburb,
-          dateofbirth: req.body.dateofbirth,
-          city: req.body.city,
-          postcode: req.body.city
-        }
-      })
+    console.log(err)
+    Raven.captureException(err, { user: req.body })
   })
 })
 
@@ -54,9 +40,7 @@ router.get('/activate/:id', (req, res, next) => {
   })
   .catch((err) => {
     Raven.captureException(err, {
-      user: {
-        id: req.params.id
-      }
+      user: { id: req.params.id }
     })
   })
 })

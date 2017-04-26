@@ -117,7 +117,7 @@ const sendActivation = (id, firstName, lastName, email) => {
       "content": firstName
     }, {
       "name": "ACTIVATION_LINK",
-      "content": `http://localhost:3000/activate/${id}`
+      "content": `${root}/activate/${id}`
     }]
   }
 

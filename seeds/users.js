@@ -1,7 +1,6 @@
 const uuidV4 = require('uuid/v4')
 
-// Test passwords are the same as the usernames
-
+// Test passwords are first_name + 1234 eg; george@bush.com is george1234
 exports.seed = function (knex, Promise) {
   return knex('users').del()
     .then(function () {

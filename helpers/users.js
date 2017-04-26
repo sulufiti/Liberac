@@ -2,6 +2,7 @@ const Knex = require('knex')
 const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
 const moment = require('moment')
+const Raven = require('raven')
 const uuidV4 = require('uuid/v4')
 
 module.exports.register = function(registration) {
@@ -19,16 +20,28 @@ module.exports.register = function(registration) {
 
   return knex('users')
   .insert(user)
+  .catch((err) => {
+    console.error('failed to create user', err)
+    Raven.captureException(err)
+  })
 }
 
 module.exports.findByEmail = function (email) {
   return knex('users').where('email', email)
   .then((user) => { return user[0] })
+  .catch((err) => {
+    console.err('failed to find email', err)
+    Raven.captureException(err)
+  })
 }
 
 module.exports.findByID = function (id) {
   return knex('users').where('id', id)
   .then((user) => { return user[0] })
+  .catch((err) => {
+    console.err('failed to find by id', err)
+    Raven.captureException(err)
+  })
 }
 
 module.exports.appendIDproof = function (id, number, expiry) {
@@ -38,6 +51,10 @@ module.exports.appendIDproof = function (id, number, expiry) {
     passport_number: number,
     passport_expiry: moment(expiry).format('YYYY-MM-DD')
   })
+  .catch((err) => {
+    console.error('failed to append id proof', err)
+    Raven.captureException(err)
+  })
 }
 
 module.exports.activateUser = function (id) {
@@ -46,5 +63,9 @@ module.exports.activateUser = function (id) {
   .update({
     activated: true,
     activation_date: Date.now()
+  })
+  .catch((err) => {
+    console.error('failed to activate user', err)
+    Raven.captureException(err)
   })
 }

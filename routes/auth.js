@@ -17,6 +17,14 @@ router.post('/register', (req, res, next) => {
   .then(() => {
     return users.register(req.body)
     .then(() => res.redirect('/login'))
+    .then(() => {
+      if (process.env.NODE_ENV !== 'development') {
+        users.findByEmail(req.body.email)
+        .then((user) => {
+          mailer.sendActivation(user.id, user.first_name, user.last_name, user.email)
+        })
+      }
+    })
     .catch((err) => {
       Raven.captureException(err)
     })
@@ -42,19 +50,6 @@ router.get('/activate/:id', (req, res, next) => {
     Raven.captureException(err, {
       user: { id: req.params.id }
     })
-  })
-})
-
-router.get('/validate', (req, res, next) => {
-  users.findByUsername('steve1234')
-  .then((user) => {
-    mailer.sendActivation(user.id, user.first_name, user.last_name, user.email)
-  })
-  .then(() => {
-    res.send('email sent')
-  })
-  .catch((err) => {
-    console.error('validation error', err)
   })
 })
 

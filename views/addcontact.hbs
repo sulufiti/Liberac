@@ -11,13 +11,13 @@
         <h1>Edit {{payee.nickname}}'s details</h1>
         <form method="POST" action="/contacts/update/{{payee.nickname}}">
         {{else}}
-        <h1>Add a payee</h1>
+        <h1>Add a contact</h1>
         <form method="POST" action="/contacts/add">
         {{/if}}
           <div class="form-group">
             <label for="nickname">Nickname</label>
             <input type="text" name="nickname" class="form-control" id="nickname" placeholder="Mum" {{#if payee}}value={{payee.nickname}}{{/if}}>
-            <p class="help-block">An optional name we'll refer to this payee by</p>
+            <p class="help-block">An optional name we'll refer to this contact by</p>
           </div>
           <div class="form-group">
             <label for="first_name">First Name</label>

@@ -11,13 +11,18 @@ const setupPassport = () => {
       .then((user) => {
         if (!user) {
           // Return to /login if the username doesn't exist
-          return done(null, false)
+          return done(null, false, { message: 'Please check that your *username and password are correct.' })
+        }
+
+        // If the user isn't activated, prompt them to activate their account
+        if (!user.activated) {
+          return done(null, false, { message: 'Please activate your account using the validation email we sent you.'})
         }
 
         bcrypt.compare(password, user.password, (err, res) => {
           if (!res) {
             // Return to /login if the password doesn't match
-            return done(null, false)
+            return done(null, false, { message: 'Please check that your username and *password are correct.' })
           } else {
             // Go to /loggedin if passwords match
             return done(null, user)
@@ -25,6 +30,7 @@ const setupPassport = () => {
         })
       })
       .catch((err) => {
+        return done(err)
         console.error(err)
         Raven.captureException(err)
       })

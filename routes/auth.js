@@ -3,6 +3,7 @@ const router = express.Router()
 const Raven = require('raven')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
+const mailer = require('../helpers/mailer')
 const users = require('../helpers/users')
 const saltRounds = 10
 
@@ -40,14 +41,53 @@ router.post('/register', (req, res, next) => {
   })
 })
 
+router.get('/activate/:id', (req, res, next) => {
+  users.findByID(req.params.id)
+  .then((user) => {
+    return users.activateUser(req.params.id)
+  })
+  .then(() => {
+    if (req.session.flash) {
+      req.session.flash.error = []
+    }
+    res.redirect('/login')
+  })
+  .catch((err) => {
+    Raven.captureException(err, {
+      user: {
+        id: req.params.id
+      }
+    })
+  })
+})
+
+router.get('/validate', (req, res, next) => {
+  users.findByUsername('steve1234')
+  .then((user) => {
+    mailer.sendActivation(user.id, user.first_name, user.last_name, 'contact@liberac.co.nz')
+  })
+  .then(() => {
+    res.send('email sent')
+  })
+  .catch((err) => {
+    console.error('validation error', err)
+  })
+})
+
 router.get('/login', (req, res, next) => {
-  res.render('login')
+  let latestMessage = ''
+  if (req.session.flash && req.session.flash.length !== 0) {
+    let messages = req.session.flash.error
+    latestMessage = messages[messages.length - 1]
+  }
+  res.render('login', { message: latestMessage })
 })
 
 router.post('/login',
   passport.authenticate('local', {
     successRedirect: '/dashboard',
-    failureRedirect: '/login'
+    failureRedirect: '/login',
+    failureFlash: true
   })
 )
 

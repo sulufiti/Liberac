@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const Raven = require('raven')
 const path = require('path')
+const flash = require('connect-flash')
 const bodyParser = require('body-parser')
 const passport = require('passport')
 const session = require('express-session')
@@ -13,9 +14,10 @@ const setupPassport = require('./auth').setupPassport
 
 // Setting up express middlewares
 const app = express()
-Raven.config(process.env.SENTRY_DSN, {
-  captureUnhandledRejections: true
-}).install()
+
+if (app.get('env') !== 'development') { Raven.config(process.env.SENTRY_DSN).install() }
+
+
 const hbs = require('hbs')
 let sessionSettings = {
   secret: process.env.EXPRESS_SESSION_SECRET,
@@ -43,9 +45,10 @@ app.locals.pretty = true
 app.use(Raven.requestHandler())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(session(sessionSettings))
 app.use(passport.initialize())
 app.use(fileupload())
-app.use(session(sessionSettings))
+app.use(flash())
 setupPassport()
 
 // Serve static files and routes that use templates
@@ -58,10 +61,17 @@ app.use('/', payees)
 app.use('/upload', upload)
 app.use('/rates', rates)
 
+// Clear flash messages
+app.get('*', (req, res, next) => {
+  console.log('route')
+  req.session.flash = []
+  next()
+})
+
 // Error handlers
-app.use(Raven.errorHandler())
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
+    console.log(err)
     if (!req.session.authenticated) {
       res.redirect('/login')
     } else {

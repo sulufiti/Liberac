@@ -5,7 +5,7 @@ const mandrillClient = new mandrill.Mandrill(process.env.MANDRILL_API_KEY)
 const sendWelcome = (firstName, lastName, email) => {
   const templateName = 'Welcome to Liberac'
   const templateContent = [{}]
-  var message = {
+  let message = {
     'subject': 'Welcome',
     'from_email': 'welcome@liberac.co.nz',
     'from_name': 'The Liberac team',
@@ -48,16 +48,18 @@ const sendWelcome = (firstName, lastName, email) => {
 }
 
 const notifyTeam = (name, email) => {
-  var message = {
+  let message = {
     "text": `New User: ${name} <${email}>`,
     "subject": `${name} is now onboard`,
     "from_email": "usersignups@liberac.co.nz",
     "from_name": "User Signups",
-    "to": [{
-            "email": "contact@liberac.co.nz",
-            "name": "Liberac",
-            "type": "to"
-        }]
+    "to": [
+      {
+        "email": "contact@liberac.co.nz",
+        "name": "Liberac",
+        "type": "to"
+      }
+    ]
   }
 
   mandrillClient.messages.send({ "message": message }, (res) => {}, (err) => {
@@ -68,10 +70,76 @@ const notifyTeam = (name, email) => {
       }
     })
     console.error('A mandrill error occurred: ' + err.name + ' - ' + err.message);
-  });
+  })
 }
 
-module.exports = { 
+const sendActivation = (id, firstName, lastName, email) => {
+  const templateName = 'Activation Email'
+  const templateContent = [{}]
+  let root = ''
+
+  switch(process.env.NODE_ENV) {
+    case 'development':
+      root = 'http://localhost:3000'
+      break
+    case 'staging':
+      root = 'https://staging.liberac.co.nz'
+      break
+    case 'production':
+      root = 'https://liberac.co.nz'
+      break
+    default:
+      root = 'https://liberac.co.nz'
+      Raven.captureMessage("NODE_ENV hasn't been configured")
+  }
+
+  let message = {
+    'subject': 'Welcome',
+    'from_email': 'welcome@liberac.co.nz',
+    'from_name': 'The Liberac team',
+    'to': [{
+      'email': email,
+      'name': `${firstName} ${lastName}`,
+      'type': 'to'
+    }],
+    'headers': {
+      'Reply-To': 'noreply@liberac.co.nz'
+    },
+    'important': false,
+    'track_opens': true,
+    'track_clicks': true,
+    'auto_text': true,
+    'auto_html': null,
+    'merge': true,
+    'merge_language': 'mailchimp',
+    'global_merge_vars': [{
+      "name": "FIRSTNAME",
+      "content": firstName
+    }, {
+      "name": "ACTIVATION_LINK",
+      "content": `http://localhost:3000/activate/${id}`
+    }]
+  }
+
+  mandrillClient.messages.sendTemplate({
+    'template_name': templateName,
+    'template_content': templateContent,
+    'message': message,
+  }, (res) => {
+    console.log(res)
+  }, (err) => {
+    Raven.captureException(err, {
+      user: {
+        name: `${firstName} ${lastName}`,
+        email: email
+      }
+    })
+    console.error('A mandrill error occurred: ' + err.name + ' - ' + err.message)
+  })
+}
+
+module.exports = {
+  sendActivation,
   sendWelcome,
   notifyTeam
 }

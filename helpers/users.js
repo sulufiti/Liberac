@@ -31,6 +31,7 @@ const register = (registration) => {
 const findByUsername = (username) => {
   return knex('users').where('username', username)
   .then((user) => { return user[0] })
+  .catch((err) => { console.error(err) })
 }
 
 const findByID = (id) => {
@@ -47,8 +48,17 @@ const appendIDproof = (id, number, expiry) => {
   })
 }
 
+const activateUser = (id) => {
+  return knex('users')
+  .where('id', id)
+  .update({
+    activated: true
+  })
+}
+
 module.exports = {
   appendIDproof,
+  activateUser,
   findByUsername,
   findByID,
   register

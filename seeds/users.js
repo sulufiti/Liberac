@@ -42,7 +42,8 @@ exports.seed = function (knex, Promise) {
           dateofbirth: '1946-07-06',
           passport_number: 'US112233',
           passport_expiry: '2020-02-20',
-          accepted_agreement: true
+          accepted_agreement: true,
+          activated: true
         })
       ])
     })

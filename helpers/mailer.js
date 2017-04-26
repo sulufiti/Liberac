@@ -2,7 +2,7 @@ const Raven = require('raven')
 const mandrill = require('mandrill-api/mandrill')
 const mandrillClient = new mandrill.Mandrill(process.env.MANDRILL_API_KEY)
 
-const sendWelcome = (firstName, lastName, email) => {
+module.exports.sendWelcome = function (firstName, lastName, email) {
   const templateName = 'Welcome to Liberac'
   const templateContent = [{}]
   let message = {
@@ -47,7 +47,7 @@ const sendWelcome = (firstName, lastName, email) => {
   })
 }
 
-const notifyTeam = (name, email) => {
+module.exports.notifyTeam = function (name, email) {
   let message = {
     "text": `New User: ${name} <${email}>`,
     "subject": `${name} is now onboard`,
@@ -73,7 +73,7 @@ const notifyTeam = (name, email) => {
   })
 }
 
-const sendActivation = (id, firstName, lastName, email) => {
+module.exports.sendActivation = function (id, firstName, lastName, email) {
   const templateName = 'Activation Email'
   const templateContent = [{}]
   let root = ''
@@ -136,10 +136,4 @@ const sendActivation = (id, firstName, lastName, email) => {
     })
     console.error('A mandrill error occurred: ' + err.name + ' - ' + err.message)
   })
-}
-
-module.exports = {
-  sendActivation,
-  sendWelcome,
-  notifyTeam
 }

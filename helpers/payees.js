@@ -4,7 +4,7 @@ const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
 const Raven = require('raven')
 const uuidV4 = require('uuid/v4')
 
-const addPayee = (userID, payee) => {
+module.exports.addPayee = function (userID, payee) {
   return knex('payees')
   .insert({
     id: uuidV4(),
@@ -31,7 +31,7 @@ const addPayee = (userID, payee) => {
   })
 }
 
-const updatePayee = (userID, payee) => {
+module.exports.updatePayee = function (userID, payee) {
   console.log(payee)
   return knex('payees')
   .where({
@@ -61,7 +61,7 @@ const updatePayee = (userID, payee) => {
   })
 }
 
-const getUsersPayees = (userID) => {
+module.exports.getUsersPayees = function (userID) {
   return knex('payees')
   .where('user_id', userID)
   .catch((err) => {
@@ -72,7 +72,7 @@ const getUsersPayees = (userID) => {
   })
 }
 
-const getPayeeByNickname = (userID, nickname) => {
+module.exports.getPayeeByNickname = function (userID, nickname) {
   return knex('payees')
   .where({
     'user_id': userID,
@@ -88,11 +88,4 @@ const getPayeeByNickname = (userID, nickname) => {
     })
     console.error('error fetching payee by nickname', err)
   })
-}
-
-module.exports = {
-  addPayee,
-  updatePayee,
-  getUsersPayees,
-  getPayeeByNickname
 }

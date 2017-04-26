@@ -12,6 +12,9 @@
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" name="password" id="password" required>
               </div>
+              {{#if message}}
+              <p id="login-error">{{message}}</p>
+              {{/if}}
               <button type="submit" class="btn btn-danger btn-block btn-lg" id="login">Log in</button>
             </form>
           </div>

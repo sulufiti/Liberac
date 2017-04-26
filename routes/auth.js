@@ -46,6 +46,9 @@ router.get('/activate/:id', (req, res, next) => {
     return users.activateUser(req.params.id)
   })
   .then(() => {
+    if (req.session.flash) {
+      req.session.flash = []
+    }
     res.redirect('/login')
   })
   .catch((err) => {
@@ -58,12 +61,12 @@ router.get('/activate/:id', (req, res, next) => {
 })
 
 router.get('/login', (req, res, next) => {
-  if (req.session.flash) {
+  let latestMessage = ''
+  if (req.session.flash && req.session.flash.length !== 0) {
     let messages = req.session.flash.error
-    let latestMessage = messages[messages.length - 1]
-    console.log('Latest: ', latestMessage)
+    latestMessage = messages[messages.length - 1]
   }
-  res.render('login')
+  res.render('login', { message: latestMessage })
 })
 
 router.post('/login',

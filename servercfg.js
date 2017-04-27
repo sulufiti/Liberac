@@ -6,7 +6,7 @@ const path = require('path')
 const flash = require('connect-flash')
 const bodyParser = require('body-parser')
 const passport = require('passport')
-const session = require('express-session')
+const session = require('cookie-session')
 const fileupload = require('express-fileupload')
 
 // Local imports
@@ -14,17 +14,14 @@ const setupPassport = require('./auth').setupPassport
 
 // Setting up express middlewares
 const app = express()
-
 if (app.get('env') !== 'development') { Raven.config(process.env.SENTRY_DSN).install() }
-
+let cookieSettings = {
+  name: 'session',
+  keys: [process.env.EXPRESS_SESSION_SECRET],
+  maxAge: 24 * 60 * 60 * 1000
+}
 
 const hbs = require('hbs')
-let sessionSettings = {
-  secret: process.env.EXPRESS_SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {}
-}
 
 // Routes
 const index = require('./routes/index')
@@ -47,7 +44,7 @@ app.locals.pretty = true
 app.use(Raven.requestHandler())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(session(sessionSettings))
+app.use(session(cookieSettings))
 app.use(passport.initialize())
 app.use(fileupload())
 app.use(flash())

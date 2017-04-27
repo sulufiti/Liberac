@@ -5,7 +5,7 @@
         {{>navigation}}
         <h2>Select a contact you would like to send money to</h2>
         {{#if contacts}}
-        <form method="POST" action="/selectcontact">
+        <form method="POST" action="/send/amount">
           <select class="form-control" id="contact" name="contact" onchange="if ($('#deliverymethod').val()) { $('#submit').html('Send money to ' + $('#contact').val() + ' via ' + $('#deliverymethod option:selected').text().slice(0, -6)) } else { $('#submit').html('Send money to ' + $('#contact').val()) }" required>
           {{#each contacts}}
             <option value="{{this.nickname}}">{{this.nickname}}</option>

@@ -1,0 +1,29 @@
+<div class="content-section-c">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        {{>navigation}}
+        <h2>Confirm amount to send and that receiver details are correct</h2>
+        <form method="POST" action="/send/amount">
+          <div class="input-group"> 
+            <span class="input-group-addon">$</span>
+            <input type="number" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="amount" oninput="$('#send_amount').text('$' + $('#amount').val())">
+          </div> 
+          <br />
+          <div class="well">
+            <h5>Confirm that {{contact.nickname}} will receive <span id="send_amount">$0.00</span> at this address</h5>
+            <p>Name: {{contact.first_name}} {{#if contact.middle_name}}{{contact.middle_name}}{{/if}} {{contact.last_name}}</p>
+            <p>Address: {{contact.street}}, {{#if contact.suburb}}{{contact.suburb}},{{/if}} {{contact.city}}, {{contact.postcode}}</p>
+            <p>Phone: {{contact.phone}}</p>
+            <p>Email: {{contact.email}}</p>
+          </div>
+          <input type="checkbox" required> {{contact.nickname}}'s details are correct
+          <br>
+          <br>
+          <button type="submit" id="submit" class="btn btn-success">Send money to {{contact.nickname}}</button>
+          <a class="btn btn-warning">Edit {{contact.nickname}}'s details</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

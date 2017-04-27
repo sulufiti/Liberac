@@ -21,11 +21,13 @@ router.post('/amount', (req, res, next) => {
     receiver: req.body.contact
   }
 
-  switch(req.body.deliverymethod) {
-    case 'bank_transfer':
+  switch(req.body.delivery_method) {
+    case 'Bank Transfer':
+      req.session.passport.transaction.delivery_method = req.body.delivery_method
       req.session.passport.transaction.handling_fee = 10.00
       break
-    case 'hand_delivery':
+    case 'Hand Delivery':
+      req.session.passport.transaction.delivery_method = req.body.delivery_method
       req.session.passport.transaction.handling_fee = 15.00
       break
     default:
@@ -58,20 +60,18 @@ router.post('/amount', (req, res, next) => {
     current_rate = data.body.WST
     
     req.session.passport.transaction.exchange_rate = current_rate
+    req.session.passport.transaction.conversion_amount = (req.session.passport.transaction.amount * current_rate)
+    req.session.passport.transaction.total = (req.session.passport.transaction.amount * req.session.passport.transaction.handling_fee)
   })
   .then(() => {
     contacts.getContactByNickname(req.session.passport.user.id, req.body.contact)
     .then((contact) => {
       res.render('transaction_details', { contact: contact })
     })
-    .catch((err) => {
-      console.error('failed to fetch contact details')
-      Raven.captureException(err, { user: { user: req.session.passport.user, transaction: req.session.passport.transaction } })
-    })
   })
   .catch((err) => {
     console.error('failed to fetch current exchange rate')
-    Raven.captureException(err, { user: { user: req.session.passport.user, transaction: req.session.passport.transaction } })
+    Raven.captureException(err, { user: { active_user: req.session.passport.user, transaction: req.session.passport.transaction } })
   })
 })
 
@@ -80,7 +80,7 @@ router.post('/confirm', (req, res, next) => {
   res.render('transaction_confirm', { transaction: req.session.passport.transaction })
 })
 
-roouter.post('/process', (req, res, next) => {
+router.post('/process', (req, res, next) => {
   console.log(req.body)
 })
 

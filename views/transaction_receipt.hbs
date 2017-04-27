@@ -7,14 +7,12 @@
       <div class="col-lg-9">
         <h2>Transaction complete</h2>
           <div class="well">
-            <p>Transaction ID: {{transaction.id}}</p>
-            <p>Transaction Time: {{transaction.time}}</p>
-            <p>Receiver: {{transaction.receiver}}</p>
-            <p>Delivery Method: {{transaction.delivery_method}}: {{transaction.handling_fee}} NZD</p>
-            <p>Send Amount: {{transaction.amount}} NZD</p>
-            <p>Exchange rate: {{transaction.exchange_rate}}</p>
-            <p>Conversion Amount: {{transaction.amount}} NZD @ {{transaction.exchange_rate}}: ${{transaction.conversion_amount}} WST</p>
-            <p>Total: {{transaction.total}} NZD</p>
+            <p><b>Transaction ID</b>: {{transaction.id}}</p>
+            <p><b>Transaction Time</b>: {{time}}</p>
+            <p><b>Receiver</b>: {{transaction.receiver}}</p>
+            <p><b>Delivery Method</b>: {{transaction.delivery_method}} @ ${{transaction.handling_fee}} NZD</p>
+            <p><b>Send Amount</b>: ${{transaction.amount}} NZD @ {{transaction.exchange_rate}} = ${{transaction.conversion_amount}} WST</p>
+            <p><b>Total</b>: ${{transaction.total}} NZD</p>
           </div>
           <br>
           <br>

@@ -67,6 +67,10 @@ router.get('/about', (req, res, next) => {
   res.render('about')
 })
 
+router.get('/comingsoon', (req, res, next) => {
+  res.render('comingsoon')
+})
+
 router.get('/compare', (req, res, next) => {
   res.render('compare', { comparison: true })
 })

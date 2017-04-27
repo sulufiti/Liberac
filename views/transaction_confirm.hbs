@@ -5,14 +5,18 @@
         {{>navigation}}
         <h2>Confirm amount to send and that receiver details are correct</h2>
         <form method="POST" action="/send/process">
-          <p>You would like to send <b>{{transaction.amount}}</b> to <b>{{transaction.receiver}}</b>.
-          <p></b>{{transaction.receiver}}</b> will receive your transfer via {{transaction.deliverymethod}} which will cost {{transaction.handling_fee}}
-          <p>Additionally, the current exchange rate is {{transaction.exchange_rate}} which means {{transaction.amount}} NZD is worth {{transaction.conversion}} WST</p>
+          <p>You would like to send <b>${{transaction.amount}}</b> to <b>{{transaction.receiver}}</b>.
+          <p></b>{{transaction.receiver}}</b> will receive your transfer via <b>{{transaction.delivery_method}}</b> which will cost <b>${{transaction.handling_fee}}</b></p>
+          <p>Additionally, the current exchange rate is <b>{{transaction.exchange_rate}}</b> which means <b>${{transaction.amount}}</b> NZD is worth <b>${{transaction.conversion_amount}}</b> WST</p>
           <br />
-          <h5>Total: {{transaction.total}}</h5>
+          <h5>Total: ${{transaction.total}}</h5>
           <br />
           <input type="checkbox" required> I agree to the following fees
+          <br>
+          <br>
           <input type="checkbox" required> I have read and accept the terms of transfer
+          <br>
+          <br>
           <button type="submit" id="submit" class="btn btn-success">Send {{$transaction.total}}</button>
       </div>
     </div>

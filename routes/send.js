@@ -57,11 +57,9 @@ router.post('/amount', (req, res, next) => {
   got(`${root}/rates/NZD`)
   .then((data) => {
     data.body = JSON.parse(data.body)
-    current_rate = data.body.WST
+    current_rate = parseFloat(data.body.WST)
     
     req.session.passport.transaction.exchange_rate = current_rate
-    req.session.passport.transaction.conversion_amount = (req.session.passport.transaction.amount * current_rate)
-    req.session.passport.transaction.total = (req.session.passport.transaction.amount * req.session.passport.transaction.handling_fee)
   })
   .then(() => {
     contacts.getContactByNickname(req.session.passport.user.id, req.body.contact)
@@ -76,7 +74,10 @@ router.post('/amount', (req, res, next) => {
 })
 
 router.post('/confirm', (req, res, next) => {
-  req.session.passport.transaction.amount = req.body.amount
+  req.session.passport.transaction.amount = parseFloat(req.body.amount)
+  req.session.passport.transaction.conversion_amount = (req.session.passport.transaction.amount * req.session.passport.transaction.exchange_rate).toFixed(2)
+  req.session.passport.transaction.total = (req.session.passport.transaction.amount + req.session.passport.transaction.handling_fee).toFixed(2)
+  console.log(req.session.passport.transaction)
   res.render('transaction_confirm', { transaction: req.session.passport.transaction })
 })
 

@@ -62,7 +62,7 @@ module.exports.activateUser = function (id) {
   .where('id', id)
   .update({
     activated: true,
-    activation_date: Date.now()
+    activation_date: knex.fn.now()
   })
   .catch((err) => {
     console.error('failed to activate user', err)

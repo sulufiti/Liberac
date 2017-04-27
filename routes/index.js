@@ -59,6 +59,10 @@ router.get('/policy', (req, res, next) => {
   res.render('policy')
 })
 
+router.get('/terms', (req, res, next) => {
+  res.render('terms')
+})
+
 router.get('/about', (req, res, next) => {
   res.render('about')
 })

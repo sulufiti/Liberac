@@ -11,7 +11,8 @@ module.exports.register = function(registration) {
     email: registration.email,
     password: registration.password,
     first_name: registration.first_name,
-    last_name: registration.last_name
+    last_name: registration.last_name,
+    balance: 1000.00
   }
 
   if (process.env.NODE_ENV === 'development') {

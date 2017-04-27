@@ -27,7 +27,8 @@ module.exports.register = function(registration) {
 }
 
 module.exports.findByEmail = function (email) {
-  return knex('users').where('email', email)
+  return knex('users')
+  .where('email', email)
   .then((user) => { return user[0] })
   .catch((err) => {
     console.err('failed to find email', err)
@@ -36,7 +37,8 @@ module.exports.findByEmail = function (email) {
 }
 
 module.exports.findByID = function (id) {
-  return knex('users').where('id', id)
+  return knex('users')
+  .where('id', id)
   .then((user) => { return user[0] })
   .catch((err) => {
     console.err('failed to find by id', err)

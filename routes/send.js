@@ -89,7 +89,7 @@ router.post('/process', (req, res, next) => {
   transactions.updateBalance(req.session.passport)
   .then((balance) => {
     req.session.passport.user.balance = parseFloat(balance).toFixed(2)
-    res.redirect('/dashboard')
+    res.render('receipt', { transaction: req.session.passport.transaction, user: req.session.passport.user })
   })
 })
 

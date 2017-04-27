@@ -1,0 +1,23 @@
+<div class="content-section-c">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        {{>navigation}}
+        <h2>Select a contact you would like to send money to</h2>
+        {{#if contacts}}
+        <form method="POST" action="/selectcontact">
+          <select class="form-control" name="contacts" onchange="$('#submit').html($('select').val()).removeClass('disabled')">
+          {{#each contacts}}
+            <option value="{{this.nickname}}">{{this.nickname}}</option>
+          {{/each}}
+          </select>
+          <button type="submit" id="submit" class="btn btn-warning disabled" disabled>Select a contact</button>
+        </form>
+        {{else}}
+          <p>It seems you have no contacts. Would you like to add one?</p>
+          <p><a class="btn btn-primary" href="/contacts/add" role="button">Add Contact</a></p>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

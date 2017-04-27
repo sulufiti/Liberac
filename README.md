@@ -2,10 +2,11 @@
 
 ## Table of Contents
 
-- [The short version](#the-short-version)
+- [The short version aka tl;dr](#the-short-version)
 - [Prerequisites](#prerequisites)
   - [Node](#node)
-    - [Mac](#node-for-mac)
+    - [Mac Users](#mac)
+    - [Linux Users](#linux)
   - [Environment Variables](#environment-variables)
     - [Azure Storage](#azure-storage)
     - [Express Session](#express-session)
@@ -29,6 +30,7 @@ node -v (check that the output is 'v7.0.0')
 git clone https://github.com/adiraj22/liberac
 cd liberac
 npm install
+create .env file and fill with the appropriate keys
 npm start
 navigate to http://localhost:3000
 ```
@@ -37,21 +39,23 @@ navigate to http://localhost:3000
 
 ### Node
 
-It requires that you have [Node](https://nodejs.org/en/) installed on your system.
+Liberac is served from an [Express](https://github.com/expressjs/express) server which requires that you have [Node](https://nodejs.org/en/) installed on your system.
 
-#### Node for Mac
+#### Mac
 
 For Mac users, the easiest way is using [Homebrew](https://brew.sh/). If you don't have it installed, you can do so by pasting the ruby install script into your terminal.
 
-Following that, you simply need to use brew like so
+Following that, you can install Node using Homebrew like so
 
 ```
 brew install node@7
 ```
 
-Usually for ongoing development, I would recommend [nvm](https://github.com/creationix/nvm) for managing Node versions but we're only using Node v7 for this MVP which is just above the current LTS. You should be perfectly fine with the Brew version.
+Once that's done, double check that your terminal outputs 'v7.0.0' by running `node -v`
 
-Once that's done, double check that your terminal returns 'v7.0.0' when you run `node -v`
+#### Linux
+
+
 
 ### Environment Variables
 

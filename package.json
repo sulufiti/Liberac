@@ -10,7 +10,7 @@
     "rollback": "NODE_ENV=development knex migrate:rollback",
     "seed": "NODE_ENV=development knex seed:run",
     "resetdb": "NODE_ENV=development npm run rollback && npm run migrate && npm run seed",
-    "resetstaging": "NODE_ENV=staging npm run rollback && npm run migrate && npm run seed",
+    "resetstaging": "NODE_ENV=staging npm run rollback && NODE_ENV=staging npm run migrate && NODE_ENV=staging npm run seed",
     "lint": "standard",
     "test": "mocha test"
   },

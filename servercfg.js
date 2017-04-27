@@ -17,7 +17,7 @@ const app = express()
 if (app.get('env') !== 'development') { Raven.config(process.env.SENTRY_DSN).install() }
 let cookieSettings = {
   name: 'session',
-  keys: [process.env.COOKIE_SESSION_SECRET],
+  keys: [process.env.EXPRESS_SESSION_SECRET],
   maxAge: 24 * 60 * 60 * 1000
 }
 

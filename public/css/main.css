@@ -433,3 +433,7 @@ label.requiredField:after {
 #compareProvider .form-inline .form-control {
   width: 115px;
 }
+
+#contacts .form-inline .form-control {
+  min-width: 295px;
+}

@@ -25,12 +25,12 @@
 <div class="row">
   <div class="col-lg-6">
     <div class="form-group">
-      <label for="nickname">Nickname</label>
+      <label for="nickname" class="requiredField">Nickname</label>
       <input type="text" name="nickname" required class="form-control" id="nickname" placeholder="Mum" {{#if contact}}value={{contact.nickname}}{{/if}}>
       <span class="help-block small">An optional name we'll refer to this contact by</span>
     </div>
     <div class="form-group">
-      <label for="first_name">First Name</label>
+      <label for="first_name" class="requiredField">First Name</label>
       <input type="text" name="first_name" required class="form-control" id="first_name" placeholder="Jamie" {{#if contact}}value={{contact.first_name}}{{/if}}>
     </div>
     <div class="form-group">
@@ -38,34 +38,34 @@
       <input type="text" name="middle_name" class="form-control" id="middle_name" placeholder="Sam" {{#if contact}}value={{contact.middle_name}}{{/if}}>
     </div>
     <div class="form-group">
-      <label for="last_name">Last Name</label>
+      <label for="last_name" class="requiredField">Last Name</label>
       <input type="text" name="last_name" required class="form-control" id="last_name" placeholder="Smith" {{#if contact}}value={{contact.last_name}}{{/if}}>
     </div>
     <div class="form-group">
-      <label for="email">Email Address</label>
+      <label for="email" class="requiredField">Email Address</label>
       <input type="email" name="email" required class="form-control" id="email" placeholder="user@example.com" {{#if contact}}value={{contact.email}}{{/if}}>
     </div>
   </div>
   <div class="col-lg-6">
     <div class="form-group">
-      <label for="phone">Phone Number</label>
+      <label for="phone" class="requiredField">Phone Number</label>
       <input type="tel" name="phone" required class="form-control" id="phone" placeholder="0212345678" {{#if contact}}value={{contact.phone}}{{/if}}>
       <span class="help-block small">&nbsp;</span>
     </div>    
     <div class="form-group">
-      <label for="street">Street</label>
+      <label for="street" class="requiredField">Street</label>
       <input type="text" name="street" required class="form-control" id="street" placeholder="123 Example Street" {{#if contact}}value={{contact.street}}{{/if}}>
     </div>
     <div class="form-group">
-      <label for="suburb">Suburb</label>
+      <label for="suburb" class="requiredField">Suburb</label>
       <input type="text" name="suburb" class="form-control" id="suburb" placeholder="Lower Hutt" {{#if contact}}value={{contact.suburb}}{{/if}}>
     </div>
     <div class="form-group">
-      <label for="city">City</label>
+      <label for="city" class="requiredField">City</label>
       <input type="text" name="city" required class="form-control" id="city" placeholder="Wellington" {{#if contact}}value={{contact.city}}{{/if}}>
     </div>
     <div class="form-group">
-      <label for="postcode">Postcode</label>
+      <label for="postcode" class="requiredField">Postcode</label>
       <input type="text" name="postcode" required class="form-control" id="postcode" placeholder="1234" {{#if contact}}value={{contact.postcode}}{{/if}}>
     </div>
   </div>

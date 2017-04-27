@@ -1,52 +1,72 @@
 <div class="content-section-c">
-
-<div id="compareProvider" class="container">
+  <div id="compareProvider" class="container">
     <div class="row">
       <div class="col-lg-12">
       {{>navigation}}
-
-      <div class="col-lg-12">
-        <h2>Provider Comparison</h2>
-        <div class="row">
-          <div class="col-lg-5">
-            <div class="well">
-            <h2>Liberac</h2>
-              <form class="form-inline">
-                <div class="form-group has-feedback">
-                  <label for="liberac_fees">Fixed Fee</label>
-                  <input class="form-control"  type="text" id="liberac_fees" value="" disabled>
-                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                </div>
-                <div class="form-group has-feedback">
-                  <label for="liberac_total">Total Fee</label>
-                  {{!--<input class="form-control" type="text" placeholder="$8.00" Disabled>--}}
-                  <input class="form-control" type="text" id="liberac_total" value="" disabled>
-                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                </div>
-              </form>
+        <div class="col-lg-12">
+          <h2>Provider Comparison</h2>
+          <div class="row">
+            <div class="col-lg-5">
+              <div class="well">
+              <h2>Liberac</h2>
+                <form class="form-inline">
+                  <div class="form-group has-feedback">
+                    <label for="liberac_fees">Fixed Fee</label>
+                    <input class="form-control"  type="text" id="liberac_fees" value="" disabled>
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                  </div>
+                  <div class="form-group has-feedback">
+                    <label for="liberac_total">Total Fee</label>
+                    <input class="form-control" type="text" id="liberac_total" value="" disabled>
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="well">
+              <h2>Other Provider</h2>
+                <form class="form-inline">
+                  <select class="form-control" name="select" id="competitor_options">
+                    <option value="klickex">KlickEx</option>
+                    <option value="westernunion">Western Union</option>
+                    <option value="moneygram">Moneygram</option>
+                    <option value="pacificezy">Pacific Ezy</option>
+                    <option value="anz">ANZ</option>
+                  </select>
+                  <label for="competitor_fees">Fixed Fee</label>
+                  <input class="form-control" type="text" id="competitor_fees" value="" Disabled>
+                  <label for="competitor_total">Total Fees</label>
+                  <input class="form-control" type="text" id="competitor_total" value="" disabled>
+                </form>
+              </div>            
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="well">
-            <h2>Other Provider</h2>
-              <form class="form-inline">
-                <select class="form-control" name="select" id="competitor_options">
-                  <option value="klickex">KlickEx</option>
-                  <option value="westernunion">Western Union</option>
-                  <option value="moneygram">Moneygram</option>
-                  <option value="pacificezy">Pacific Ezy</option>
-                  <option value="anz">ANZ</option>
-                </select>
-                <label for="competitor_fees">Fixed Fee</label>
-                <input class="form-control" type="text" id="competitor_fees" value="" Disabled>
-                <label for="competitor_total">Total Fees</label>
-                <input class="form-control" type="text" id="competitor_total" value="" disabled>
-              </form>
-            </div>            
+
+          <div class="col-lg-11">
+            <label for="transfer-slider">Transfer Amount</label>
+            <input type="range" id="transfer-slider" min="100" max="1000" step="100" value="200" list="transfer-amounts" />
+              <datalist id="transfer-amounts">
+                <option>100</option>
+                <option>200</option>
+                <option>300</option>
+                <option>400</option>
+                <option>500</option>
+                <option>600</option>
+                <option>700</option>
+                <option>800</option>
+                <option>900</option>
+                <option>1000</option>
+              </datalist>
+              <div id="transfer-value"><strong>$200</strong></div>
           </div>
         </div>
-      </div> 
-
-
+        <div class="row" style="margin-top: 20px;">
+          <div class="col-lg-11">
+            <a href="/send" class="btn btn-danger btn-md">Send</a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

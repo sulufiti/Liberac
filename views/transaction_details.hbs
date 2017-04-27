@@ -9,7 +9,7 @@
         <form method="POST" action="/send/confirm">
           <div class="input-group"> 
             <span class="input-group-addon">$</span>
-            <input type="number" name="amount" value="250" min="25" step="25" data-number-to-fixed="2" data-number-stepfactor="25" class="form-control currency" id="amount" oninput="$('#send_amount').text('$' + $('#amount').val())">
+            <input type="number" name="amount" value="250" min="25" max="2500" step="1" data-number-to-fixed="2" data-number-stepfactor="1" class="form-control currency" id="amount" oninput="$('#send_amount').text('$' + $('#amount').val())">
           </div> 
           <br />
           <div class="well">

@@ -317,6 +317,9 @@ a.redLink:hover {
     padding: 0;
     font-size: 12px;
   }
+  #intro-message p {
+    font-size: 10px;
+  }  
   .intro-header {
     padding-top: 180px;
     padding-bottom: 0px;

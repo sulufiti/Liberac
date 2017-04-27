@@ -80,7 +80,7 @@ router.post('/confirm', (req, res, next) => {
   res.render('transaction_confirm', { transaction: req.session.passport.transaction })
 })
 
-roouter.post('/process', (req, res, next) => {
+router.post('/process', (req, res, next) => {
   console.log(req.body)
 })
 

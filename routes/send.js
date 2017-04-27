@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const got = require('got')
 const Raven = require('raven')
-const users = require('../helpers/users')
+const transactions = require('../helpers/transactions')
 const contacts = require('../helpers/contacts')
 
 router.get('/', (req, res, next) => {
@@ -86,8 +86,10 @@ router.post('/payment', (req, res, next) => {
 })
 
 router.post('/process', (req, res, next) => {
-  console.log(req.body)
-  res.send('hi')
+  transactions.updateBalance(req.session.passport)
+  .then(() => {
+    res.redirect('/dashboard')
+  })
 })
 
 module.exports = router

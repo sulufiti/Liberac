@@ -46,6 +46,16 @@ module.exports.findByID = function (id) {
   })
 }
 
+module.exports.fetchUserBalance = function(id) {
+  return knex('users')
+  .where('id', id)
+  .then((user) => { return user[0].balance })
+  .catch((err) => {
+    console.log('failed to fetch user balance', err)
+    Raven.captureException(err)
+  })
+}
+
 module.exports.appendIDproof = function (id, number, expiry) {
   return knex('users')
   .where('id', id)

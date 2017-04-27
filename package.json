@@ -6,11 +6,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "migrate": "NODE_ENV=development knex migrate:latest",
-    "rollback": "NODE_ENV=development knex migrate:rollback",
-    "seed": "NODE_ENV=development knex seed:run",
-    "resetdb": "NODE_ENV=development npm run rollback && npm run migrate && npm run seed",
-    "resetstaging": "NODE_ENV=staging npm run rollback && NODE_ENV=staging npm run migrate && NODE_ENV=staging npm run seed",
+    "resetdb": "NODE_ENV=development knex migrate:rollback && NODE_ENV=development knex migrate:latest && NODE_ENV=development knex seed:run",
+    "resetstaging": "NODE_ENV=staging knex migrate:rollback && NODE_ENV=staging knex migrate:latest && NODE_ENV=staging knex seed:run",
     "lint": "standard",
     "test": "mocha test"
   },

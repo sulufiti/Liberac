@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-lg-12">
         {{>navigation}}
-        <h2>Confirm amount to send and that receiver details are correct</h2>
-        <form method="POST" action="/send/confirm">
+        <h2>Transaction details</h2>
+        <form method="POST" action="/send/process">
           <div class="input-group"> 
             <span class="input-group-addon">$</span>
             <input type="number" name="amount" value="250" min="25" step="25" data-number-to-fixed="2" data-number-stepfactor="25" class="form-control currency" id="amount" oninput="$('#send_amount').text('$' + $('#amount').val())">

@@ -5,25 +5,13 @@
         {{>navigation}}
       </div>
       <div class="col-lg-9">
-        <h2>Transaction details</h2>
-        <form method="POST" action="/send/confirm">
-          <div class="input-group"> 
-            <span class="input-group-addon">$</span>
-            <input type="number" name="amount" value="250" min="25" max="2500" step="1" data-number-to-fixed="2" data-number-stepfactor="1" class="form-control currency" id="amount" oninput="$('#send_amount').text('$' + $('#amount').val())">
-          </div> 
-          <br />
+        <h2>Transaction complete</h2>
           <div class="well">
-            <h4>Confirm that {{contact.nickname}} will receive <span id="send_amount">$250</span> at this address</h4>
-            <p>Name: <strong>{{contact.first_name}} {{#if contact.middle_name}}{{contact.middle_name}}{{/if}} {{contact.last_name}}</strong></p>
-            <p>Address: <strong>{{contact.street}}, {{#if contact.suburb}}{{contact.suburb}},{{/if}} {{contact.city}}, {{contact.postcode}}</strong></p>
-            <p>Phone: <strong>{{contact.phone}}</strong></p>
-            <p>Email: <strong>{{contact.email}}</strong></p>
+            
           </div>
-          <input type="checkbox" required> <strong>{{contact.nickname}}'s</strong> details are correct
           <br>
           <br>
-          <button type="submit" id="submit" class="btn btn-danger">Send money to {{contact.nickname}}</button>
-          <a class="btn btn-danger" href="/contacts/edit/{{contact.nickname}}">Edit {{contact.nickname}}'s details</a>
+          <a class="btn btn-danger" href="/dashboard">Head back to the Dashboard</a>
         </form>
       </div>
     </div>

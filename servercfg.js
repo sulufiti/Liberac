@@ -30,6 +30,7 @@ let sessionSettings = {
 const index = require('./routes/index')
 const facebook = require('./routes/facebook')
 const contacts = require('./routes/contacts')
+const send = require('./routes/send')
 // const cloudcheck = require('./routes/cloudcheck')
 const auth = require('./routes/auth')
 const upload = require('./routes/upload')
@@ -55,6 +56,7 @@ setupPassport()
 app.use(express.static(path.join(__dirname, '/public')))
 app.use('/facebook', facebook)
 app.use('/', index)
+app.use('/', send)
 app.use('/', auth)
 app.use('/', contacts)
 // app.use('/', cloudcheck)
@@ -79,11 +81,15 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
-  res.status(err.status || 500)
-  res.render('error', {
-    message: err.message,
-    error: ''
-  })
+  if (!req.session.authenticated) {
+    res.redirect('/login')
+  } else {
+    res.status(err.status || 500)
+    res.render('error', {
+      message: err.message,
+      error: err
+    })
+  }
 })
 
 // 404 Handler

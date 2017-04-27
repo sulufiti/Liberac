@@ -1,0 +1,28 @@
+<div class="content-section-c">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        {{>navigation}}
+        <h2>Select a contact you would like to send money to</h2>
+        {{#if contacts}}
+        <form method="POST" action="/selectcontact">
+          <select class="form-control" id="contact" name="contact" onchange="if ($('#deliverymethod').val()) { $('#submit').html('Send money to ' + $('#contact').val() + ' via ' + $('#deliverymethod option:selected').text()) } else { $('#submit').html('Send money to ' + $('#contact').val()) }" required>
+          {{#each contacts}}
+            <option value="{{this.nickname}}">{{this.nickname}}</option>
+          {{/each}}
+          </select>
+          <select class="form-control" name="deliverymethod" id="deliverymethod" onchange="$('#submit').html('Send money to ' + $('#contact').val() + ' via ' + $('#deliverymethod option:selected').text())" required>
+            <option value="" disabled selected>Please select a delivery method</option>
+            <option value="bank_transfer">Bank Transfer</option>
+            <option value="hand_delivery">Hand Delivery</option>
+          </select>
+          <button type="submit" id="submit" class="btn btn-warning">Send money to {{contacts.0.nickname}}</button>
+        </form>
+        {{else}}
+          <p>It seems you have no contacts. Would you like to add one?</p>
+          <p><a class="btn btn-primary" href="/contacts/add" role="button">Add Contact</a></p>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

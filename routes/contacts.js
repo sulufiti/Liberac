@@ -4,7 +4,6 @@ const Raven = require('raven')
 const contacts = require('../helpers/contacts')
 
 router.get('/contacts', (req, res, next) => {
-  console.log(req)
   contacts.getUsersContacts(req.session.passport.user.id)
   .then((userscontacts) => {
     res.render('contacts', { name: req.session.passport.user.first_name, contacts: userscontacts })

@@ -11,11 +11,13 @@
             <option value="{{this.nickname}}">{{this.nickname}}</option>
           {{/each}}
           </select>
+          <br>
           <select class="form-control" name="deliverymethod" id="deliverymethod" onchange="$('#submit').html('Send money to ' + $('#contact').val() + ' via ' + $('#deliverymethod option:selected').text().slice(0, -6))" required>
             <option value="" disabled selected>Please select a delivery method</option>
             <option value="bank_transfer">Bank Transfer - $10</option>
             <option value="hand_delivery">Hand Delivery - $15</option>
           </select>
+          <br>
           <button type="submit" id="submit" class="btn btn-warning">Send money to {{contacts.0.nickname}}</button>
         </form>
         {{else}}

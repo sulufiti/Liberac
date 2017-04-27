@@ -16,9 +16,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/amount', (req, res, next) => {
-  // req.session.passport.transaction = {
-  //   receiver: req.body.contact
-  // }
+  req.session.passport.transaction = {
+    receiver: req.body.contact
+  }
 
   // switch(req.body.deliverymethod) {
   //   case 'bank_transfer':
@@ -31,13 +31,16 @@ router.post('/amount', (req, res, next) => {
   //     console.error('Invalid delivery method specified')
   //     Raven.captureException(err, { user: { loggedInUser: req.session.passport.user, transaction: req.body } })
   // }
+
   contacts.getContactByNickname(req.session.passport.user.id, req.body.contact)
   .then((contact) => {
     res.render('transaction_details', { contact: contact })
   })
 })
 
-router.post('/send/confirmation', (req, res, next) => {
+router.post('/confirm', (req, res, next) => {
+  console.log(req.session.passport)
+  console.log(req.body)
   res.send('money')
 })
 

@@ -77,12 +77,17 @@ router.post('/confirm', (req, res, next) => {
   req.session.passport.transaction.amount = parseFloat(req.body.amount)
   req.session.passport.transaction.conversion_amount = (req.session.passport.transaction.amount * req.session.passport.transaction.exchange_rate).toFixed(2)
   req.session.passport.transaction.total = (req.session.passport.transaction.amount + req.session.passport.transaction.handling_fee).toFixed(2)
-  console.log(req.session.passport.transaction)
+
   res.render('transaction_confirm', { transaction: req.session.passport.transaction })
+})
+
+router.post('/payment', (req, res, next) => {
+  res.render('transaction_payment', { balance: req.session.passport.user.balance, total: req.session.passport.transaction.total })
 })
 
 router.post('/process', (req, res, next) => {
   console.log(req.body)
+  res.send('hi')
 })
 
 module.exports = router

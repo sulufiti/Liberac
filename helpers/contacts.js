@@ -32,7 +32,6 @@ module.exports.addContact = function (userID, contact) {
 }
 
 module.exports.updateContact = function (userID, contact) {
-  console.log(contact)
   return knex('usercontacts')
   .where({
     user_id: userID,

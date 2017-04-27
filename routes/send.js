@@ -2,19 +2,20 @@ const express = require('express')
 const router = express.Router()
 const Raven = require('raven')
 const users = require('../helpers/users')
+const contacts = require('../helpers/contacts')
 
 router.get('/send', (req, res, next) => {
   contacts.getUsersContacts(req.session.passport.user.id)
-  .then((userscontacts) => {
-    res.render('contacts', { name: req.session.passport.user.first_name, contacts: userscontacts })
+  .then((userContacts) => {
+    res.render('selectcontact', { contacts: userContacts })
   })
   .catch((err) => {
-    console.error(err)
+    console.error('Failed to fetch user contacts', err)
     Raven.captureException(err)
   })
 })
 
-router.post('/selectcontacts', (req, res, next) => {
+router.post('/selectcontact', (req, res, next) => {
   console.log(req.body)
 })
 

@@ -6,7 +6,7 @@
         <h2>Select a contact you would like to send money to</h2>
         {{#if contacts}}
         <form method="POST" action="/selectcontact">
-          <select class="form-control" name="contacts" onchange="$('#submit').html('Send money to ' + $('select').val())">
+          <select class="form-control" name="contact" onchange="$('#submit').html('Send money to ' + $('select').val())">
           {{#each contacts}}
             <option value="{{this.nickname}}">{{this.nickname}}</option>
           {{/each}}

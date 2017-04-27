@@ -24,7 +24,7 @@ exports.seed = function (knex, Promise) {
           user_id: '3b7295f3-4800-4ae6-9d4d-9d52bc45ddcf',
           nickname: 'Dad',
           first_name: 'George',
-          middle_name: 'Herbert Walker',
+          middle_name: 'Herbert',
           last_name: 'Bush',
           phone: '555-1234',
           email: 'george.sr@bush.com',

@@ -3,62 +3,62 @@
     <div class="row">
       <div class="col-lg-12">
         {{>navigation}}
-        {{#if payee}}
-        <h1>Edit {{payee.nickname}}'s details</h1>
-        <form method="POST" action="/contacts/update/{{payee.nickname}}">
+        {{#if contact}}
+        <h1>Edit {{contact.nickname}}'s details</h1>
+        <form method="POST" action="/contacts/update/{{contact.nickname}}">
         {{else}}
         <h1>Add a contact</h1>
         <form method="POST" action="/contacts/add">
         {{/if}}
           <div class="form-group">
             <label for="nickname">Nickname</label>
-            <input type="text" name="nickname" class="form-control" id="nickname" placeholder="Mum" {{#if payee}}value={{payee.nickname}}{{/if}}>
+            <input type="text" name="nickname" class="form-control" id="nickname" placeholder="Mum" {{#if contact}}value={{contact.nickname}}{{/if}}>
             <p class="help-block">An optional name we'll refer to this contact by</p>
           </div>
           <div class="form-group">
             <label for="first_name">First Name</label>
-            <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Jamie" {{#if payee}}value={{payee.first_name}}{{/if}}>
+            <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Jamie" {{#if contact}}value={{contact.first_name}}{{/if}}>
           </div>
           <div class="form-group">
             <label for="middle_name">Middle Name</label>
-            <input type="text" name="middle_name" class="form-control" id="middle_name" placeholder="Sam" {{#if payee}}value={{payee.middle_name}}{{/if}}>
+            <input type="text" name="middle_name" class="form-control" id="middle_name" placeholder="Sam" {{#if contact}}value={{contact.middle_name}}{{/if}}>
             <p class="help-block">Optional</p>
           </div>
           <div class="form-group">
             <label for="last_name">Last Name</label>
-            <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Smith" {{#if payee}}value={{payee.last_name}}{{/if}}>
+            <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Smith" {{#if contact}}value={{contact.last_name}}{{/if}}>
           </div>
           <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input type="tel" name="phone" class="form-control" id="phone" placeholder="0212345678" {{#if payee}}value={{payee.phone}}{{/if}}>
+            <input type="tel" name="phone" class="form-control" id="phone" placeholder="0212345678" {{#if contact}}value={{contact.phone}}{{/if}}>
           </div>
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" name="email" class="form-control" id="email" placeholder="user@example.com" {{#if payee}}value={{payee.email}}{{/if}}>
+            <input type="email" name="email" class="form-control" id="email" placeholder="user@example.com" {{#if contact}}value={{contact.email}}{{/if}}>
           </div>
           <div class="form-group">
             <label for="street">Street</label>
-            <input type="text" name="street" class="form-control" id="street" placeholder="123 Example Street" {{#if payee}}value={{payee.street}}{{/if}}>
+            <input type="text" name="street" class="form-control" id="street" placeholder="123 Example Street" {{#if contact}}value={{contact.street}}{{/if}}>
           </div>
           <div class="form-group">
             <label for="suburb">Suburb</label>
-            <input type="text" name="suburb" class="form-control" id="suburb" placeholder="Lower Hutt" {{#if payee}}value={{payee.suburb}}{{/if}}>
+            <input type="text" name="suburb" class="form-control" id="suburb" placeholder="Lower Hutt" {{#if contact}}value={{contact.suburb}}{{/if}}>
             <p class="help-block">Optional</p>
           </div>
           <div class="form-group">
             <label for="city">City</label>
-            <input type="text" name="city" class="form-control" id="city" placeholder="Wellington" {{#if payee}}value={{payee.city}}{{/if}}>
+            <input type="text" name="city" class="form-control" id="city" placeholder="Wellington" {{#if contact}}value={{contact.city}}{{/if}}>
           </div>
           <div class="form-group">
             <label for="postcode">Postcode</label>
-            <input type="text" name="postcode" class="form-control" id="postcode" placeholder="1234" {{#if payee}}value={{payee.postcode}}{{/if}}>
+            <input type="text" name="postcode" class="form-control" id="postcode" placeholder="1234" {{#if contact}}value={{contact.postcode}}{{/if}}>
           </div>
-          {{#if payee}}
-            <input type="hidden" name="id" value="{{payee.id}}">
+          {{#if contact}}
+            <input type="hidden" name="id" value="{{contact.id}}">
           {{/if}}
           <p><a class="btn btn-danger" href="/contacts" role="button">Go Back</a></p>
           <button type="submit" class="btn btn-default" role="button">
-            {{#if payee}}
+            {{#if contact}}
               Update Contact
             {{else}}
               Add Contact

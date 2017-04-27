@@ -87,7 +87,8 @@ router.post('/payment', (req, res, next) => {
 
 router.post('/process', (req, res, next) => {
   transactions.updateBalance(req.session.passport)
-  .then(() => {
+  .then((balance) => {
+    req.session.passport.user.balance = parseFloat(balance).toFixed(2)
     res.redirect('/dashboard')
   })
 })

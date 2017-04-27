@@ -9,6 +9,7 @@ module.exports.updateBalance = function (session) {
 
   return knex('users')
   .where('id', session.user.id)
+  .returning('balance')
   .update('balance', newBalance)
   .catch((err) => {
     console.error('Error updating balance', err)

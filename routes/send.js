@@ -1,8 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const got = require('got')
+const uuidV4 = require('uuid/v4')
+const moment = require('moment')
 const Raven = require('raven')
 const transactions = require('../helpers/transactions')
+const mailer = require('../helpers/mailer')
 const contacts = require('../helpers/contacts')
 
 router.get('/', (req, res, next) => {
@@ -86,10 +89,13 @@ router.post('/payment', (req, res, next) => {
 })
 
 router.post('/process', (req, res, next) => {
+  req.session.passport.transaction.id = uuidV4()
+  req.session.passport.transaction.time = Date.now()
   transactions.updateBalance(req.session.passport)
   .then((balance) => {
+    mailer.sendSenderReceipt(req.session.passport)
     req.session.passport.user.balance = parseFloat(balance).toFixed(2)
-    res.redirect('/dashboard')
+    res.render('transaction_receipt', { transaction: req.session.passport.transaction, time: moment(req.session.passport.transaction.time).format("dddd, MMMM Do YYYY, h:mm:ss a") })
   })
 })
 

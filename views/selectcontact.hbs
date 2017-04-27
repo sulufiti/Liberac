@@ -3,6 +3,8 @@
     <div class="row">
       <div class="col-lg-12">
         {{>navigation}}
+      </div>
+      <div class="col-lg-8">  
         <h2>Select a contact you would like to send money to</h2>
         {{#if contacts}}
         <form method="POST" action="/send/amount">
@@ -18,7 +20,7 @@
             <option value="Hand Delivery">Hand Delivery - $15</option>
           </select>
           <br>
-          <button type="submit" id="submit" class="btn btn-warning">Send money to {{contacts.0.nickname}}</button>
+          <button type="submit" id="submit" class="btn btn-danger">Send money to {{contacts.0.nickname}}</button>
         </form>
         {{else}}
           <p>It seems you have no contacts. Would you like to add one?</p>

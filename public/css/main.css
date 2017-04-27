@@ -133,8 +133,8 @@ body, h1, h2, h3, h4, h5, h6 {
   }
   .content-section-c {
     margin-top: 50px;
-    background-color: #ddd;
-    min-height: 500px;
+    background-color: #efefef;
+    min-height: 100%;
   }
 
 .section-heading {
@@ -432,4 +432,8 @@ label.requiredField:after {
 
 #compareProvider .form-inline .form-control {
   width: 115px;
+}
+
+#contacts .form-inline .form-control {
+  min-width: 295px;
 }

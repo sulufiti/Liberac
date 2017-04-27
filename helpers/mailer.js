@@ -207,3 +207,45 @@ module.exports.sendSenderReceipt = function (session) {
     console.error('A mandrill error occurred: ' + err.name + ' - ' + err.message)
   })
 }
+
+module.exports.sendAgentInvite = function(session) {
+  const templateName = 'Liberac Agent Application'
+  const templateContent = [{}]
+  let message = {
+    'subject': 'Liberac Agent Application',
+    'from_email': 'contact@liberac.co.nz',
+    'from_name': 'The Liberac team',
+    'to': [{
+      'email': session.user.email,
+      'name': `${session.user.firstName} ${session.user.lastName}`,
+      'type': 'to'
+    }],
+    'headers': {
+      'Reply-To': 'contact@liberac.co.nz'
+    },
+    'important': false,
+    'track_opens': true,
+    'track_clicks': true,
+    'auto_text': true,
+    'auto_html': null,
+    'merge': true,
+    'merge_language': 'mailchimp',
+    'global_merge_vars': [{
+      "name": "FIRSTNAME",
+      "content": session.user.first_name
+    }]
+  }
+
+  mandrillClient.messages.sendTemplate({
+    'template_name': templateName,
+    'template_content': templateContent,
+    'message': message,
+  }, (res) => {
+    console.log(res)
+  }, (err) => {
+    Raven.captureException(err, {
+      user: session
+    })
+    console.error('A mandrill error occurred: ' + err.name + ' - ' + err.message)
+  })
+}

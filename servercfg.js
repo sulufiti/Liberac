@@ -8,20 +8,31 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const session = require('cookie-session')
 const fileupload = require('express-fileupload')
+const hbs = require('hbs')
 
 // Local imports
 const setupPassport = require('./auth').setupPassport
 
 // Setting up express middlewares
 const app = express()
+
 if (app.get('env') !== 'development') { Raven.config(process.env.SENTRY_DSN).install() }
+
 let cookieSettings = {
   name: 'session',
   keys: [process.env.EXPRESS_SESSION_SECRET],
   maxAge: 24 * 60 * 60 * 1000
 }
 
-const hbs = require('hbs')
+// const authMiddleware = () => {
+//   return (req, res, next) => {
+//     if (req.isAuthenticated()) {
+//       return next()
+//     }
+//     res.redirect('/login')
+//   }
+// }
+
 
 // Routes
 const index = require('./routes/index')

@@ -2,10 +2,11 @@
 
 ## Table of Contents
 
-- [The short version](#the-short-version)
+- [The short version aka tl;dr](#the-short-version)
 - [Prerequisites](#prerequisites)
   - [Node](#node)
-    - [Mac](#node-for-mac)
+    - [Mac Users](#mac)
+    - [Linux Users](#linux)
   - [Environment Variables](#environment-variables)
     - [Azure Storage](#azure-storage)
     - [Express Session](#express-session)
@@ -29,6 +30,7 @@ node -v (check that the output is 'v7.0.0')
 git clone https://github.com/adiraj22/liberac
 cd liberac
 npm install
+create .env file and fill with the appropriate keys
 npm start
 navigate to http://localhost:3000
 ```
@@ -37,21 +39,27 @@ navigate to http://localhost:3000
 
 ### Node
 
-It requires that you have [Node](https://nodejs.org/en/) installed on your system.
+Liberac is served from an [Express](https://github.com/expressjs/express) server which requires that you have [Node](https://nodejs.org/en/) installed on your system.
 
-#### Node for Mac
+#### Mac
 
 For Mac users, the easiest way is using [Homebrew](https://brew.sh/). If you don't have it installed, you can do so by pasting the ruby install script into your terminal.
 
-Following that, you simply need to use brew like so
+Following that, you can install Node using Homebrew like so
 
 ```
 brew install node@7
 ```
 
-Usually for ongoing development, I would recommend [nvm](https://github.com/creationix/nvm) for managing Node versions but we're only using Node v7 for this MVP which is just above the current LTS. You should be perfectly fine with the Brew version.
+Once that's done, double check that your terminal outputs 'v7.0.0' by running `node -v`
 
-Once that's done, double check that your terminal returns 'v7.0.0' when you run `node -v`
+![A screenshot of a terminal showing Node is running version 7.0.0](/docs/img/node_version.png?raw=true)
+
+#### Linux
+
+If you're a Linux user, consult your package manager but be wary that your distro has a recent version of Node available.
+
+In place of that, I recommend checking out [nvm](https://github.com/creationix/nvm) or [n](https://github.com/tj/n) for version management.
 
 ### Environment Variables
 
@@ -71,23 +79,43 @@ Check example.env
 
 In order to deploy the database, you'll need a PostgreSQL instance. You can install it using `brew` but initially setup can be a bit fiddly.
 
-To simplify things, we'll be using [Docker](https://www.docker.com/) which allows us to host a PostgreSQL instance without actually installing it on our machine directly. It's basically a tiny virtual machine.
+To simplify things, we'll be using [Docker](https://www.docker.com/) which allows us to host a PostgreSQL instance without actually installing it on our machine directly. Put simply, think of it like a tiny virtual machine.
 
 #### Docker for Mac
 
-Docker community edition is available [here](https://store.docker.com/editions/community/docker-ce-desktop-mac?tab=description) by clicking the Get Docker button.
+Docker community edition is available [here](https://store.docker.com/editions/community/docker-ce-desktop-mac?tab=description) by clicking the Get Docker button which will download `Docker.dmg`.
 
-Instructions and screenshots are also included on the Community Edition page.
+![A screenshot of the Get Docker button](/docs/img/get_docker_button.png?raw=true)
+
+Instructions and screenshots are also included on the Community Edition page for further reference.
+
+Install like you would any application and then launch it. A cute whale carrying cargo containers will appear in your dock. It should prompt you once it's finished first time setup.
 
 I highly recommend picking up Kitematic by clicking on the Docker icon in the top taskbar and clicking Kitematic which should direct you to download it.
 
-Upon opening Kitematic, click the NEW button in the top left correct next to the Containers label. When presented by a search bar, look for "postgres" and the official Postgres container should appear at the top under Recommended.
+![A screenshot of the Docker menu with the Kitematic menu entry highlighted](/docs/img/get_kitematic.png?raw=true)
 
-Hit Create and Docker will clone the container. Once the icon in the left sidebar is green, click on postgres and check that the top heading states "RUNNING".
+Upon opening Kitematic, you'll be presented with a list of popular containers. You should see an entry for PostgreSQL so click `CREATE` and wait for the image to download.
 
-Once that's confirmed, hit Settings on the right, then Ports and finally, check that Docker port is `5432` and Published IP Port is `http://localhost:5432 TCP`.
+![A screenshot of the Docker container selection menu](/docs/img/docker_main_menu.png?raw=true)
 
-Once that's done, you should be also set to populate the database.
+Once it's done, you should see 'Postgres' at the top of the window with `RUNNING` in green beside it. We've still got a few more bits of setup left.
+
+![A screenshot showing Postgres is running](/docs/img/docker_postgres_container.png?raw=true)
+
+Hit `Settings` in the top right and then `Ports` which should display `DOCKER PORT` on the left and `PUBLISHED IP:PORT` on the right. On older Macs, `PUBLISHED IP` may also be called something like `MAC PORT`.
+
+![A screenshot of the Docker settings tab](/docs/img/docker_settings.png?raw=true)
+
+Click on the `PUBLISHED IP/MAC PORT` number and it'll change into a text box.
+
+![A screenshot of the Docker Published IP section](/docs/img/docker_ports.png?raw=true)
+
+Change it to `5432` which should now be identical to the Docker port on the left.
+
+![A screenshot of the Docker ports successfully set up](/docs/img/docker_configured_ports.png?raw=true)
+
+Once that's done, you can close or minimise Docker. It'll stay running in the taskbar. Postgres is now ready for you to start populating the database!
 
 ## Populating the database
 

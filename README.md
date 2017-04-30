@@ -85,7 +85,7 @@ To simplify things, we'll be using [Docker](https://www.docker.com/) which allow
 
 Docker community edition is available [here](https://store.docker.com/editions/community/docker-ce-desktop-mac?tab=description) by clicking the Get Docker button which will download `Docker.dmg`.
 
-![A screenshot of the Get Docker button](/docs/img/get_docker_button.png)
+![A screenshot of the Get Docker button](/docs/img/get_docker_button.png?raw=true)
 
 Instructions and screenshots are also included on the Community Edition page for further reference.
 
@@ -105,7 +105,15 @@ Once it's done, you should see 'Postgres' at the top of the window with `RUNNING
 
 Hit `Settings` in the top right and then `Ports` which should display `DOCKER PORT` on the left and `PUBLISHED IP:PORT` on the right. On older Macs, `PUBLISHED IP` may also be called something like `MAC PORT`.
 
-Click on the `PUBLISHED IP/MAC PORT` number and it'll change into a text box. Change it to `5432` which should now be identical to the Docker port on the left.
+![A screenshot of the Docker settings tab](/docs/img/docker_settings.png?raw=true)
+
+Click on the `PUBLISHED IP/MAC PORT` number and it'll change into a text box.
+
+![A screenshot of the Docker Published IP section](/docs/img/docker_ports.png?raw=true)
+
+Change it to `5432` which should now be identical to the Docker port on the left.
+
+![A screenshot of the Docker ports successfully set up](/docs/img/docker_configured_ports.png?raw=true)
 
 Once that's done, you can close or minimise Docker. It'll stay running in the taskbar. Postgres is now ready for you to start populating the database!
 

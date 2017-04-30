@@ -55,7 +55,9 @@ Once that's done, double check that your terminal outputs 'v7.0.0' by running `n
 
 #### Linux
 
+If you're a Linux user, consult your package manager but be wary that your distro has a recent version of Node available.
 
+In place of that, I recommend checking out [nvm](https://github.com/creationix/nvm) or [n](https://github.com/tj/n) for version management.
 
 ### Environment Variables
 
@@ -79,19 +81,23 @@ To simplify things, we'll be using [Docker](https://www.docker.com/) which allow
 
 #### Docker for Mac
 
-Docker community edition is available [here](https://store.docker.com/editions/community/docker-ce-desktop-mac?tab=description) by clicking the Get Docker button.
+Docker community edition is available [here](https://store.docker.com/editions/community/docker-ce-desktop-mac?tab=description) by clicking the Get Docker button which will download `Docker.dmg`.
 
-Instructions and screenshots are also included on the Community Edition page.
+Instructions and screenshots are also included on the Community Edition page for further reference.
+
+Install like you would any application and then launch it. A cute whale carrying cargo containers will appear in your dock. It should prompt you once it's finished first time setup.
 
 I highly recommend picking up Kitematic by clicking on the Docker icon in the top taskbar and clicking Kitematic which should direct you to download it.
 
-Upon opening Kitematic, click the NEW button in the top left correct next to the Containers label. When presented by a search bar, look for "postgres" and the official Postgres container should appear at the top under Recommended.
+Upon opening Kitematic, you'll be presented with a list of popular containers. You should see an entry for PostgreSQL so click `CREATE` and wait for the image to download.
 
-Hit Create and Docker will clone the container. Once the icon in the left sidebar is green, click on postgres and check that the top heading states "RUNNING".
+Once it's done, you should see 'Postgres' at the top of the window with `RUNNING` in green beside it. We've still got a few more bits of setup left.
 
-Once that's confirmed, hit Settings on the right, then Ports and finally, check that Docker port is `5432` and Published IP Port is `http://localhost:5432 TCP`.
+Hit `Settings` in the top right and then `Ports` which should display `DOCKER PORT` on the left and `PUBLISHED IP:PORT` on the right. On older Macs, `PUBLISHED IP` may also be called something like `MAC PORT`.
 
-Once that's done, you should be also set to populate the database.
+Click on the `PUBLISHED IP/MAC PORT` number and it'll change into a text box. Change it to `5432` which should now be identical to the Docker port on the left.
+
+Once that's done, Postgres is ready for you to start populating the database!
 
 ## Populating the database
 

@@ -53,6 +53,8 @@ brew install node@7
 
 Once that's done, double check that your terminal outputs 'v7.0.0' by running `node -v`
 
+![A screenshot of a terminal showing Node is running version 7.0.0](/docs/img/node_version.png?raw=true)
+
 #### Linux
 
 If you're a Linux user, consult your package manager but be wary that your distro has a recent version of Node available.
@@ -77,11 +79,13 @@ Check example.env
 
 In order to deploy the database, you'll need a PostgreSQL instance. You can install it using `brew` but initially setup can be a bit fiddly.
 
-To simplify things, we'll be using [Docker](https://www.docker.com/) which allows us to host a PostgreSQL instance without actually installing it on our machine directly. It's basically a tiny virtual machine.
+To simplify things, we'll be using [Docker](https://www.docker.com/) which allows us to host a PostgreSQL instance without actually installing it on our machine directly. Put simply, think of it like a tiny virtual machine.
 
 #### Docker for Mac
 
 Docker community edition is available [here](https://store.docker.com/editions/community/docker-ce-desktop-mac?tab=description) by clicking the Get Docker button which will download `Docker.dmg`.
+
+![A screenshot of the Get Docker button](/docs/img/get_docker_button.png)
 
 Instructions and screenshots are also included on the Community Edition page for further reference.
 
@@ -89,15 +93,21 @@ Install like you would any application and then launch it. A cute whale carrying
 
 I highly recommend picking up Kitematic by clicking on the Docker icon in the top taskbar and clicking Kitematic which should direct you to download it.
 
+![A screenshot of the Docker menu with the Kitematic menu entry highlighted](/docs/img/get_kitematic.png?raw=true)
+
 Upon opening Kitematic, you'll be presented with a list of popular containers. You should see an entry for PostgreSQL so click `CREATE` and wait for the image to download.
 
+![A screenshot of the Docker container selection menu](/docs/img/docker_main_menu.png?raw=true)
+
 Once it's done, you should see 'Postgres' at the top of the window with `RUNNING` in green beside it. We've still got a few more bits of setup left.
+
+![A screenshot showing Postgres is running](/docs/img/docker_postgres_container.png?raw=true)
 
 Hit `Settings` in the top right and then `Ports` which should display `DOCKER PORT` on the left and `PUBLISHED IP:PORT` on the right. On older Macs, `PUBLISHED IP` may also be called something like `MAC PORT`.
 
 Click on the `PUBLISHED IP/MAC PORT` number and it'll change into a text box. Change it to `5432` which should now be identical to the Docker port on the left.
 
-Once that's done, Postgres is ready for you to start populating the database!
+Once that's done, you can close or minimise Docker. It'll stay running in the taskbar. Postgres is now ready for you to start populating the database!
 
 ## Populating the database
 

@@ -125,9 +125,25 @@ Change it to `5432` which should now be identical to the Docker port on the left
 
 ![A screenshot of the Docker ports successfully set up](/docs/img/docker_configured_ports.png?raw=true)
 
-Once that's done, you can close or minimise Docker. It'll stay running in the taskbar. Postgres is now ready for you to start populating the database!
+Once that's done, you can close or minimise Docker. It'll stay running in the taskbar. Postgres is now ready and running.
 
 ## Populating the database
+
+We've got Postgres all "ready and running" but we still need to configure some bits on the inside. After this, we'll be done, I swear!
+
+If you're not used to fiddling with databases or Docker, this can get a bit confusing so I've made sure to provide screenshots for each step.
+
+In your terminal, connect to a bash shell within the docker container by entering `docker exec -it postgres bash`
+
+![A screenshot of a terminal about to connect to the docker container](/docs/img/db_docker_exec.png?raw=true)
+
+Next, we'll need to connect to the `postgres` user account by entering `su - postgres`
+
+![A screenshot of a terminal about to connect as the linux user called postgres](/docs/img/db_su_postgres.png?raw=true)
+
+After that, connect to Postgres itself by entering `psql`
+
+![A screenshot of a terminal about to connect to postgres](/docs/img/db_docker_psql.png?raw=true)
 
 Now that you've got Node and Docker set up, clone the liberac repo, navigate to it and run `npm install` to install all the required modules.
 
@@ -145,8 +161,8 @@ The contents of the public folder is served at `/`. If you were to place an imag
 
 ## Something broke! I'm stuck!
 
-If you've just generally lost or need help setting up Node, Docker or the repo, you can email [marcus](mailto:marcuscrane@liberac.co.nz) or [message him on Slack](https://liberac.slack.com/messages/@marcus)
+If you've just generally lost or need help setting up Node, Docker or the repo, you can email [Marcus](mailto:marcus.crane@liberac.co.nz) or [message him on Slack](https://liberac.slack.com/messages/@marcus)
 
 If it's an actual error that you're wanting to report, Node should spit out a file called npm-debug.log into the liberac folder upon any issues, as well as outputting those errors to the terminal.
 
-If you're unable to figure out what the error means, feel free to log it as an [issue](https://github.com/adiraj/liberac#issues) or send it to the #liberac-team channel on Slack since presumably someone else might have the error sooner or later as well.
+If you're unable to figure out what the error means, send the `npm-debug.log` file as an attachment to [Marcus](marcus@thingsima.de) via email or if you know how, log it as an [issue](https://github.com/adiraj/liberac#issues) on Github.

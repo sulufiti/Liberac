@@ -9,7 +9,7 @@ const passport = require('passport')
 const session = require('cookie-session')
 const fileupload = require('express-fileupload')
 const hbs = require('hbs')
-const swag = require('swag')
+const Swag = require('swag')
 
 // Local imports
 const setupPassport = require('./auth').setupPassport
@@ -25,7 +25,6 @@ let cookieSettings = {
   maxAge: 24 * 60 * 60 * 1000
 }
 
-swag.registerHelpers(hbs)
 
 
 // Routes
@@ -43,6 +42,7 @@ const rates = require('./routes/rates')
 app.set('views', path.join(__dirname, '/views'))
 app.set('view engine', 'hbs')
 hbs.registerPartials(path.join(__dirname, '/views/partials'))
+Swag.registerHelpers(hbs)
 app.locals.pretty = true
 
 // Enabling middlewares

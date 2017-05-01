@@ -10,7 +10,7 @@ const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
 
 router.get('/', (req, res, next) => {
-  res.render('index')
+  res.render('index', { scripts: 'index' })
 })
 
 router.post('/', (req, res, next) => {
@@ -73,7 +73,7 @@ router.get('/comingsoon', (req, res, next) => {
 })
 
 router.get('/compare', (req, res, next) => {
-  res.render('compare', { comparison: true })
+  res.render('compare', { scripts: 'comparison' })
 })
 
 router.get('/dashboard', (req, res, next) => {

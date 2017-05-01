@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-- [The short version aka tl;dr](#the-short-version)
+- [The short version aka TL;DR](#the-short-version)
 - [Prerequisites](#prerequisites)
   - [Node](#node)
     - [Mac Users](#mac)
@@ -10,7 +10,7 @@
   - [Environment Variables](#environment-variables)
   - [Docker](#docker)
     - [Mac](#docker-for-mac)
-- [Populating the database](#populating-the-database)
+  - [Configuring PostgreSQL](#configuring-postgresql)
 - [Launching Liberac](#launching-liberac)
 - [Contributing static assets](#contributing-static-assets)
 - [Something broke! I'm stuck!](#something-broke-im-stuck)
@@ -19,16 +19,16 @@
 
 I'll assume you know exactly what you're doing:
 
-```
-brew install node@7
-node -v (check that the output is 'v7.0.0')
-git clone https://github.com/adiraj22/liberac
-cd liberac
-npm install
-create .env file and fill with the appropriate keys
-npm start
-navigate to http://localhost:3000
-```
+* Install node version 7.0.0 (or any version after is probably fine)
+* Fetch a postgres docker container and change ports to `5432`
+* Connect to postgres docker container (`docker exec -it postgres bash`) and create a new db called `development`
+* `git clone https://github.com/adiraj22/liberac`
+* `cd liberac`
+* `npm install`
+* Create .env file and fill with the appropriate keys
+* `npm run resetdb` (depends on NODE_ENV specified in the env file)
+* `npm start`
+* Navigate to `http://localhost:3000`
 
 ## Prerequisites
 
@@ -125,13 +125,47 @@ Change it to `5432` which should now be identical to the Docker port on the left
 
 ![A screenshot of the Docker ports successfully set up](/docs/img/docker_configured_ports.png?raw=true)
 
-Once that's done, you can close or minimise Docker. It'll stay running in the taskbar. Postgres is now ready for you to start populating the database!
+Once that's done, you can close or minimise Docker. It'll stay running in the taskbar. Postgres is now ready and running.
 
-## Populating the database
+### Configuring PostgreSQL
+
+We've got Postgres all "ready and running" but we still need to configure some bits on the inside. After this, we'll be done, I swear!
+
+If you're not used to fiddling with databases or Docker, this can get a bit confusing so I've made sure to provide screenshots for each step.
+
+In your terminal, connect to a bash shell within the docker container by entering `docker exec -it postgres bash`
+
+![A screenshot of a terminal about to connect to the docker container](/docs/img/db_docker_exec.png?raw=true)
+
+Next, we'll need to connect to the `postgres` user account by entering `su - postgres`
+
+![A screenshot of a terminal about to connect as the linux user called postgres](/docs/img/db_su_postgres.png?raw=true)
+
+After that, connect to Postgres itself by entering `psql`
+
+![A screenshot of a terminal about to connect to postgres](/docs/img/db_docker_psql.png?raw=true)
+
+Note: The following commands end with a semi-colon `;` which is required for Postgres commands. It's not a typo. The case of the commands however doesn't matter. It's just like that due to convention.
+
+Once we're inside, we need to create a table called `development` which is where our development data will be stored. This is done by entering `CREATE DATABASE development;`.
+
+![A screenshot of a terminal about to create a database called development](/docs/img/db_create.png?raw=true)
+
+You should see `CREATE DATABASE` returned followed by a empty prompt again. You can check that the database was created by entering `\c development` which will then connect to our newly created database.
+
+![A screenshot of a terminal about to connect to the development database](/docs/img/db_confirm_success.png?raw=true)
+
+Now we're ready to exit out by entering `\q` followed by `exit` and then `exit` once more. You should be completed out of the Docker container and back into your regular environment.
+
+### Cloning the repo
 
 Now that you've got Node and Docker set up, clone the liberac repo, navigate to it and run `npm install` to install all the required modules.
 
-Now that we have everything you need, all that's needed is to run `npm run resetdb` which will apply the migration and seed files to the database giving us some fake users and a running example of the Liberac production app
+Now that we have everything you need, all that's needed is to run `npm run resetdb` which will apply the migration and seed files to the database giving us some fake users and a running example of the Liberac production app!
+
+Finally, you'll need a copy of the .env file described above which you need to place inside the `liberac` folder at the root (eg; alongside package.json and servercfg.js)
+
+That should be everything you need!
 
 ## Launching Liberac
 
@@ -145,8 +179,8 @@ The contents of the public folder is served at `/`. If you were to place an imag
 
 ## Something broke! I'm stuck!
 
-If you've just generally lost or need help setting up Node, Docker or the repo, you can email [marcus](mailto:marcuscrane@liberac.co.nz) or [message him on Slack](https://liberac.slack.com/messages/@marcus)
+If you've just generally lost or need help setting up Node, Docker or the repo, you can email [Marcus](mailto:marcus.crane@liberac.co.nz) or [message him on Slack](https://liberac.slack.com/messages/@marcus)
 
 If it's an actual error that you're wanting to report, Node should spit out a file called npm-debug.log into the liberac folder upon any issues, as well as outputting those errors to the terminal.
 
-If you're unable to figure out what the error means, feel free to log it as an [issue](https://github.com/adiraj/liberac#issues) or send it to the #liberac-team channel on Slack since presumably someone else might have the error sooner or later as well.
+If you're unable to figure out what the error means, send the `npm-debug.log` file as an attachment to [Marcus](marcus@thingsima.de) via email or if you know how, log it as an [issue](https://github.com/adiraj/liberac#issues) on Github.

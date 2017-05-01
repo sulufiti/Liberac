@@ -83,7 +83,7 @@ You'll need to acquire API keys for those services (by contacting [marcus](mailt
 | MANDRILL_API_KEY | Used for sending activation/welcome emails etc. Alternatively, use a test key to simulate sending | [Mandrill](http://kb.mailchimp.com/mandrill/add-or-remove-mandrill) |
 | PUSHOVER_USER | Used to send notifications to team members phones upon new signups. Currently, all team members are assigned under one account (this one) | [Pushover](https://pushover.net/) |
 | PUSHOVER_TOKEN | Same as above. The token to use for sending notifications | [Pushover](https://pushover.net/) |
-| SENTRY_DSN | Used with (sentry)[https://sentry.io] for error logging on the server. Disabled under development environment | [Sentry](https://sentry.io/welcome/) |
+| SENTRY_DSN | Equivalent of an API token for Sentry which is used for error logging on the server. Disabled under development environment | [Sentry](https://sentry.io/welcome/) |
 
 ### Docker
 

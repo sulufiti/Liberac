@@ -9,6 +9,7 @@ const passport = require('passport')
 const session = require('cookie-session')
 const fileupload = require('express-fileupload')
 const hbs = require('hbs')
+const swag = require('swag')
 
 // Local imports
 const setupPassport = require('./auth').setupPassport
@@ -24,14 +25,7 @@ let cookieSettings = {
   maxAge: 24 * 60 * 60 * 1000
 }
 
-// const authMiddleware = () => {
-//   return (req, res, next) => {
-//     if (req.isAuthenticated()) {
-//       return next()
-//     }
-//     res.redirect('/login')
-//   }
-// }
+swag.registerHelpers(hbs)
 
 
 // Routes

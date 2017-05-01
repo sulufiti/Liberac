@@ -21,11 +21,12 @@
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h4 class="modal-title" id="myModalLabel">Come ride with Liberac and jump aboard our beta.</h4>
+                                  <h4 class="modal-title" id="signup-welcome">Come ride with Liberac and jump aboard our beta.</h4>
+                                  <h4 class="modal-title" id="signup-success" style="display: none">Thanks for registering with Liberac!</h4>
                                 </div>
-                                <form method="POST" action="/">
+                                <form id="betasignups">
                                 <div class="modal-body">
-                                  <div class="row">
+                                  <div class="row" id="name-input">
                                     <div class="col-md-6">
                                       <div class="form-group">
                                         <input type="text" class="form-control" id="firstName" name="firstName" tabindex="1" placeholder="First name" required>
@@ -37,14 +38,19 @@
                                       </div>
                                     </div>
                                   </div>
-                                    <div class="row">
+                                    <div class="row" id="email-input">
                                       <div class="col-md-12">
                                         <div class="form-group">
                                           <input type="email" class="form-control" id="emailAddress" name="email" tabindex="3" placeholder="Email address" required>
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" id="success-message" style="display: none">
+                                      <div class="col-md-12">
+                                        <p style="color: black">We've just received your application and have sent you an email with some further information</p>
+                                      </div>
+                                    </div>
+                                    <div class="row" id="privacy-reminder">
                                       <div class="col-md-12">
                                         <p class="text-muted small redText">We respect your privacy. Your information will not be shared.</p>
                                       </div>
@@ -52,7 +58,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-default" tabindex="5" data-dismiss="modal">Close</button>
-                                  <button type="submit" class="btn btn-danger" tabindex="4">Sign up</button>
+                                  <button type="submit" class="btn btn-danger" tabindex="4" id="submit-interest">Sign Up</button>
                                 </div>
                                 </form> 
                               </div>

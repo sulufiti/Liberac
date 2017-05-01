@@ -19,16 +19,16 @@
 
 I'll assume you know exactly what you're doing:
 
-```
-brew install node@7
-node -v (check that the output is 'v7.0.0')
-git clone https://github.com/adiraj22/liberac
-cd liberac
-npm install
-create .env file and fill with the appropriate keys
-npm start
-navigate to http://localhost:3000
-```
+* Install node version 7.0.0 (or any version after is probably fine)
+* Fetch a postgres docker container and change ports to `5432`
+* Connect to postgres docker container (`docker exec -it postgres bash`) and create a new db called `development`
+* `git clone https://github.com/adiraj22/liberac`
+* `cd liberac`
+* `npm install`
+* Create .env file and fill with the appropriate keys
+* `npm run resetdb` (depends on NODE_ENV specified in the env file)
+* `npm start`
+* Navigate to `http://localhost:3000`
 
 ## Prerequisites
 

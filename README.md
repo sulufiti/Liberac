@@ -77,7 +77,7 @@ You'll need to acquire API keys for those services (by contacting [marcus](mailt
 #### Externally required keys
 
 | Variable | What it does | Website |
-| -------- | ------------ |
+| -------- | ------------ | ------- |
 | AZURE_STORAGE_ACCOUNT | Account to use for Azure storage (used for passport and address proof files) | [Azure File Storage](https://azure.microsoft.com/en-us/services/storage/files/) |
 | AZURE_STORAGE_ACCESS_KEY | Same as above, the access key to use for, y'know, accessing storage | [Azure File Storage](https://azure.microsoft.com/en-us/services/storage/files/) |
 | MANDRILL_API_KEY | Used for sending activation/welcome emails etc. Alternatively, use a test key to simulate sending | [Mandrill](http://kb.mailchimp.com/mandrill/add-or-remove-mandrill) |

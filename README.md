@@ -8,11 +8,6 @@
     - [Mac Users](#mac)
     - [Linux Users](#linux)
   - [Environment Variables](#environment-variables)
-    - [Azure Storage](#azure-storage)
-    - [Express Session](#express-session)
-    - [Mandrill](#mandrill)
-    - [PostgreSQL](#postgresql)
-    - [Sentry](#sentry)
   - [Docker](#docker)
     - [Mac](#docker-for-mac)
 - [Populating the database](#populating-the-database)
@@ -63,17 +58,32 @@ In place of that, I recommend checking out [nvm](https://github.com/creationix/n
 
 ### Environment Variables
 
-Coming soon...
+In order to connect to the database and a few other bits, you'll need to set some locally required keys.
 
-Check example.env
+We also use some external services which are all documented below. 
 
-#### Azure Storage
+You'll need to acquire API keys for those services (by contacting [marcus](mailto:marcuscrane@liberac.co.nz) for a copy of the development `.env`. I've also linked URLs for the sites if you want to acquire your own (eg; if this repo ever becomes public)
 
-#### Mandrill
+#### Locally required keys
 
-#### PostgreSQL
+| Variable | What it does |
+| -------- | ------------ |
+| DEV_DB   | Specifies the name of the development database to use |
+| DEV_USER | Specifies the name of the postgres user to use for development |
+| DEV_PASS | Same deal as above but for the development user's password |
+| EXPRESS_SESSION_SECRET | The name of the key used to protect user cookies |
+| NODE_ENV | Specifies the current environment. eg; `DEVELOPMENT` disables sending of emails and requiring user activation |
 
-#### Sentry
+#### Externally required keys
+
+| Variable | What it does | Website |
+| -------- | ------------ |
+| AZURE_STORAGE_ACCOUNT | Account to use for Azure storage (used for passport and address proof files) | [Azure File Storage](https://azure.microsoft.com/en-us/services/storage/files/) |
+| AZURE_STORAGE_ACCESS_KEY | Same as above, the access key to use for, y'know, accessing storage | [Azure File Storage](https://azure.microsoft.com/en-us/services/storage/files/) |
+| MANDRILL_API_KEY | Used for sending activation/welcome emails etc. Alternatively, use a test key to simulate sending | [Mandrill](http://kb.mailchimp.com/mandrill/add-or-remove-mandrill) |
+| PUSHOVER_USER | Used to send notifications to team members phones upon new signups. Currently, all team members are assigned under one account (this one) | [Pushover](https://pushover.net/) |
+| PUSHOVER_TOKEN | Same as above. The token to use for sending notifications | [Pushover](https://pushover.net/) |
+| SENTRY_DSN | Used with (sentry)[https://sentry.io] for error logging on the server. Disabled under development environment | [Sentry](https://sentry.io/welcome/) |
 
 ### Docker
 
@@ -135,7 +145,7 @@ The contents of the public folder is served at `/`. If you were to place an imag
 
 ## Something broke! I'm stuck!
 
-If you've just generally lost or need help setting up Node, Docker or the repo, you can email [marcus](mailto:marcus@thingsima.de) or message him on Slack
+If you've just generally lost or need help setting up Node, Docker or the repo, you can email [marcus](mailto:marcuscrane@liberac.co.nz) or [message him on Slack](https://liberac.slack.com/messages/@marcus)
 
 If it's an actual error that you're wanting to report, Node should spit out a file called npm-debug.log into the liberac folder upon any issues, as well as outputting those errors to the terminal.
 

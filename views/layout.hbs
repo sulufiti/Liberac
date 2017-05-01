@@ -87,7 +87,7 @@
   <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src=“https://www.googletagmanager.com/ns.html?id=GTM-N2FNRB7”
-    height=“0" width=“0” style=“display:none;visibility:hidden”></iframe></noscript>
+    height="0" width=“0” style=“display:none;visibility:hidden”></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     {{>header}}
@@ -99,8 +99,11 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
 
-    {{#if comparison}}
+    {{#is scripts 'comparison'}}
     <script src="assets/js/comparison-slider.js"></script>
-    {{/if}}
+    {{/is}}
+
+    {{#is scripts 'registerinterest'}}
+    <script src="assets/js/register-interest.js"></script>
   </body>
 </html>

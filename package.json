@@ -42,6 +42,7 @@
     "passport-local": "^1.0.0",
     "pg": "^6.1.5",
     "pushover-promise": "^1.0.0",
+    "swag": "^0.7.0",
     "uuid": "^3.0.1",
     "x-ray": "^2.3.2"
   },

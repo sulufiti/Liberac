@@ -46,7 +46,7 @@ Swag.registerHelpers(hbs)
 app.locals.pretty = true
 
 // Enabling middlewares
-app.disable('X-Powered-By')
+app.disable('x-powered-by')
 app.use(Raven.requestHandler())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))

@@ -7,15 +7,17 @@ module.exports.registerInterest = function(query) {
     obj('last_name').required().isString().isAlpha()
     obj('email').required().isEmail()
   })
+  return validator.run()
 }
 
-module.exports.registration = function(query) {
+const registration = (query) => {
   validator(query).required().isObject((obj) => {
-    obj('email').required().isEmail()
-    obj('password').required().isString()
     obj('first_name').required().isString().isAlpha()
     obj('last_name').required().isString().isAlpha()
+    obj('email').required().isString().isEmail()
+    obj('password').required().isString()
   })
+  return validator.run()
 }
 
 module.exports.contact = function(query) {
@@ -29,4 +31,5 @@ module.exports.contact = function(query) {
     obj('email').required().isEmail()
     obj('street').required().
   })
+  return validator.run()
 }

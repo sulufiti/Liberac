@@ -3,33 +3,92 @@
     <div class="row">
       <div class="col-lg-12">
 
-        <h2>Liberac Registration Page</h2>
-        <form method="POST" action="/register">
-          <div class="well">
-            <div class="form-group">
-              <label for="first_name" class="requiredField">First Name</label>
-              <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Jamie" required>
+        <h2>Register</h2>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Basic Details
+                </a>
+              </h4>
             </div>
-            <div class="form-group">
-              <label for="last_name" class="requiredField">Last Name</label>
-              <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Smith" required>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <form>
+                  <label for="first_name" class="requiredField">First Name</label>
+                  <input type="text" name="first_name" required class="form-control" id="first_name" placeholder="Jamie">
+                  <br>
+                  <label for="last_name" class="requiredField">Last Name</label>
+                  <input type="text" name="last_name" required class="form-control" id="last_name" placeholder="Smith">
+                  <br>
+                  <label for="username" class="requiredField">Email Address</label>
+                  <input type="email" name="username" required class="form-control" id="username" placeholder="jamie.smith@gmail.com">
+                  <br>
+                  <label for="password" class="requiredField">Password</label>
+                  <input type="password" name="password" required class="form-control" id="password">
+                  <br>
+                  <button type="submit" class="btn btn-success" role="button">Continue</button>
+                </form>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="email" class="requiredField">Email</label>
-              <input type="email" name="email" class="form-control" id="email" placeholder="user@example.com" required>
-            </div>
-            <div class="form-group">
-              <label for="password" class="requiredField">Password</label>
-              <input type="password" name="password" class="form-control" id="password" required>
-            </div>
-            <div class="form-group">
-              <label for="confirm_password" class="requiredField">Confirm Password</label>
-              <input type="password" name="confirm_password" class="form-control" id="confirm_password" required>
-            </div>
-            
-            <button type="submit" class="btn btn-danger" id="register">Register</button>
           </div>
-        </form>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Contact Details
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body">
+                <form>
+                  <label for="street" class="requiredField">Street</label>
+                  <input type="text" name="street" required class="form-control" id="street" placeholder="123 Example Street">
+                  <br>
+                  <label for="suburb">Suburb</label>
+                  <input type="text" name="suburb" class="form-control" id="suburb" placeholder="Lower Hutt">
+                  <br>
+                  <label for="city" class="requiredField">City</label>
+                  <input type="email" name="city" required class="form-control" id="city" placeholder="Wellington">
+                  <br>
+                  <label for="postcode" class="requiredField">Postcode</label>
+                  <input type="postcode" name="postcode" required class="form-control" id="postcode" placeholder="1234">
+                  <br>
+                  <button type="submit" class="btn btn-success" role="button">Continue</button>
+                  <button type="submit" class="btn btn-warning" role="button">Go Back</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Identity Verification
+                </a>
+              </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+              <div class="panel-body">
+                <form>
+                  <label for="passport_number" class="requiredField">Passport Number</label>
+                  <input type="text" name="passport_number" required class="form-control" id="passport_number" placeholder="DM1234567">
+                  <br>
+                  <label for="passport_expiry_date" class="requiredField">Passport Expiry Date</label>
+                  <input type="date" name="passport_expiry_date" required class="form-control" id="passport_expiry_date">
+                  <br>
+                  <label for="passport_scan">Passport Photo/Scan</label>
+                  <input type="file" name="passport_scan" required>
+                  <br>
+                  <button type="submit" class="btn btn-success" role="button">Confirm</button>
+                  <button type="submit" class="btn btn-warning" role="button">Go Back</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

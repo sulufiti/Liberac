@@ -1,7 +1,7 @@
 const Validator = require('better-validator')
 const validator = new Validator()
 
-module.exports.registerInterest = function(query) {
+module.exports.registerInterest = function (query) {
   validator(query).required().isObject((obj) => {
     obj('first_name').required().isString().isAlpha()
     obj('last_name').required().isString().isAlpha()
@@ -10,7 +10,7 @@ module.exports.registerInterest = function(query) {
   return validator.run()
 }
 
-const registration = (query) => {
+module.exports.registration = function (query) {
   validator(query).required().isObject((obj) => {
     obj('first_name').required().isString().isAlpha()
     obj('last_name').required().isString().isAlpha()
@@ -20,7 +20,7 @@ const registration = (query) => {
   return validator.run()
 }
 
-module.exports.contact = function(query) {
+module.exports.contact = function (query) {
   validator(query).required().isObject((obj) => {
     obj('user_id').required().isUUID()
     obj('nickname').required().isString().isAlpha()
@@ -29,7 +29,7 @@ module.exports.contact = function(query) {
     obj('last_name').required().isString().isAlpha()
     obj('phone').required().isMobilePhone()
     obj('email').required().isEmail()
-    obj('street').required().
+    obj('street').required()
   })
   return validator.run()
 }

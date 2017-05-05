@@ -5,6 +5,7 @@ const passport = require('passport')
 const bcrypt = require('bcrypt')
 const mailer = require('../helpers/mailer')
 const users = require('../helpers/users')
+const validate = require('../helpers/validation')
 const saltRounds = 10
 
 router.get('/register', (req, res, next) => {
@@ -12,27 +13,32 @@ router.get('/register', (req, res, next) => {
 })
 
 router.post('/register', (req, res, next) => {
-  bcrypt.hash(req.body.password, saltRounds)
-  .then(hash => req.body.password = hash)
-  .then(() => {
-    return users.register(req.body)
-    .then(() => res.redirect('/login?activation_prompt=show'))
+  if (!validate.registration(req.body)) {
+    bcrypt.hash(req.body.password, saltRounds)
+    .then(hash => req.body.password = hash)
     .then(() => {
-      if (process.env.NODE_ENV !== 'development') {
-        users.findByEmail(req.body.email)
-        .then((user) => {
-          mailer.sendActivation(user.id, user.first_name, user.last_name, user.email)
-        })
-      }
+      return users.register(req.body)
+      .then(() => res.redirect('/login?activation_prompt=show'))
+      .then(() => {
+        if (process.env.NODE_ENV !== 'development') {
+          users.findByEmail(req.body.email)
+          .then((user) => {
+            mailer.sendActivation(user.id, user.first_name, user.last_name, user.email)
+          })
+        }
+      })
+      .catch((err) => {
+        Raven.captureException(err)
+      })
     })
     .catch((err) => {
-      Raven.captureException(err)
+      console.log(err)
+      Raven.captureException(err, { user: req.body })
     })
-  })
-  .catch((err) => {
-    console.log(err)
-    Raven.captureException(err, { user: req.body })
-  })
+  } else {
+    console.error('invalid registration details')
+    res.redirect('/register')
+  }
 })
 
 router.get('/activate/:id', (req, res, next) => {

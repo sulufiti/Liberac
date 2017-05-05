@@ -5,6 +5,7 @@ const passport = require('passport')
 const msg = new Message(process.env.PUSHOVER_USER, process.env.PUSHOVER_TOKEN)
 const router = express.Router()
 const mailer = require('../helpers/mailer')
+const validate = require('../helpers/validation')
 const Knex = require('knex')
 const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
@@ -14,7 +15,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  if (req.body.firstName && req.body.lastName && req.body.email) {
+  if (!validate.registerInterest(req.body)) {
     knex('contacts')
     .insert({
       first_name: req.body.firstName,
@@ -25,13 +26,19 @@ router.post('/', (req, res, next) => {
       res.redirect('/')
     })
     .then(() => {
-      msg.push(`${req.body.firstName} ${req.body.lastName} just registered their interest!`)
+      if (process.env.NODE_ENV !== 'development') {
+        msg.push(`${req.body.firstName} ${req.body.lastName} just registered their interest!`)
+      }
     })
     .then(() => {
-      mailer.notifyTeam(`${req.body.firstName} ${req.body.lastName}`, req.body.email)
+      if (process.env.NODE_ENV !== development) {
+        mailer.notifyTeam(`${req.body.firstName} ${req.body.lastName}`, req.body.email)
+      }
     })
     .then(() => {
-      mailer.sendWelcome(req.body.firstName, req.body.lastName, req.body.email)
+      if (process.env.NODE_ENV !== development) {
+        mailer.sendWelcome(req.body.firstName, req.body.lastName, req.body.email)
+      }
     })
     .catch((err) => {
       console.error(err)
@@ -45,13 +52,7 @@ router.post('/', (req, res, next) => {
       res.redirect('/')
     })
   } else {
-    Raven.captureMessage('Tried to send an empty sign up. Spam bot?', {
-      level: 'warning',
-      user: {
-        name: `${req.body.firstName} ${req.body.lastName}`,
-        email: req.body.email
-      }
-    })
+    console.log('registration of interest failed to pass input validation')
     res.redirect('/')
   }
 })

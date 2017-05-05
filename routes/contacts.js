@@ -19,36 +19,48 @@ router.get('/contacts/add', (req, res, next) => {
 })
 
 router.post('/contacts/add', (req, res, next) => {
-  contacts.addContact(req.session.passport.user.id, req.body)
-  .then(() => {
-    res.redirect('/contacts')
-  })
-  .catch((err) => {
-    console.error(err)
-    Raven.captureException(err)
-  })
+  if (!validate.contact(req.body)) {
+    contacts.addContact(req.session.passport.user.id, req.body)
+    .then(() => {
+      res.redirect('/contacts')
+    })
+    .catch((err) => {
+      console.error(err)
+      Raven.captureException(err)
+    })
+  } else {
+    console.error('failed to add contact bad inputs')
+  }
 })
 
 router.post('/contacts/edit/:name', (req, res, next) => {
-  contacts.getContactByNickname(req.session.passport.user.id, req.params.name)
-  .then((contactDetails) => {
-    res.render('addcontact', { name: req.session.passport.user.first_name, contact: contactDetails })
-  })
-  .catch((err) => {
-    console.error(err)
-    Raven.captureException(err)
-  })
+  if (!validate.contact(req.body)) {
+    contacts.getContactByNickname(req.session.passport.user.id, req.params.name)
+    .then((contactDetails) => {
+      res.render('addcontact', { name: req.session.passport.user.first_name, contact: contactDetails })
+    })
+    .catch((err) => {
+      console.error(err)
+      Raven.captureException(err)
+    })
+  } else {
+    console.error('failed to edit contact bad inputs')
+  }
 })
 
 router.post('/contacts/update/:name', (req, res, next) => {
-  contacts.updateContact(req.session.passport.user.id, req.body)
-  .then(() => {
-    res.redirect('/contacts')
-  })
-  .catch((err) => {
-    console.error(err)
-    Raven.captureException(err)
-  })
+  if (!validate.contact(req.body)) {
+    contacts.updateContact(req.session.passport.user.id, req.body)
+    .then(() => {
+      res.redirect('/contacts')
+    })
+    .catch((err) => {
+      console.error(err)
+      Raven.captureException(err)
+    })
+  } else {
+    console.error('failed to update contact bad inputs')
+  }
 })
 
 module.exports = router

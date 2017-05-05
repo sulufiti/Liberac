@@ -30,6 +30,8 @@ router.post('/contacts/add', (req, res, next) => {
     })
   } else {
     console.error('failed to add contact bad inputs')
+    Raven.captureMessage(req.body)
+    res.redirect('/contacts')
   }
 })
 
@@ -45,6 +47,8 @@ router.post('/contacts/edit/:name', (req, res, next) => {
     })
   } else {
     console.error('failed to edit contact bad inputs')
+    Raven.captureMessage(req.body)
+    res.redirect('/contacts')
   }
 })
 
@@ -60,6 +64,8 @@ router.post('/contacts/update/:name', (req, res, next) => {
     })
   } else {
     console.error('failed to update contact bad inputs')
+    Raven.captureMessage(req.body)
+    res.redirect('/contacts')
   }
 })
 

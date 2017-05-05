@@ -37,6 +37,7 @@ router.post('/register', (req, res, next) => {
     })
   } else {
     console.error('invalid registration details')
+    Raven.captureMessage(req.body)
     res.redirect('/register')
   }
 })

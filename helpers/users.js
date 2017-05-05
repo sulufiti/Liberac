@@ -5,7 +5,7 @@ const moment = require('moment')
 const Raven = require('raven')
 const uuidV4 = require('uuid/v4')
 
-module.exports.register = function(registration) {
+module.exports.register = function (registration) {
   let user = {
     id: uuidV4(),
     email: registration.email,
@@ -47,7 +47,7 @@ module.exports.findByID = function (id) {
   })
 }
 
-module.exports.fetchUserBalance = function(id) {
+module.exports.fetchUserBalance = function (id) {
   return knex('users')
   .where('id', id)
   .then((user) => { return user[0].balance })

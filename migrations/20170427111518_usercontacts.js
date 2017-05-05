@@ -1,4 +1,4 @@
-exports.up = function(knex, Promise) {
+exports.up = function (knex, Promise) {
   return knex.schema.createTableIfNotExists('usercontacts', (table) => {
     table.uuid('id').primary()
     table.uuid('user_id').notNullable()
@@ -16,6 +16,6 @@ exports.up = function(knex, Promise) {
   })
 }
 
-exports.down = function(knex, Promise) {
+exports.down = function (knex, Promise) {
   return knex.schema.dropTableIfExists('usercontacts')
 }

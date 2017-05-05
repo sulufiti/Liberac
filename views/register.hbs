@@ -93,6 +93,14 @@
               <div class="panel-body">
                 <form>
                   <div class="form-group">
+                    <label for="passport_first_name" class="requiredField">First Name</label>
+                    <input type="text" name="passport_first_name" required class="form-control" id="passport_first_name" placeholder="DM1234567">
+                  </div>
+                  <div class="form-group">
+                    <label for="passport_last_name" class="requiredField">Passport Number</label>
+                    <input type="text" name="passport_last_name" required class="form-control" id="passport_last_name" placeholder="DM1234567">
+                  </div>
+                  <div class="form-group">
                     <label for="passport_number" class="requiredField">Passport Number</label>
                     <input type="text" name="passport_number" required class="form-control" id="passport_number" placeholder="DM1234567">
                   </div>
@@ -101,11 +109,43 @@
                     <input type="date" name="passport_expiry_date" required class="form-control" id="passport_expiry_date">
                   </div>
                   <div class="form-group">
+                    <label for="nationality" class="requiredField">Country</label>
+                    <select class="form-control" name="nationality">
+                      <option value="placeholder">Placeholder</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="issuing_country" class="requiredField">Country of Issue</label>
+                    <select class="form-control" name="issuing_country">
+                      <option value="NZ" selected>New Zealand</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
                     <label for="passport_scan">Passport Photo/Scan</label>
                     <input type="file" name="passport_scan" required>
                   </div>
                   <button type="submit" class="btn btn-success" role="button">Confirm</button>
                   <button type="submit" class="btn btn-warning" role="button">Go Back</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingFour">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse" aria-expanded="false" aria-controls="collapse">
+                  Proof of Address
+                </a>
+              </h4>
+            </div>
+            <div id="collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+              <div class="panel-body">
+                <form>
+                  <div class="form-group">
+                    <label for="proof_of_address">Proof of Address</label>
+                    <input type="file" name="proof_of_address" required>
+                  </div>
+                  <button type="submit" class="btn btn-success" role="button">Complete Registration</button>
                 </form>
               </div>
             </div>

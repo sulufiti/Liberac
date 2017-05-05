@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-12">
         {{>navigation}}
-        <h2>Welcome {{user.first_name}}! Your current balance is ${{user.balance}}.</h2>
+        <h4>Welcome {{user.first_name}}! Your current balance is ${{user.balance}}.</h4>
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
           <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne">
@@ -16,10 +16,13 @@
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
                 <form>
-                  <label for="receiverName" class="requiredField">Receiver Name</label>
-                  <input type="text" name="receiverName" required class="form-control" id="receiverName" placeholder="Jamie Smith">
-                  <label for="bankAccount" class="requiredField">Bank Account Details</label>
-                  <input type="text" name="bankAccount" required class="form-control" id="bankAccount" placeholder="Jamie Smith">
+                  <label for="receiver_name" class="requiredField">Receiver Name</label>
+                  <input type="text" name="receiver_name" required class="form-control" id="receiver_name" placeholder="Jamie Smith">
+                  <br>
+                  <label for="bank_account" class="requiredField">Bank Account Details</label>
+                  <input type="text" name="bank_account" required class="form-control" id="bank_account" placeholder="12-3456-1234567-000">
+                  <br>
+                  <button type="submit" class="btn btn-success" role="button">Confirm</button>
                 </form>
               </div>
             </div>
@@ -28,13 +31,21 @@
             <div class="panel-heading" role="tab" id="headingTwo">
               <h4 class="panel-title">
                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Collapsible Group Item #2
+                  Amount to Send
                 </a>
               </h4>
             </div>
             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
               <div class="panel-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                <form>
+                  <label for="amount_to_send" class="requiredField">Send Amount</label>
+                  <input type="text" name="amount_to_send" required class="form-control" id="amount_to_send" placeholder="Jamie Smith">
+                  <br>
+                  <label for="bank_account" class="requiredField">Bank Account Details</label>
+                  <input type="text" name="bank_account" required class="form-control" id="bank_account" placeholder="Jamie Smith">
+                  <br>
+                  <button type="submit" class="btn btn-success" role="button">Confirm</button>
+                </form>
               </div>
             </div>
           </div>
@@ -42,13 +53,38 @@
             <div class="panel-heading" role="tab" id="headingThree">
               <h4 class="panel-title">
                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Collapsible Group Item #3
+                  Payment Details
                 </a>
               </h4>
             </div>
             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
               <div class="panel-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                <form>
+                  <label for="card_number" class="requiredField">Card Number</label>
+                  <input type="text" name="card_number" required class="form-control" id="card_number" placeholder="1234-1234-1234-1234">
+                  <br>
+                  <label for="expiry_date" class="requiredField">Expiry Date</label>
+                  <input type="date" name="expiry_date" required class="form-control" id="expiry_date">
+                  <br>
+                  <label for="ccv" class="requiredField">Expiry Date</label>
+                  <input type="text" name="ccv" required class="form-control" id="ccv" placeholder="123">
+                  <br>
+                  <button type="submit" class="btn btn-success" role="button">Confirm</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingFour">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Receipt
+                </a>
+              </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+              <div class="panel-body">
+                <p>Receipt goes here</p>
               </div>
             </div>
           </div>

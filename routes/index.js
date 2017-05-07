@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  if (!validate.registerInterest(req.body)) {
+  if (req.body.firstName && req.body.lastName && req.body.email) {
     knex('contacts')
     .insert({
       first_name: req.body.firstName,

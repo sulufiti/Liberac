@@ -17,19 +17,19 @@
                 <div class="panel-body">
                   <div class="form-group">
                     <label for="first_name" class="requiredField">First Name</label>
-                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Jamie" required>
+                    <input type="text" name="first_name" class="form-control" id="first_name" size="64" maxLength="64" placeholder="Jamie" required>
                   </div>
                   <div class="form-group">
                     <label for="last_name" class="requiredField">Last Name</label>
-                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Smith" required>
+                    <input type="text" name="last_name" class="form-control" id="last_name" size="64" maxLength="64" placeholder="Smith" required>
                   </div>
                   <div class="form-group">
                     <label for="username" class="requiredField">Email Address</label>
-                    <input type="email" name="username" class="form-control" id="username" placeholder="jamie.smith@gmail.com" required>
+                    <input type="email" name="username" class="form-control" id="username" size="64" maxLength="64" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}" placeholder="jamie.smith@gmail.com" required>
                   </div>
                   <div class="form-group">
                     <label for="password" class="requiredField">Password</label>
-                    <input type="password" name="password" class="form-control" id="password" placeholder="••••••••••••" required>
+                    <input type="password" name="password" class="form-control" id="password" size="128" maxLength="128" placeholder="••••••••••••" required>
                   </div>
                   <a class="collapsed btn btn-success" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Continue</a>
                 </div>

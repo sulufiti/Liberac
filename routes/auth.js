@@ -42,6 +42,10 @@ router.post('/register', (req, res, next) => {
   }
 })
 
+router.post('/testregister', (req, res, next) => {
+  console.log(req.body)
+})
+
 router.get('/activate/:id', (req, res, next) => {
   users.findByID(req.params.id)
   .then((user) => {

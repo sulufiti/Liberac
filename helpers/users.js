@@ -84,16 +84,3 @@ module.exports.appendIDproof = function (id, number, expiry) {
     Raven.captureException(err)
   })
 }
-
-module.exports.activateUser = function (id) {
-  return knex('users')
-  .where('id', id)
-  .update({
-    activated: true,
-    activation_date: knex.fn.now()
-  })
-  .catch((err) => {
-    console.error('failed to activate user', err)
-    Raven.captureException(err)
-  })
-}

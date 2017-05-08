@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <form method="POST" action="/testregister">
+        <form method="POST" action="/testregister" enctype="multipart/form-data">
           <h2>Register</h2>
           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
@@ -17,15 +17,19 @@
                 <div class="panel-body">
                   <div class="form-group">
                     <label for="first_name" class="requiredField">First Name</label>
-                    <input type="text" name="first_name" class="form-control" id="first_name" size="64" maxLength="64" placeholder="Jamie" required>
+                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Jamie" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="middle_name" class="requiredField">Last Name</label>
+                    <input type="text" name="middle_name" class="form-control" id="middle_name" placeholder="Sam" required>
                   </div>
                   <div class="form-group">
                     <label for="last_name" class="requiredField">Last Name</label>
-                    <input type="text" name="last_name" class="form-control" id="last_name" size="64" maxLength="64" placeholder="Smith" required>
+                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Smith" required>
                   </div>
                   <div class="form-group">
                     <label for="username" class="requiredField">Email Address</label>
-                    <input type="email" name="username" class="form-control" id="username" size="64" maxLength="64" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}" placeholder="jamie.smith@gmail.com" required>
+                    <input type="email" name="username" class="form-control" id="username" size="254" maxLength="254" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}" placeholder="jamie.smith@gmail.com" required>
                   </div>
                   <div class="form-group">
                     <label for="password" class="requiredField">Password</label>
@@ -45,6 +49,10 @@
               </div>
               <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="panel-body">
+                  <div class="form-group">
+                    <label for="phone" class="requiredField">Phone</label>
+                    <input type="tel" name="phone" class="form-control" id="phone" placeholder="0212345678" required>
+                  </div>
                   <div class="form-group">
                     <label for="street" class="requiredField">Street</label>
                     <input type="text" name="street" class="form-control" id="street" placeholder="123 Example Street" required>
@@ -88,6 +96,10 @@
                     <input type="text" name="passport_first_name" class="form-control" id="passport_first_name" placeholder="Jamie" required>
                   </div>
                   <div class="form-group">
+                    <label for="passport_middle_name" class="requiredField">Last Name</label>
+                    <input type="text" name="passport_middle_name" class="form-control" id="passport_middle_name" placeholder="Sam" required>
+                  </div>
+                  <div class="form-group">
                     <label for="passport_last_name" class="requiredField">Last Name</label>
                     <input type="text" name="passport_last_name" class="form-control" id="passport_last_name" placeholder="Smith" required>
                   </div>
@@ -117,7 +129,7 @@
                   </div>
                   <div class="form-group">
                     <label for="passport_scan" class="requiredField">Passport Photo/Scan</label>
-                    <input type="file" name="passport_scan" id="passport_scan application/pdf, image/jpeg, image/png" required>
+                    <input type="file" name="passport_scan" id="passport_scan" accept="application/pdf, image/jpeg, image/png" required>
                   </div>
                   <a class="collapsed btn btn-success" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Continue</a>
                   <a class="collapsed btn btn-warning" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Go Back</a>

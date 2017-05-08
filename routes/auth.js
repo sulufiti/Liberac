@@ -44,6 +44,7 @@ router.post('/register', (req, res, next) => {
 
 router.post('/testregister', (req, res, next) => {
   console.log(req.body)
+  console.log(req.files)
 })
 
 router.get('/activate/:id', (req, res, next) => {

@@ -9,7 +9,7 @@
     "resetdb": "NODE_ENV=development knex migrate:rollback && NODE_ENV=development knex migrate:latest && NODE_ENV=development knex seed:run",
     "resetstaging": "NODE_ENV=staging knex migrate:rollback && NODE_ENV=staging knex migrate:latest && NODE_ENV=staging knex seed:run",
     "lint": "standard",
-    "test": "mocha test"
+    "test": "npm run lint"
   },
   "engines": {
     "node": "^7.0.0"

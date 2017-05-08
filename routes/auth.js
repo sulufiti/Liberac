@@ -20,7 +20,7 @@ router.post('/register', (req, res, next) => {
     .then(hash => req.body.password = hash)
     .then(() => { return users.register(req.body) })
     .then((user_id) => { users.storeDocuments(user_id[0], req.files) })
-    .then(() => { res.redirect('/') })
+    .then(() => { res.redirect('/login') })
     .catch((err) => { error.capture(err) })
   } else {
     error.capture(validationErrors)

@@ -13,38 +13,19 @@ router.get('/register', (req, res, next) => {
 })
 
 router.post('/register', (req, res, next) => {
-  if (!validate.registration(req.body)) {
+  // If no errors, result will be an empty array '[]' hence why we're checking if length is 0
+  let validationErrors = validate.registration(req.body)
+  
+  if (!validationErrors.length) {
     bcrypt.hash(req.body.password, saltRounds)
     .then(hash => req.body.password = hash)
-    .then(() => {
-      return users.register(req.body)
-      .then(() => res.redirect('/login?activation_prompt=show'))
-      .then(() => {
-        if (process.env.NODE_ENV !== 'development') {
-          users.findByEmail(req.body.email)
-          .then((user) => {
-            mailer.sendActivation(user.id, user.first_name, user.last_name, user.email)
-          })
-        }
-      })
-      .catch((err) => {
-        Raven.captureException(err)
-      })
-    })
-    .catch((err) => {
-      console.log(err)
-      Raven.captureException(err, { user: req.body })
-    })
+    .then(() => { return users.register(req.body) })
+    .then(() => { res.redirect('/login') })
+    .catch((err) => { Raven.captureException(err) })
   } else {
-    console.error('invalid registration details')
     Raven.captureMessage(req.body)
     res.redirect('/register')
   }
-})
-
-router.post('/testregister', (req, res, next) => {
-  console.log(req.body)
-  console.log(req.files)
 })
 
 router.get('/activate/:id', (req, res, next) => {

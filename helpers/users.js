@@ -8,16 +8,31 @@ const uuidV4 = require('uuid/v4')
 module.exports.register = function (registration) {
   let user = {
     id: uuidV4(),
-    email: registration.email,
-    password: registration.password,
+    balance: 1000.00,
     first_name: registration.first_name,
     last_name: registration.last_name,
-    balance: 1000.00
+    username: registration.username,
+    password: registration.password,
+    street: registration.street,
+    suburb: registration.suburb,
+    city: registration.city,
+    postcode: registration.postcode,
+    country: registration.country,
+    phone: registration.phone,
+    passport_first_name: registration.passport_first_name,
+    passport_last_name: registration.passport_last_name,
+    date_of_birth: registration.date_of_birth,
+    passport_number: registration.passport_number,
+    passport_expiry_date: registration.passport_expiry_date,
+    nationality: registration.nationality,
+    issuing_country: registration.issuing_country
   }
 
-  if (process.env.NODE_ENV === 'development') {
-    user.activated = true
-  }
+  // Optional fields
+  if (registration.middle_name) { user.middle_name = registration.middle_name })
+  if (registration.suburn) { user.suburn = registration.suburn })
+  if (registration.passport_middle_name) { user.passport_middle_name = registration.passport_middle_name })
+
 
   return knex('users')
   .insert(user)

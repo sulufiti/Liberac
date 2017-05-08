@@ -2,8 +2,6 @@ const Knex = require('knex')
 const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
 const azure = require('azure-storage')
-const moment = require('moment')
-const Raven = require('raven')
 const error = require('./error')
 const uuidV4 = require('uuid/v4')
 const blobService = azure.createBlobService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY)
@@ -44,10 +42,10 @@ module.exports.register = function (registration) {
   })
 }
 
-module.exports.storeDocuments = function (user_id, files) {
-  blobService.createBlockBlobFromText('passports', user_id, files.passport_scan.data, (error, result, response) => {
+module.exports.storeDocuments = function (userID, files) {
+  blobService.createBlockBlobFromText('passports', userID, files.passport_scan.data, (error, result, response) => {
     if (!error) {
-      blobService.createBlockBlobFromText('addressproofs', user_id, files.proof_of_address.data, (error, result, response) => {
+      blobService.createBlockBlobFromText('addressproofs', userID, files.proof_of_address.data, (error, result, response) => {
         if (error) { error.capture(error) }
       })
     } else {

@@ -44,7 +44,7 @@
               <div class="form-group">
                 <script src="https://checkout.stripe.com/checkout.js"></script>
                 <div id="error_explanation"></div>
-                <button id="paymentButton">Purchase</button>
+                <button class="btn btn-success" id="paymentButton" role="button">Purchase</button>
               </div>
 
                 <script>
@@ -63,7 +63,7 @@
                     fetch("/charge", {
                       method: 'POST',
                       headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify(token)
+                      body: JSON.stringify({ stripe: token, receiver: $('#receiver_name').val(), account: $('#bank_account').val() })
                     })
                     .then((output) => {
                       if (output.status === "succeeded") {

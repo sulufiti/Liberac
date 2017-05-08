@@ -2,21 +2,17 @@ const passport = require('passport')
 const bcrypt = require('bcrypt')
 const Raven = require('raven')
 const users = require('./helpers/users')
+const error = require('./helpers/error')
 const LocalStrategy = require('passport-local').Strategy
 
-const setupPassport = () => {
+module.exports.setupPassport = () => {
   passport.use(new LocalStrategy(
-    (email, password, done) => {
-      users.findByEmail(email)
+    (username, password, done) => {
+      users.findByUsername(username)
       .then((user) => {
         if (!user) {
           // Return to /login if the username doesn't exist
           return done(null, false, { message: 'Please check that your email and password are correct.' })
-        }
-
-        // If the user isn't activated, prompt them to activate their account
-        if (!user.activated) {
-          return done(null, false, { message: 'Please activate your account using the validation email we sent you.'})
         }
 
         bcrypt.compare(password, user.password, (err, res) => {
@@ -31,8 +27,7 @@ const setupPassport = () => {
       })
       .catch((err) => {
         return done(err)
-        console.error(err)
-        Raven.captureException(err)
+        error.capture(err)
       })
     }
   ))
@@ -45,12 +40,7 @@ const setupPassport = () => {
     users.findByID(id)
     .then((user) => { return done(null, user) })
     .catch((err) => {
-      console.error(err)
-      Raven.captureException(err)
+      error.capture(err)
     })
   })
-}
-
-module.exports = {
-  setupPassport
 }

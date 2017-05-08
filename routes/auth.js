@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const Raven = require('raven')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const mailer = require('../helpers/mailer')
+const error = require('../helpers/error')
 const users = require('../helpers/users')
 const validate = require('../helpers/validation')
 const saltRounds = 10
@@ -13,51 +13,18 @@ router.get('/register', (req, res, next) => {
 })
 
 router.post('/register', (req, res, next) => {
-  if (!validate.registration(req.body)) {
+  // If no errors, result will be an empty array '[]' hence why we're checking if length is 0
+  let validationErrors = validate.registration(req.body)
+  if (!validationErrors.length) {
     bcrypt.hash(req.body.password, saltRounds)
     .then(hash => req.body.password = hash)
-    .then(() => {
-      return users.register(req.body)
-      .then(() => res.redirect('/login?activation_prompt=show'))
-      .then(() => {
-        if (process.env.NODE_ENV !== 'development') {
-          users.findByEmail(req.body.email)
-          .then((user) => {
-            mailer.sendActivation(user.id, user.first_name, user.last_name, user.email)
-          })
-        }
-      })
-      .catch((err) => {
-        Raven.captureException(err)
-      })
-    })
-    .catch((err) => {
-      console.log(err)
-      Raven.captureException(err, { user: req.body })
-    })
+    .then(() => { return users.register(req.body) })
+    .then((user_id) => { users.storeDocuments(user_id[0], req.files) })
+    .then(() => { res.redirect('/login') })
+    .catch((err) => { error.capture(err) })
   } else {
-    console.error('invalid registration details')
-    Raven.captureMessage(req.body)
-    res.redirect('/register')
+    error.capture(validationErrors)
   }
-})
-
-router.get('/activate/:id', (req, res, next) => {
-  users.findByID(req.params.id)
-  .then((user) => {
-    return users.activateUser(req.params.id)
-  })
-  .then(() => {
-    if (req.session.flash) {
-      req.session.flash.error = []
-    }
-    res.redirect('/login')
-  })
-  .catch((err) => {
-    Raven.captureException(err, {
-      user: { id: req.params.id }
-    })
-  })
 })
 
 router.get('/login', (req, res, next) => {
@@ -65,10 +32,6 @@ router.get('/login', (req, res, next) => {
   if (req.session.flash && req.session.flash.length !== 0) {
     let messages = req.session.flash.error
     latestMessage = messages[messages.length - 1]
-  }
-
-  if (req.query.activation_prompt === 'show') {
-    latestMessage = 'Please check your email for an account activation link.'
   }
 
   res.render('login', { message: latestMessage })

@@ -1,7 +1,6 @@
 const express = require('express')
 const Raven = require('raven')
 const Message = require('pushover-promise').Message
-const passport = require('passport')
 const msg = new Message(process.env.PUSHOVER_USER, process.env.PUSHOVER_TOKEN)
 const router = express.Router()
 const mailer = require('../helpers/mailer')

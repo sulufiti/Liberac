@@ -2,32 +2,159 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-
-        <h2>Liberac Registration Page</h2>
-        <form method="POST" action="/register">
-          <div class="well">
-            <div class="form-group">
-              <label for="first_name" class="requiredField">First Name</label>
-              <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Jamie" required>
+        <form method="POST" action="/register" enctype="multipart/form-data">
+          <h2>Register</h2>
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Basic Details
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <div class="form-group">
+                    <label for="first_name" class="requiredField">First Name</label>
+                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Jamie" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="middle_name">Middle Name</label>
+                    <input type="text" name="middle_name" class="form-control" id="middle_name" placeholder="Sam">
+                  </div>
+                  <div class="form-group">
+                    <label for="last_name" class="requiredField">Last Name</label>
+                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Smith" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="username" class="requiredField">Email Address</label>
+                    <input type="email" name="username" class="form-control" id="username" size="254" maxLength="254" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}" placeholder="jamie.smith@gmail.com" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="requiredField">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" size="128" minLength="8" maxLength="128" placeholder="••••••••••••" required>
+                  </div>
+                  <a class="collapsed btn btn-success" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Continue</a>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="last_name" class="requiredField">Last Name</label>
-              <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Smith" required>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Contact Details
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                  <div class="form-group">
+                    <label for="phone" class="requiredField">Phone</label>
+                    <input type="tel" name="phone" class="form-control" id="phone" placeholder="0212345678" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="street" class="requiredField">Street</label>
+                    <input type="text" name="street" class="form-control" id="street" placeholder="123 Example Street" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="suburb">Suburb</label>
+                    <input type="text" name="suburb" class="form-control" id="suburb" placeholder="Lower Hutt">
+                  </div>
+                  <div class="form-group">
+                    <label for="city" class="requiredField">City</label>
+                    <input type="text" name="city" class="form-control" id="city" placeholder="Wellington" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="postcode" class="requiredField">Postcode</label>
+                    <input type="postcode" name="postcode" class="form-control" id="postcode" placeholder="1234" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="country" class="requiredField">Country</label>
+                    <select class="form-control" name="country">
+                      <option value="AU">Australia</option>
+                      <option value="NZ" selected>New Zealand</option>
+                    </select>
+                  </div>
+                  <a class="collapsed btn btn-success" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Continue</a>
+                  <a class="collapsed btn btn-warning" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Go Back</a>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="email" class="requiredField">Email</label>
-              <input type="email" name="email" class="form-control" id="email" placeholder="user@example.com" required>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Passport Verification
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                  <div class="form-group">
+                    <label for="passport_first_name" class="requiredField">First Name</label>
+                    <input type="text" name="passport_first_name" class="form-control" id="passport_first_name" placeholder="Jamie" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="passport_middle_name">Middle Name</label>
+                    <input type="text" name="passport_middle_name" class="form-control" id="passport_middle_name" placeholder="Sam">
+                  </div>
+                  <div class="form-group">
+                    <label for="passport_last_name" class="requiredField">Last Name</label>
+                    <input type="text" name="passport_last_name" class="form-control" id="passport_last_name" placeholder="Smith" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="date_of_birth" class="requiredField">Date of Birth</label>
+                    <input type="date" name="date_of_birth" class="form-control" id="date_of_birth" max="1998-12-31" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="passport_number" class="requiredField">Passport Number</label>
+                    <input type="text" name="passport_number" class="form-control" id="passport_number" placeholder="EA999850" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="passport_expiry_date" class="requiredField">Passport Expiry Date</label>
+                    <input type="date" name="passport_expiry_date" class="form-control" id="passport_expiry_date" min="2017-05-08" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="nationality" class="requiredField">Nationality</label>
+                    <select class="form-control" name="nationality">
+                      <option value="NZEU" selected>NZ/European</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="issuing_country" class="requiredField">Issuing Country</label>
+                    <select class="form-control" name="issuing_country">
+                      <option value="NZ" selected>New Zealand</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="passport_scan" class="requiredField">Passport Photo/Scan</label>
+                    <input type="file" name="passport_scan" id="passport_scan" accept="application/pdf, image/jpeg, image/png" required>
+                  </div>
+                  <a class="collapsed btn btn-success" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Continue</a>
+                  <a class="collapsed btn btn-warning" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Go Back</a>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="password" class="requiredField">Password</label>
-              <input type="password" name="password" class="form-control" id="password" required>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingFour">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Proof of Address
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                <div class="panel-body">
+                  <div class="form-group">
+                    <label for="proof_of_address" class="requiredField" id="proof_of_address">Proof of Address</label>
+                    <input type="file" name="proof_of_address" id="proof_of_address" accept="application/pdf, image/jpeg, image/png" required>
+                  </div>
+                  <button type="submit" class="btn btn-success" role="button">Complete Registration</button>
+                  <a class="collapsed btn btn-warning" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Go Back</a>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="confirm_password" class="requiredField">Confirm Password</label>
-              <input type="password" name="confirm_password" class="form-control" id="confirm_password" required>
-            </div>
-            
-            <button type="submit" class="btn btn-danger" id="register">Register</button>
           </div>
         </form>
       </div>

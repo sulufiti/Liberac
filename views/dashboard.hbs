@@ -3,19 +3,92 @@
     <div class="row">
       <div class="col-lg-12">
         {{>navigation}}
-        <h2>Welcome {{user.first_name}}! Your current balance is ${{user.balance}}.</h2>
-        {{#unless user.verified}}
-        <div class="alert alert-warning" role="alert">Before we can get started, we'll need you to provide some identification for regulatory purposes. <a href="/upload">Click here</a> to get started.</div>
-        {{/unless}}
-        <div class="well">
-
-
-          <div class="row">
-            <div class="col-lg-12"><h2>Dashboard</h2></div>
+        <h4>Welcome {{user.first_name}}! Your current balance is ${{user.balance}}.</h4>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Receiver Details
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <form>
+                  <label for="receiver_name" class="requiredField">Receiver Name</label>
+                  <input type="text" name="receiver_name" required class="form-control" id="receiver_name" placeholder="Jamie Smith">
+                  <br>
+                  <label for="bank_account" class="requiredField">Bank Account Details</label>
+                  <input type="text" name="bank_account" required class="form-control" id="bank_account" placeholder="12-3456-1234567-000">
+                  <br>
+                  <button type="submit" class="btn btn-success" role="button">Confirm</button>
+                </form>
+              </div>
+            </div>
           </div>
-          <div class="row">
-            <img src="/img/dashboard.png" class="img-responsive center-block">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Amount to Send
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body">
+                <form>
+                  <label for="amount_to_send" class="requiredField">Send Amount</label>
+                  <input type="text" name="amount_to_send" required class="form-control" id="amount_to_send" placeholder="Jamie Smith">
+                  <br>
+                  <label for="bank_account" class="requiredField">Bank Account Details</label>
+                  <input type="text" name="bank_account" required class="form-control" id="bank_account" placeholder="Jamie Smith">
+                  <br>
+                  <button type="submit" class="btn btn-success" role="button">Confirm</button>
+                </form>
+              </div>
+            </div>
           </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Payment Details
+                </a>
+              </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+              <div class="panel-body">
+                <form>
+                  <label for="card_number" class="requiredField">Card Number</label>
+                  <input type="text" name="card_number" required class="form-control" id="card_number" placeholder="1234-1234-1234-1234">
+                  <br>
+                  <label for="expiry_date" class="requiredField">Expiry Date</label>
+                  <input type="date" name="expiry_date" required class="form-control" id="expiry_date">
+                  <br>
+                  <label for="ccv" class="requiredField">Expiry Date</label>
+                  <input type="text" name="ccv" required class="form-control" id="ccv" placeholder="123">
+                  <br>
+                  <button type="submit" class="btn btn-success" role="button">Confirm</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingFour">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Receipt
+                </a>
+              </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+              <div class="panel-body">
+                <p>Receipt goes here</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

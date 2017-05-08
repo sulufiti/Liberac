@@ -26,15 +26,15 @@ module.exports.sendWelcome = function (firstName, lastName, email) {
     'merge': true,
     'merge_language': 'mailchimp',
     'global_merge_vars': [{
-      "name": "FIRSTNAME",
-      "content": firstName
+      'name': 'FIRSTNAME',
+      'content': firstName
     }]
   }
 
   mandrillClient.messages.sendTemplate({
     'template_name': templateName,
     'template_content': templateContent,
-    'message': message,
+    'message': message
   }, (res) => {
     console.log(res)
   }, (err) => {
@@ -50,27 +50,27 @@ module.exports.sendWelcome = function (firstName, lastName, email) {
 
 module.exports.notifyTeam = function (name, email) {
   let message = {
-    "text": `New User: ${name} <${email}>`,
-    "subject": `${name} is now onboard`,
-    "from_email": "usersignups@liberac.co.nz",
-    "from_name": "User Signups",
-    "to": [
+    'text': `New User: ${name} <${email}>`,
+    'subject': `${name} is now onboard`,
+    'from_email': 'usersignups@liberac.co.nz',
+    'from_name': 'User Signups',
+    'to': [
       {
-        "email": "contact@liberac.co.nz",
-        "name": "Liberac",
-        "type": "to"
+        'email': 'contact@liberac.co.nz',
+        'name': 'Liberac',
+        'type': 'to'
       }
     ]
   }
 
-  mandrillClient.messages.send({ "message": message }, (res) => {}, (err) => {
+  mandrillClient.messages.send({ 'message': message }, (res) => {}, (err) => {
     Raven.captureException(err, {
       user: {
         name: name,
         email: email
       }
     })
-    console.error('A mandrill error occurred: ' + err.name + ' - ' + err.message);
+    console.error('A mandrill error occurred: ' + err.name + ' - ' + err.message)
   })
 }
 
@@ -79,7 +79,7 @@ module.exports.sendActivation = function (id, firstName, lastName, email) {
   const templateContent = [{}]
   let root = ''
 
-  switch(process.env.NODE_ENV) {
+  switch (process.env.NODE_ENV) {
     case 'development':
       root = 'http://localhost:3000'
       break
@@ -114,18 +114,18 @@ module.exports.sendActivation = function (id, firstName, lastName, email) {
     'merge': true,
     'merge_language': 'mailchimp',
     'global_merge_vars': [{
-      "name": "FIRSTNAME",
-      "content": firstName
+      'name': 'FIRSTNAME',
+      'content': firstName
     }, {
-      "name": "ACTIVATION_LINK",
-      "content": `${root}/activate/${id}`
+      'name': 'ACTIVATION_LINK',
+      'content': `${root}/activate/${id}`
     }]
   }
 
   mandrillClient.messages.sendTemplate({
     'template_name': templateName,
     'template_content': templateContent,
-    'message': message,
+    'message': message
   }, (res) => {
     console.log(res)
   }, (err) => {
@@ -162,42 +162,42 @@ module.exports.sendSenderReceipt = function (session) {
     'merge': true,
     'merge_language': 'mailchimp',
     'global_merge_vars': [{
-      "name": "FIRSTNAME",
-      "content": session.user.first_name
+      'name': 'FIRSTNAME',
+      'content': session.user.first_name
     }, {
-      "name": "TRANSACTION_ID",
-      "content": session.transaction.id
+      'name': 'TRANSACTION_ID',
+      'content': session.transaction.id
     }, {
-      "name": "TRANSACTION_TIME",
-      "content": moment(session.transaction.time).format("dddd, MMMM Do YYYY, h:mm:ss a")
+      'name': 'TRANSACTION_TIME',
+      'content': moment(session.transaction.time).format('dddd, MMMM Do YYYY, h:mm:ss a')
     }, {
-      "name": "TRANSACTION_RECEIVER",
-      "content": session.transaction.receiver
+      'name': 'TRANSACTION_RECEIVER',
+      'content': session.transaction.receiver
     }, {
-      "name": "TRANSACTION_DELIVERY_METHOD",
-      "content": session.transaction.delivery_method
+      'name': 'TRANSACTION_DELIVERY_METHOD',
+      'content': session.transaction.delivery_method
     }, {
-      "name": "TRANSACTION_HANDLING_FEE",
-      "content": session.transaction.handling_fee
+      'name': 'TRANSACTION_HANDLING_FEE',
+      'content': session.transaction.handling_fee
     }, {
-      "name": "TRANSACTION_AMOUNT",
-      "content": session.transaction.amount
+      'name': 'TRANSACTION_AMOUNT',
+      'content': session.transaction.amount
     }, {
-      "name": "TRANSACTION_EXCHANGE_RATE",
-      "content": session.transaction.exchange_rate
+      'name': 'TRANSACTION_EXCHANGE_RATE',
+      'content': session.transaction.exchange_rate
     }, {
-      "name": "TRANSACTION_CONVERSION_AMOUNT",
-      "content": session.transaction.conversion_amount
+      'name': 'TRANSACTION_CONVERSION_AMOUNT',
+      'content': session.transaction.conversion_amount
     }, {
-      "name": "TRANSACTION_TOTAL",
-      "content": session.transaction.total
+      'name': 'TRANSACTION_TOTAL',
+      'content': session.transaction.total
     }]
   }
 
   mandrillClient.messages.sendTemplate({
     'template_name': templateName,
     'template_content': templateContent,
-    'message': message,
+    'message': message
   }, (res) => {
     console.log(res)
   }, (err) => {
@@ -208,7 +208,7 @@ module.exports.sendSenderReceipt = function (session) {
   })
 }
 
-module.exports.sendAgentInvite = function(session) {
+module.exports.sendAgentInvite = function (session) {
   const templateName = 'Liberac Agent Application'
   const templateContent = [{}]
   let message = {
@@ -231,15 +231,15 @@ module.exports.sendAgentInvite = function(session) {
     'merge': true,
     'merge_language': 'mailchimp',
     'global_merge_vars': [{
-      "name": "FIRSTNAME",
-      "content": session.user.first_name
+      'name': 'FIRSTNAME',
+      'content': session.user.first_name
     }]
   }
 
   mandrillClient.messages.sendTemplate({
     'template_name': templateName,
     'template_content': templateContent,
-    'message': message,
+    'message': message
   }, (res) => {
     console.log(res)
   }, (err) => {

@@ -24,7 +24,7 @@ router.post('/amount', (req, res, next) => {
     receiver: req.body.contact
   }
 
-  switch(req.body.delivery_method) {
+  switch (req.body.delivery_method) {
     case 'Bank Transfer':
       req.session.passport.transaction.delivery_method = req.body.delivery_method
       req.session.passport.transaction.handling_fee = 10.00
@@ -42,7 +42,7 @@ router.post('/amount', (req, res, next) => {
 
   let root = ''
 
-  switch(process.env.NODE_ENV) {
+  switch (process.env.NODE_ENV) {
     case 'development':
       root = 'http://localhost:3000'
       break
@@ -60,9 +60,9 @@ router.post('/amount', (req, res, next) => {
   got(`${root}/rates/NZD`)
   .then((data) => {
     data.body = JSON.parse(data.body)
-    current_rate = parseFloat(data.body.WST)
-    
-    req.session.passport.transaction.exchange_rate = current_rate
+    let current_rate = parseFloat(data.body.WST) // eslint-disable-line
+
+    req.session.passport.transaction.exchange_rate = current_rate // eslint-disable-line
   })
   .then(() => {
     contacts.getContactByNickname(req.session.passport.user.id, req.body.contact)
@@ -95,7 +95,7 @@ router.post('/process', (req, res, next) => {
   .then((balance) => {
     mailer.sendSenderReceipt(req.session.passport)
     req.session.passport.user.balance = parseFloat(balance).toFixed(2)
-    res.render('transaction_receipt', { transaction: req.session.passport.transaction, time: moment(req.session.passport.transaction.time).format("dddd, MMMM Do YYYY, h:mm:ss a") })
+    res.render('transaction_receipt', { transaction: req.session.passport.transaction, time: moment(req.session.passport.transaction.time).format('dddd, MMMM Do YYYY, h:mm:ss a') })
   })
 })
 

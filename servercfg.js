@@ -16,8 +16,7 @@ const setupPassport = require('./auth').setupPassport
 
 // Setting up express middlewares
 const app = express()
-
-if (app.get('env') !== 'development') { Raven.config(process.env.SENTRY_DSN).install() }
+Raven.config(process.env.SENTRY_DSN).install()
 
 let cookieSettings = {
   name: 'session',
@@ -25,17 +24,13 @@ let cookieSettings = {
   maxAge: 24 * 60 * 60 * 1000
 }
 
-
-
 // Routes
 const index = require('./routes/index')
-const facebook = require('./routes/facebook')
 const contacts = require('./routes/contacts')
 const send = require('./routes/send')
 const profile = require('./routes/profile')
 // const cloudcheck = require('./routes/cloudcheck')
 const auth = require('./routes/auth')
-const upload = require('./routes/upload')
 const rates = require('./routes/rates')
 
 // Template rendering
@@ -58,14 +53,12 @@ setupPassport()
 
 // Serve static files and routes that use templates
 app.use(express.static(path.join(__dirname, '/public')))
-app.use('/facebook', facebook)
 app.use('/', index)
 app.use('/send', send)
 app.use('/', auth)
 app.use('/', contacts)
 app.use('/', profile)
 // app.use('/', cloudcheck)
-app.use('/upload', upload)
 app.use('/rates', rates)
 
 // Error handlers

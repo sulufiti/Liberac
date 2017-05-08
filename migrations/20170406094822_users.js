@@ -25,10 +25,6 @@ exports.up = function (knex, Promise) {
     table.string('issuing_country').notNullable()
     
     table.timestamp('join_date').defaultTo(knex.fn.now())
-    table.boolean('activated').defaultTo(false).notNullable()
-    table.timestamp('activation_date')
-    table.boolean('verified').defaultTo(false).notNullable()
-    table.timestamp('verification_date')
   })
 }
 

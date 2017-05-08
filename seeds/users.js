@@ -16,7 +16,7 @@ exports.seed = function (knex, Promise) {
           city: 'Wellington',
           postcode: '1234',
           country: 'New Zealand',
-          phone: '02108154500',
+          phone: '0212345678',
           passport_first_name: 'George',
           passport_middle_name: 'Walker',
           passport_last_name: 'Bush',

@@ -1,9 +1,12 @@
 const Knex = require('knex')
 const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
+const azure = require('azure-storage')
 const moment = require('moment')
 const Raven = require('raven')
+const error = require('./error')
 const uuidV4 = require('uuid/v4')
+const blobService = azure.createBlobService(process.env.AZURE_STORAGE_ACCOUNT, process.env.AZURE_STORAGE_ACCESS_KEY)
 
 module.exports.register = function (registration) {
   let user = {
@@ -33,12 +36,27 @@ module.exports.register = function (registration) {
   if (registration.suburb) { user.suburb = registration.suburb }
   if (registration.passport_middle_name) { user.passport_middle_name = registration.passport_middle_name }
 
-
   return knex('users')
+  .returning('id')
   .insert(user)
   .catch((err) => {
-    console.error('failed to create user', err)
-    Raven.captureException(err)
+    error.capture(err)
+  })
+}
+
+module.exports.storeDocuments = function(user_id, files) {
+  blobService.createBlockBlobFromText('passports', user_id, files.passport_scan.data, (error, result, response) => {
+    if (!error) {
+      blobService.createBlockBlobFromText('addressproofs', user_id, files.proof_of_address.data, (error, result, response) => {
+        if (!error) {
+          console.log('files uploaded')
+        } else {
+          error.capture(error)
+        }
+      })
+    } else {
+      error.capture(error)
+    }
   })
 }
 
@@ -47,8 +65,7 @@ module.exports.findByEmail = function (email) {
   .where('email', email)
   .then((user) => { return user[0] })
   .catch((err) => {
-    console.err('failed to find email', err)
-    Raven.captureException(err)
+    error.capture(error)
   })
 }
 
@@ -57,8 +74,7 @@ module.exports.findByID = function (id) {
   .where('id', id)
   .then((user) => { return user[0] })
   .catch((err) => {
-    console.err('failed to find by id', err)
-    Raven.captureException(err)
+    error.capture(error)
   })
 }
 
@@ -67,8 +83,7 @@ module.exports.fetchUserBalance = function (id) {
   .where('id', id)
   .then((user) => { return user[0].balance })
   .catch((err) => {
-    console.log('failed to fetch user balance', err)
-    Raven.captureException(err)
+    error.capture(error)
   })
 }
 
@@ -80,7 +95,6 @@ module.exports.appendIDproof = function (id, number, expiry) {
     passport_expiry: moment(expiry).format('YYYY-MM-DD')
   })
   .catch((err) => {
-    console.error('failed to append id proof', err)
-    Raven.captureException(err)
+    error.capture(error)
   })
 }

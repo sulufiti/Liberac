@@ -16,8 +16,7 @@ const setupPassport = require('./auth').setupPassport
 
 // Setting up express middlewares
 const app = express()
-
-if (app.get('env') !== 'development') { Raven.config(process.env.SENTRY_DSN).install() }
+Raven.config(process.env.SENTRY_DSN).install()
 
 let cookieSettings = {
   name: 'session',

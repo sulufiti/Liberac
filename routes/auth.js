@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const Raven = require('raven')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const mailer = require('../helpers/mailer')
+const error = require('../helpers/error')
 const users = require('../helpers/users')
 const validate = require('../helpers/validation')
 const saltRounds = 10
@@ -19,10 +19,11 @@ router.post('/register', (req, res, next) => {
     bcrypt.hash(req.body.password, saltRounds)
     .then(hash => req.body.password = hash)
     .then(() => { return users.register(req.body) })
-    .then(() => { res.send('gahdeem') })
-    .catch((err) => { Raven.captureException(err) })
+    .then((user_id) => { users.storeDocuments(user_id[0], req.files) })
+    .then(() => { res.redirect('/') })
+    .catch((err) => { error.capture(err) })
   } else {
-    console.error(validationErrors)
+    error.capture(validationErrors)
   }
 })
 

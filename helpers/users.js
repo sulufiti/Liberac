@@ -86,15 +86,3 @@ module.exports.fetchUserBalance = function (id) {
     error.capture(error)
   })
 }
-
-module.exports.appendIDproof = function (id, number, expiry) {
-  return knex('users')
-  .where('id', id)
-  .update({
-    passport_number: number,
-    passport_expiry: moment(expiry).format('YYYY-MM-DD')
-  })
-  .catch((err) => {
-    error.capture(error)
-  })
-}

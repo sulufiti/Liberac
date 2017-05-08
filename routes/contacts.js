@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Raven = require('raven')
+const validate = require('../helpers/validation')
 const contacts = require('../helpers/contacts')
 
 router.get('/contacts', (req, res, next) => {

@@ -4,7 +4,6 @@ const Message = require('pushover-promise').Message
 const msg = new Message(process.env.PUSHOVER_USER, process.env.PUSHOVER_TOKEN)
 const router = express.Router()
 const mailer = require('../helpers/mailer')
-const validate = require('../helpers/validation')
 const Knex = require('knex')
 const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
@@ -30,12 +29,12 @@ router.post('/', (req, res, next) => {
       }
     })
     .then(() => {
-      if (process.env.NODE_ENV !== development) {
+      if (process.env.NODE_ENV !== 'development') {
         mailer.notifyTeam(`${req.body.firstName} ${req.body.lastName}`, req.body.email)
       }
     })
     .then(() => {
-      if (process.env.NODE_ENV !== development) {
+      if (process.env.NODE_ENV !== 'development') {
         mailer.sendWelcome(req.body.firstName, req.body.lastName, req.body.email)
       }
     })

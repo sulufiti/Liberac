@@ -13,10 +13,11 @@ module.exports.registerInterest = function (query) {
 module.exports.registration = function (query) {
   validator(query).required().isObject((obj) => {
     obj('first_name').required().isString().isAlpha()
-    obj('middle_name').isString().isAlpha()
+    obj('middle_name').isString()
     obj('last_name').required().isString().isAlpha()
     obj('username').required().isString().isEmail()
     obj('password').required().isString()
+    obj('phone').required().isString()
     obj('street').required().isString()
     obj('suburb').isString()
     obj('city').required().isString()

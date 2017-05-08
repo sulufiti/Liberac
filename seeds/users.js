@@ -4,21 +4,27 @@ exports.seed = function (knex, Promise) {
     .then(function () {
       return Promise.all([
         knex('users').insert({
-          id: '0c57c10c-cc23-4a4b-a339-3edcd42d119e',
-          email: 'steve@smith.com',
-          password: '$2a$10$fZz7SR8q4CK67CJQ1zeuduvL2Pm9uB3fO8JxlorjWixpeZ5cNeVZC',
-          first_name: 'Steve',
-          last_name: 'Smith'
-        }),
-
-        knex('users').insert({
           id: '3b7295f3-4800-4ae6-9d4d-9d52bc45ddcf',
-          email: 'george@bush.com',
-          password: '$2a$10$s3El2HAbmTP1fB72kEXms.HbhDJ31kydURuqHqAnoz/cYzmWamGB2',
           balance: 1234.56,
           first_name: 'George',
+          middle_name: 'Walker',
           last_name: 'Bush',
-          activated: true
+          username: 'george@bush.com',
+          password: '$2a$10$s3El2HAbmTP1fB72kEXms.HbhDJ31kydURuqHqAnoz/cYzmWamGB2',
+          street: '7 Dixon Street',
+          suburb: '',
+          city: 'Wellington',
+          postcode: '1234',
+          country: 'New Zealand',
+          phone: '02108154500',
+          passport_first_name: 'George',
+          passport_middle_name: 'Walker',
+          passport_last_name: 'Bush',
+          date_of_birth: '1970-01-01',
+          passport_number: 'EU1234567',
+          passport_expiry_date: '2020-01-01',
+          nationality: 'NZEU',
+          issuing_country: 'NZ'
         })
       ])
     })

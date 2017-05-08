@@ -15,16 +15,14 @@ router.get('/register', (req, res, next) => {
 router.post('/register', (req, res, next) => {
   // If no errors, result will be an empty array '[]' hence why we're checking if length is 0
   let validationErrors = validate.registration(req.body)
-
   if (!validationErrors.length) {
     bcrypt.hash(req.body.password, saltRounds)
     .then(hash => req.body.password = hash)
     .then(() => { return users.register(req.body) })
-    .then(() => { res.redirect('/login') })
+    .then(() => { res.send('gahdeem') })
     .catch((err) => { Raven.captureException(err) })
   } else {
-    Raven.captureMessage(req.body)
-    res.redirect('/register')
+    console.error(validationErrors)
   }
 })
 

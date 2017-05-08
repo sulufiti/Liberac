@@ -7,12 +7,14 @@ exports.up = function (knex, Promise) {
     table.string('last_name').notNullable()
     table.string('email').unique().notNullable()
     table.string('password').notNullable()
+
     table.string('street').notNullable()
     table.string('suburb')
     table.string('city').notNullable()
     table.string('postcode').notNullable()
     table.string('country').notNullable()
     table.string('phone').unique()
+    
     table.string('passport_first_name').notNullable()
     table.string('passport_middle_name')
     table.string('passport_last_name').notNullable()
@@ -21,6 +23,7 @@ exports.up = function (knex, Promise) {
     table.date('passport_expiry_date').notNullable()
     table.string('nationality').notNullable()
     table.string('issuing_country').notNullable()
+    
     table.timestamp('join_date').defaultTo(knex.fn.now())
     table.boolean('activated').defaultTo(false).notNullable()
     table.timestamp('activation_date')

@@ -37,28 +37,15 @@
             </div>
             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
               <div class="panel-body">
-                <form>
-                  <label for="amount_to_send" class="requiredField">Send Amount</label>
-                  <input type="text" name="amount_to_send" required class="form-control" id="amount_to_send" placeholder="Jamie Smith">
-                  <br>
-                  <button type="submit" class="btn btn-success" role="button">Confirm</button>
-                </form>
+              <div class="form-group">
+                <label for="amount_to_send" class="requiredField">Send Amount</label>
+                <input type="text" name="amount_to_send" required class="form-control" id="amount_to_send" placeholder="Jamie Smith">
               </div>
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingThree">
-              <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Payment Details
-                </a>
-              </h4>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-              <div class="panel-body">
+              <div class="form-group">
                 <script src="https://checkout.stripe.com/checkout.js"></script>
                 <div id="error_explanation"></div>
                 <button id="paymentButton">Purchase</button>
+              </div>
 
                 <script>
                 var handler = StripeCheckout.configure({
@@ -66,11 +53,28 @@
                   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
                   name: 'Liberac Ltd',
                   currency: 'nzd',
+                  panelLabel: 'Send',
+                  email: 'marcus@thingsima.de',
+                  allowRememberMe: true,
                   description: 'Send funds to USER',
                   locale: 'auto',
+                  zipCode: true,
                   token: function(token) {
-                    // You can access the token ID with `token.id`.
-                    // Get the token ID to your server-side code for use.
+                    fetch("/charge", {
+                      method: 'POST',
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify(token)
+                    })
+                    .then((output) => {
+                      if (output.status === "succeeded") {
+                        console.log('Purchase succeeded')
+                        console.log(output)
+                      }
+                    })
+                    .catch((err) => {
+                      console.error('Purchase failed')
+                      console.error(err)
+                    })
                   }
                 })
 

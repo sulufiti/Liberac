@@ -79,4 +79,8 @@ router.get('/dashboard', (req, res, next) => {
   res.render('dashboard', { user: req.session.passport.user })
 })
 
+router.post('/charge', (req, res, next) => {
+  console.log(req.body)
+})
+
 module.exports = router

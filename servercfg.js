@@ -27,7 +27,6 @@ let cookieSettings = {
 // Routes
 const index = require('./routes/index')
 const contacts = require('./routes/contacts')
-const send = require('./routes/send')
 const profile = require('./routes/profile')
 // const cloudcheck = require('./routes/cloudcheck')
 const auth = require('./routes/auth')
@@ -54,7 +53,6 @@ setupPassport()
 // Serve static files and routes that use templates
 app.use(express.static(path.join(__dirname, '/public')))
 app.use('/', index)
-app.use('/send', send)
 app.use('/', auth)
 app.use('/', contacts)
 app.use('/', profile)

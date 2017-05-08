@@ -26,13 +26,11 @@ let cookieSettings = {
 
 // Routes
 const index = require('./routes/index')
-const facebook = require('./routes/facebook')
 const contacts = require('./routes/contacts')
 const send = require('./routes/send')
 const profile = require('./routes/profile')
 // const cloudcheck = require('./routes/cloudcheck')
 const auth = require('./routes/auth')
-const upload = require('./routes/upload')
 const rates = require('./routes/rates')
 
 // Template rendering
@@ -55,14 +53,12 @@ setupPassport()
 
 // Serve static files and routes that use templates
 app.use(express.static(path.join(__dirname, '/public')))
-app.use('/facebook', facebook)
 app.use('/', index)
 app.use('/send', send)
 app.use('/', auth)
 app.use('/', contacts)
 app.use('/', profile)
 // app.use('/', cloudcheck)
-app.use('/upload', upload)
 app.use('/rates', rates)
 
 // Error handlers

@@ -48,11 +48,7 @@ module.exports.storeDocuments = function(user_id, files) {
   blobService.createBlockBlobFromText('passports', user_id, files.passport_scan.data, (error, result, response) => {
     if (!error) {
       blobService.createBlockBlobFromText('addressproofs', user_id, files.proof_of_address.data, (error, result, response) => {
-        if (!error) {
-          console.log('files uploaded')
-        } else {
-          error.capture(error)
-        }
+        if (error) { error.capture(error) }
       })
     } else {
       error.capture(error)

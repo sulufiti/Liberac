@@ -7,8 +7,8 @@ const LocalStrategy = require('passport-local').Strategy
 
 module.exports.setupPassport = () => {
   passport.use(new LocalStrategy(
-    (email, password, done) => {
-      users.findByEmail(email)
+    (username, password, done) => {
+      users.findByUsername(username)
       .then((user) => {
         if (!user) {
           // Return to /login if the username doesn't exist

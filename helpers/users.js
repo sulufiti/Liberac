@@ -60,12 +60,12 @@ module.exports.storeDocuments = function(user_id, files) {
   })
 }
 
-module.exports.findByEmail = function (email) {
+module.exports.findByUsername = function (email) {
   return knex('users')
-  .where('email', email)
+  .where('username', email)
   .then((user) => { return user[0] })
   .catch((err) => {
-    error.capture(error)
+    error.capture(err)
   })
 }
 
@@ -74,7 +74,7 @@ module.exports.findByID = function (id) {
   .where('id', id)
   .then((user) => { return user[0] })
   .catch((err) => {
-    error.capture(error)
+    error.capture(err)
   })
 }
 
@@ -83,6 +83,6 @@ module.exports.fetchUserBalance = function (id) {
   .where('id', id)
   .then((user) => { return user[0].balance })
   .catch((err) => {
-    error.capture(error)
+    error.capture(err)
   })
 }

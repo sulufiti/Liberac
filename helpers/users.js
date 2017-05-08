@@ -29,9 +29,9 @@ module.exports.register = function (registration) {
   }
 
   // Optional fields
-  if (registration.middle_name) { user.middle_name = registration.middle_name })
-  if (registration.suburn) { user.suburn = registration.suburn })
-  if (registration.passport_middle_name) { user.passport_middle_name = registration.passport_middle_name })
+  if (registration.middle_name) { user.middle_name = registration.middle_name }
+  if (registration.suburb) { user.suburb = registration.suburb }
+  if (registration.passport_middle_name) { user.passport_middle_name = registration.passport_middle_name }
 
 
   return knex('users')

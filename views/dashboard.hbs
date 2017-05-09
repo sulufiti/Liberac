@@ -38,7 +38,6 @@
                 </div>
                 <div class="form-group">
                   <script src="https://checkout.stripe.com/checkout.js"></script>
-                  <div id="error_explanation"></div>
                 </div>
                 <button class="btn btn-success" id="paymentButton" role="button">Purchase</button>
                 <a class="collapsed btn btn-warning" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Go Back</a>
@@ -46,14 +45,14 @@
             </div>
           </div>
           <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingFour">
+            <div class="panel-heading" role="tab" id="headingThree">
               <h4 class="panel-title">
                 Receipt
               </h4>
             </div>
-            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
               <div class="panel-body">
-                <p>Receipt goes here</p>
+                <div id="error_explanation"></div>
               </div>
             </div>
           </div>

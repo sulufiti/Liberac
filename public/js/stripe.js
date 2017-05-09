@@ -26,10 +26,14 @@ var handler = StripeCheckout.configure({
       return response.json()
     })
     .then(output => {
+      $('#collapseTwo').collapse('hide')
+      $('#collapseThree').collapse('show')
       $('#error_explanation').html('<p>Purchase success</p>')
-      console.log('success', output)
+      console.log('nice', output)
     })
     .catch(err => {
+      $('#collapseTwo').collapse('hide')
+      $('#collapseThree').collapse('show')
       $('#error_explanation').html('<p>Purchase failed</p>')
       console.error('error', err)
     })

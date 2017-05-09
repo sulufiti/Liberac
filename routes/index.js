@@ -81,7 +81,7 @@ router.get('/dashboard', (req, res, next) => {
 })
 
 router.post('/charge', (req, res, next) => {
-  let amount = req.body.amount * 100
+  let amount = req.body.amount.toFixed(2) * 100
   console.log(req.body.stripe, '\n')
 
   stripe.customers.create({
@@ -96,7 +96,10 @@ router.post('/charge', (req, res, next) => {
       customer: customer.id
     })
   .then(charge => res.send(charge)))
-  .catch(err => res.status(500).send({ error: "Purchase Failed" }))
+  .catch(err => {
+    console.log(err)
+    res.status(500).send({ error: 'Purchase Failed' })
+  })
 })
 
 module.exports = router

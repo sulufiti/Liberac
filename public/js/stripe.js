@@ -28,12 +28,10 @@ var handler = StripeCheckout.configure({
     .then(output => {
       $('#collapseTwo').collapse('hide')
       $('#collapseThree').collapse('show')
-      $('#error_explanation').html('<p>Purchase success</p>')
+      $('#receipt').html('<p>Purchase success</p>')
       console.log('nice', output)
     })
     .catch(err => {
-      $('#collapseTwo').collapse('hide')
-      $('#collapseThree').collapse('show')
       $('#error_explanation').html('<p>Purchase failed</p>')
       console.error('error', err)
     })
@@ -46,8 +44,8 @@ $('#paymentButton').on('click', function(e) {
   $('#error_explanation').html('')
 
   var amount = $('input#amount_to_send').val()
-
   amount = amount.replace(/\$/g, '').replace(/\,/g, '')
+  amount = parseFloat(amount)
 
   if (isNaN(amount)) {
     $('#error_explanation').html('<p>Please go back and enter an amount to send.</p>');

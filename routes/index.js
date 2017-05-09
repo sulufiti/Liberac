@@ -1,5 +1,6 @@
 const express = require('express')
 const Raven = require('raven')
+const stripe = require('stripe')(process.env.STRIPE_SECRET)
 const Message = require('pushover-promise').Message
 const msg = new Message(process.env.PUSHOVER_USER, process.env.PUSHOVER_TOKEN)
 const router = express.Router()
@@ -80,7 +81,22 @@ router.get('/dashboard', (req, res, next) => {
 })
 
 router.post('/charge', (req, res, next) => {
-  console.log(req.body)
+  let amount = req.body.amount * 100
+  console.log(req.body.stripe, '\n')
+
+  stripe.customers.create({
+    email: req.body.stripe.email,
+    card: req.body.stripe.id
+  })
+  .then(customer =>
+    stripe.charges.create({
+      amount,
+      description: 'Send payment to TEST_USER',
+      currency: 'nzd',
+      customer: customer.id
+    })
+  .then(charge => res.send(charge))
+  .catch(err => res.status(500).send({ error: "Purchase Failed" }))
 })
 
 module.exports = router

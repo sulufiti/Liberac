@@ -10,20 +10,28 @@ var handler = StripeCheckout.configure({
   locale: 'auto',
   zipCode: true,
   token: function(token) {
+    let amount = $('input#amount_to_send').val()
+    amount = amount.replace(/\$/g, '').replace(/\,/g, '')
+    amount = parseFloat(amount)
+
     fetch("/charge", {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ stripe: token, receiver: $('#receiver_name').val(), account: $('#bank_account').val() })
+      body: JSON.stringify({ stripe: token, receiver: $('#receiver_name').val(), account: $('#bank_account').val(), amount: amount })
     })
-    .then((output) => {
-      if (output.status === "succeeded") {
-        console.log('Purchase succeeded')
-        console.log(output)
+    .then(response => {
+      if (!response.ok) {
+        throw response
       }
+      return response.json()
     })
-    .catch((err) => {
-      console.error('Purchase failed')
-      console.error(err)
+    .then(output => {
+      $('#error_explanation').html('<p>Purchase success</p>')
+      console.log('success', output)
+    })
+    .catch(err => {
+      $('#error_explanation').html('<p>Purchase failed</p>')
+      console.error('error', err)
     })
   }
 })

@@ -16,7 +16,7 @@ module.exports.message = function (message) {
   }
 }
 
-module.exports.fetchLatest = function(flash) {
+module.exports.fetchLatest = function (flash) {
   if (flash && flash.length !== 0) {
     let messages = flash.error
     return messages[messages.length - 1]

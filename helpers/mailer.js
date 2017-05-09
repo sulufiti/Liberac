@@ -1,11 +1,10 @@
 const Raven = require('raven')
-const moment = require('moment')
 const Message = require('pushover-promise').Message
 const mandrill = require('mandrill-api/mandrill')
 const mandrillClient = new mandrill.Mandrill(process.env.MANDRILL_API_KEY)
 const msg = new Message(process.env.PUSHOVER_USER, process.env.PUSHOVER_TOKEN)
 
-sendWelcome = function (firstName, lastName, email) {
+const sendWelcome = function (firstName, lastName, email) {
   const templateName = 'Welcome to Liberac'
   const templateContent = [{}]
   let message = {
@@ -50,7 +49,7 @@ sendWelcome = function (firstName, lastName, email) {
   })
 }
 
-notifyTeam = function (name, email) {
+const notifyTeam = function (name, email) {
   let message = {
     'text': `New User: ${name} <${email}>`,
     'subject': `${name} is now onboard`,
@@ -76,10 +75,8 @@ notifyTeam = function (name, email) {
   })
 }
 
-module.exports.userOnboarding = function(firstName, lastName, email) {
+module.exports.userOnboarding = function (firstName, lastName, email) {
   sendWelcome(firstName, lastName, email)
   notifyTeam(`${firstName} ${lastName}`, email)
   msg.push(`${firstName} ${lastName} just registered their interest!`)
 }
-
-module.exports.userSignupNotifications

@@ -1,6 +1,6 @@
 exports.up = function (knex, Promise) {
   return knex.schema.createTableIfNotExists('contact', (table) => {
-    table.increments('id').primary()
+    table.uuid('id').primary()
     table.string('first_name').notNullable()
     table.string('last_name').notNullable()
     table.string('email').notNullable()

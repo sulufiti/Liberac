@@ -1,9 +1,3 @@
-/*
- * Start Bootstrap - Landing Page (http://startbootstrap.com/)
- * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
- */
-
 body,
 html {
   width: 100%;
@@ -13,26 +7,6 @@ html {
 body, h1, h2, h3, h4, h5, h6 {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-
-/*.navbar-header {
-  float: none;
-}
-.navbar-header img {
-  width: 230px;
-}
-.navbar-default {
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.075);
-  text-align: center;
-}
-.topnav {
-  border: 0;
-  background-color: #fff;
-  height: 65px;
-}*/
-
-/*.navbar-header img {
-  width: 230px;
-}*/
 
 .lead {
   font-size: 18px;
@@ -85,30 +59,6 @@ body, h1, h2, h3, h4, h5, h6 {
   text-shadow: 1px 1px 10px #fff;
 }
 
-/*@media(max-width:767px) {
-    .intro-message {
-        padding-bottom: 15%;
-    }
-
-    .intro-message > h1 {
-        font-size: 3em;
-    }
-
-    ul.intro-social-buttons > li {
-        display: block;
-        margin-bottom: 20px;
-        padding: 0;
-    }
-
-    ul.intro-social-buttons > li:last-child {
-        margin-bottom: 0;
-    }
-
-    .intro-divider {
-        width: 100%;
-    }
-}*/
-
 .network-name {
   text-transform: uppercase;
   font-size: 16px;
@@ -120,8 +70,8 @@ body, h1, h2, h3, h4, h5, h6 {
 .content-section-a,
 .content-section-b,
 .content-section-c {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
   .content-section-b {
@@ -169,31 +119,6 @@ body, h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
 }
 
-/*@media(max-width:1199px) {
-    ul.banner-social-buttons {
-        float: left;
-        margin-top: 15px;
-    }
-}
-
-@media(max-width:767px) {
-    .banner h2 {
-        margin: 0;
-        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-        font-size: 3em;
-    }
-
-    ul.banner-social-buttons > li {
-        display: block;
-        margin-bottom: 20px;
-        padding: 0;
-    }
-
-    ul.banner-social-buttons > li:last-child {
-        margin-bottom: 0;
-    }
-}*/
-
 footer {
     padding: 50px 0;
     background-color: #404040;
@@ -213,7 +138,7 @@ p.copyright {
     color: #f80909;
 }
 
-/*privacy policy*/
+/*** Privacy Policy ***/
 #privacyPolicy {
   margin-top: 40px;
 }
@@ -222,7 +147,7 @@ p.copyright {
   color: #333;
 }
 
-/* MISC */
+/*** Misc ***/
 .redText {
   color: #f80909;
 }
@@ -235,12 +160,7 @@ a.redLink:hover {
 }
 
 
-/* about us */
-/*#aboutUs.content-section-a {
-  background-color: #404040;
-  color: #fff;
-}*/
-
+/*** About Us ***/
 #aboutUs p {
   font-size: 16px;
 }
@@ -251,7 +171,7 @@ a.redLink:hover {
   margin-bottom: 15px;
 }
 
-/* program logo */
+/*** Program Logo ***/
 #programLogo img {
   filter: grayscale(100%);
   opacity: 0.5;
@@ -265,44 +185,10 @@ a.redLink:hover {
   -webkit-filter: grayscale(0);
 }
 
-/* media queries */
-
-/* Large desktops and laptops */
-@media (min-width: 1200px) {
-  .topnav {
-        /*background-color: brown;*/
-    }
-}
-
-/* Landscape tablets and medium desktops */
-@media (min-width: 992px) and (max-width: 1199px) {
-  .topnav {
-        /*background-color: red;*/
-    }
-}
-
-/* Portrait tablets and small desktops */
-@media (min-width: 768px) and (max-width: 991px) {
-  .topnav {
-        /*background-color: blue;*/
-    }
-}
-
-/* Landscape phones and portrait tablets */
-@media (max-width: 767px) {
-  .topnav {
-        /*background-color: yellow;*/
-    }
-}
+/*** Media Queries ***/
 
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
-  /*.topnav {
-    height: 50px;
-  }*/
-  /*.navbar-header img {
-    width: 190px;
-  }*/
   #intro-message > h1 {
     letter-spacing: 2px;
     font-size: 18px;
@@ -340,11 +226,6 @@ a.redLink:hover {
     letter-spacing: 1px;
     padding: 0px;
   }
-  /*.content-section-a, 
-  .content-section-b {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }*/
   .section-heading {
     margin: 5px 0;
     text-align: center;
@@ -356,6 +237,7 @@ a.redLink:hover {
 
 }
 
+/*** Navbar ***/
 .navbar-brand {
   transform: translateX(-50%);
   left: 50%;
@@ -383,7 +265,7 @@ a.redLink:hover {
   background-color: #fff;
 }
 
-/* modal */
+/*** Front page modal ***/
 #signUpForm {
   color: #f80909;
 }
@@ -399,10 +281,6 @@ a.redLink:hover {
 .btn:active.focus, 
 .btn:active:focus, 
 .btn:focus {
-  /*outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-  outline-color: #00ff00;*/
-
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255,0,0,.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255,0,0,.6);
@@ -420,8 +298,7 @@ label.requiredField:after {
     display: inline;
 }
 
-/* dashboard */
-
+/* Dashboard */
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
   color: #333;
   cursor: default;

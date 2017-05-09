@@ -95,7 +95,7 @@ router.post('/charge', (req, res, next) => {
       currency: 'nzd',
       customer: customer.id
     })
-  .then(charge => res.send(charge))
+  .then(charge => res.send(charge)))
   .catch(err => res.status(500).send({ error: "Purchase Failed" }))
 })
 

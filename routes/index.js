@@ -3,6 +3,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET)
 const router = express.Router()
 const mailer = require('../helpers/mailer')
 const error = require('../helpers/error')
+const validate = require('../helpers/validation')
 const Knex = require('knex')
 const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
@@ -12,8 +13,10 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  if (req.body.firstName && req.body.lastName && req.body.email) {
-    knex('contacts')
+  // If no errors, result will be an empty array '[]' hence why we're checking if length is 0
+  let validationErrors = validate.registerInterest(req.body)
+  if (!validationErrors.length) {
+    knex('contact')
     .insert({
       first_name: req.body.firstName,
       last_name: req.body.lastName,
@@ -38,7 +41,7 @@ router.post('/', (req, res, next) => {
       res.redirect('/')
     })
   } else {
-    error.message('registration of interest failed to pass input validation')
+    error.capture(validationErrors)
     res.redirect('/')
   }
 })

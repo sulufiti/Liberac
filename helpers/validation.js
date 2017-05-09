@@ -3,8 +3,8 @@ const validator = new Validator()
 
 module.exports.registerInterest = function (query) {
   validator(query).required().isObject((obj) => {
-    obj('first_name').required().isString().isAlpha()
-    obj('last_name').required().isString().isAlpha()
+    obj('firstName').required().isString().isAlpha()
+    obj('lastName').required().isString().isAlpha()
     obj('email').required().isString().isEmail()
   })
   return validator.run()

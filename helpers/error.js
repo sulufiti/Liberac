@@ -1,8 +1,8 @@
 const Raven = require('raven')
 
-module.exports.capture = function (error) {
+module.exports.capture = function (error, info = {}) {
   if (process.env.NODE_ENV !== 'development') {
-    Raven.captureException(error)
+    Raven.captureException(error, info)
   } else {
     console.error(error)
   }

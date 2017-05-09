@@ -1,10 +1,10 @@
 const express = require('express')
-const Raven = require('raven')
 const stripe = require('stripe')(process.env.STRIPE_SECRET)
 const Message = require('pushover-promise').Message
 const msg = new Message(process.env.PUSHOVER_USER, process.env.PUSHOVER_TOKEN)
 const router = express.Router()
 const mailer = require('../helpers/mailer')
+const error = require('../helpers/error')
 const Knex = require('knex')
 const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
@@ -40,8 +40,7 @@ router.post('/', (req, res, next) => {
       }
     })
     .catch((err) => {
-      console.error(err)
-      Raven.captureException(err, {
+      error.capture(err, {
         level: 'warning',
         user: {
           name: `${req.body.firstName} ${req.body.lastName}`,
@@ -51,7 +50,7 @@ router.post('/', (req, res, next) => {
       res.redirect('/')
     })
   } else {
-    console.log('registration of interest failed to pass input validation')
+    error.capture('registration of interest failed to pass input validation')
     res.redirect('/')
   }
 })

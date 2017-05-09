@@ -82,7 +82,6 @@ router.get('/dashboard', (req, res, next) => {
 
 router.post('/charge', (req, res, next) => {
   let amount = req.body.amount
-  amount = parseInt(amount.toFixed(2) * 100)
 
   stripe.customers.create({
     email: req.body.stripe.email,

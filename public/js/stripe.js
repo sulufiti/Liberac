@@ -44,7 +44,6 @@ $('#paymentButton').on('click', function(e) {
   var amount = $('input#amount_to_send').val()
 
   amount = amount.replace(/\$/g, '').replace(/\,/g, '')
-  amount = parseFloat(amount)
 
   if (isNaN(amount)) {
     $('#error_explanation').html('<p>Please go back and enter an amount to send.</p>');

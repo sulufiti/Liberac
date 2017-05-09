@@ -29,7 +29,6 @@ router.post('/register', (req, res, next) => {
 
 router.get('/login', (req, res, next) => {
   let message = error.fetchLatest(req.session.flash)
-
   res.render('login', { message })
 })
 

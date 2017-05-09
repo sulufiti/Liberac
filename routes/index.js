@@ -23,9 +23,9 @@ router.post('/', (req, res, next) => {
       res.redirect('/')
     })
     .then(() => {
-      // if (process.env.NODE_ENV !== 'development') {
+      if (process.env.NODE_ENV !== 'development') {
         mailer.userOnboarding(req.body.firstName, req.body.lastName, req.body.email)
-      // }
+      }
     })
     .catch((err) => {
       error.capture(err, {
@@ -38,7 +38,7 @@ router.post('/', (req, res, next) => {
       res.redirect('/')
     })
   } else {
-    error.capture('registration of interest failed to pass input validation')
+    error.message('registration of interest failed to pass input validation')
     res.redirect('/')
   }
 })
@@ -83,7 +83,9 @@ router.post('/charge', (req, res, next) => {
     })
   .then(charge => res.send(charge)))
   .catch(err => {
-    console.log(err)
+    error.capture(err, {
+      user: req.body
+    })
     res.status(500).send({ error: 'Purchase Failed' })
   })
 })

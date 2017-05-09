@@ -77,7 +77,7 @@ router.get('/compare', (req, res, next) => {
 })
 
 router.get('/dashboard', (req, res, next) => {
-  res.render('dashboard', { user: req.session.passport.user })
+  res.render('dashboard', { user: req.session.passport.user, stripejs: true })
 })
 
 router.post('/charge', (req, res, next) => {

@@ -1,6 +1,7 @@
 const crypto = require('crypto')
 const got = require('got')
 const hmac = crypto.createHmac('sha256', process.env.CLOUDCHECK_SECRET)
+const error = require('./error')
 
 module.exports.verifyUser = function (user, nonce) {
   let data = {
@@ -48,6 +49,6 @@ module.exports.verifyUser = function (user, nonce) {
     }
   })
   .catch((err) => {
-    console.log(err)
+    error.capture(err)
   })
 }

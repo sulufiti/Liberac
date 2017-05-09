@@ -28,13 +28,8 @@ router.post('/register', (req, res, next) => {
 })
 
 router.get('/login', (req, res, next) => {
-  let latestMessage = ''
-  if (req.session.flash && req.session.flash.length !== 0) {
-    let messages = req.session.flash.error
-    latestMessage = messages[messages.length - 1]
-  }
-
-  res.render('login', { message: latestMessage })
+  let message = error.fetchLatest(req.session.flash)
+  res.render('login', { message })
 })
 
 router.post('/login',

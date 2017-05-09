@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Raven = require('raven')
+const error = require('../helpers/error')
 const cloudcheck = require('../helpers/cloudcheck')
 
 router.get('/cloudcheck', (req, res, next) => {
@@ -14,8 +14,7 @@ router.get('/cloudcheck', (req, res, next) => {
     })
   })
   .catch((err) => {
-    console.error(err)
-    Raven.captureException(err)
+    error.capture(err)
   })
 })
 

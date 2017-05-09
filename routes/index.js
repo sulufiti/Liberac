@@ -1,10 +1,8 @@
 const express = require('express')
-const Raven = require('raven')
 const stripe = require('stripe')(process.env.STRIPE_SECRET)
-const Message = require('pushover-promise').Message
-const msg = new Message(process.env.PUSHOVER_USER, process.env.PUSHOVER_TOKEN)
 const router = express.Router()
 const mailer = require('../helpers/mailer')
+const error = require('../helpers/error')
 const Knex = require('knex')
 const knexConfig = require('../knexfile')
 const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])
@@ -26,22 +24,11 @@ router.post('/', (req, res, next) => {
     })
     .then(() => {
       if (process.env.NODE_ENV !== 'development') {
-        msg.push(`${req.body.firstName} ${req.body.lastName} just registered their interest!`)
-      }
-    })
-    .then(() => {
-      if (process.env.NODE_ENV !== 'development') {
-        mailer.notifyTeam(`${req.body.firstName} ${req.body.lastName}`, req.body.email)
-      }
-    })
-    .then(() => {
-      if (process.env.NODE_ENV !== 'development') {
-        mailer.sendWelcome(req.body.firstName, req.body.lastName, req.body.email)
+        mailer.userOnboarding(req.body.firstName, req.body.lastName, req.body.email)
       }
     })
     .catch((err) => {
-      console.error(err)
-      Raven.captureException(err, {
+      error.capture(err, {
         level: 'warning',
         user: {
           name: `${req.body.firstName} ${req.body.lastName}`,
@@ -51,7 +38,7 @@ router.post('/', (req, res, next) => {
       res.redirect('/')
     })
   } else {
-    console.log('registration of interest failed to pass input validation')
+    error.message('registration of interest failed to pass input validation')
     res.redirect('/')
   }
 })
@@ -77,7 +64,7 @@ router.get('/compare', (req, res, next) => {
 })
 
 router.get('/dashboard', (req, res, next) => {
-  res.render('dashboard', { user: req.session.passport.user })
+  res.render('dashboard', { user: req.session.passport.user, stripejs: true })
 })
 
 router.post('/charge', (req, res, next) => {
@@ -96,7 +83,9 @@ router.post('/charge', (req, res, next) => {
     })
   .then(charge => res.send(charge)))
   .catch(err => {
-    console.log(err)
+    error.capture(err, {
+      user: req.body
+    })
     res.status(500).send({ error: 'Purchase Failed' })
   })
 })

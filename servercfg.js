@@ -26,9 +26,6 @@ let cookieSettings = {
 
 // Routes
 const index = require('./routes/index')
-const contacts = require('./routes/contacts')
-const profile = require('./routes/profile')
-// const cloudcheck = require('./routes/cloudcheck')
 const auth = require('./routes/auth')
 const rates = require('./routes/rates')
 
@@ -54,9 +51,6 @@ setupPassport()
 app.use(express.static(path.join(__dirname, '/public')))
 app.use('/', index)
 app.use('/', auth)
-app.use('/', contacts)
-app.use('/', profile)
-// app.use('/', cloudcheck)
 app.use('/rates', rates)
 
 // Error handlers

@@ -28,7 +28,11 @@ var handler = StripeCheckout.configure({
     .then(output => {
       $('#collapseTwo').collapse('hide')
       $('#collapseThree').collapse('show')
-      $('#receipt').html('<p>Purchase success</p>')
+      $('#receipt').html(
+        '<p>' + output.outcome.seller_message +'</p>' +
+        '<p>Successfully paid $' + (parseFloat(output.amount) / 100).toFixed(2) + ' ' + output.currency.toUpperCase() + '</p>' +
+        '<p>Transaction ID: ' + output.id + '</p>'
+      )
       console.log('nice', output)
     })
     .catch(err => {

@@ -1,6 +1,7 @@
 const express = require('express')
 const stripe = require('stripe')(process.env.STRIPE_SECRET)
 const router = express.Router()
+const uuidV4 = require('uuid/v4')
 const mailer = require('../helpers/mailer')
 const error = require('../helpers/error')
 const validate = require('../helpers/validation')
@@ -18,6 +19,7 @@ router.post('/', (req, res, next) => {
   if (!validationErrors.length) {
     knex('contact')
     .insert({
+      id: uuidV4(),
       first_name: req.body.firstName,
       last_name: req.body.lastName,
       email: req.body.email

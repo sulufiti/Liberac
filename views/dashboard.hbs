@@ -37,40 +37,15 @@
             </div>
             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
               <div class="panel-body">
-                <form>
+                <div class="form-group">
                   <label for="amount_to_send" class="requiredField">Send Amount</label>
-                  <input type="text" name="amount_to_send" required class="form-control" id="amount_to_send" placeholder="Jamie Smith">
-                  <br>
-                  <label for="bank_account" class="requiredField">Bank Account Details</label>
-                  <input type="text" name="bank_account" required class="form-control" id="bank_account" placeholder="Jamie Smith">
-                  <br>
-                  <button type="submit" class="btn btn-success" role="button">Confirm</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingThree">
-              <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Payment Details
-                </a>
-              </h4>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-              <div class="panel-body">
-                <form>
-                  <label for="card_number" class="requiredField">Card Number</label>
-                  <input type="text" name="card_number" required class="form-control" id="card_number" placeholder="1234-1234-1234-1234">
-                  <br>
-                  <label for="expiry_date" class="requiredField">Expiry Date</label>
-                  <input type="date" name="expiry_date" required class="form-control" id="expiry_date">
-                  <br>
-                  <label for="ccv" class="requiredField">Expiry Date</label>
-                  <input type="text" name="ccv" required class="form-control" id="ccv" placeholder="123">
-                  <br>
-                  <button type="submit" class="btn btn-success" role="button">Confirm</button>
-                </form>
+                  <input type="text" name="amount_to_send" required class="form-control" id="amount_to_send" placeholder="12.31">
+                </div>
+                <div class="form-group">
+                  <script src="https://checkout.stripe.com/checkout.js"></script>
+                  <div id="error_explanation"></div>
+                  <button class="btn btn-success" id="paymentButton" role="button">Purchase</button>
+                </div>
               </div>
             </div>
           </div>

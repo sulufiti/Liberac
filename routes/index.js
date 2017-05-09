@@ -1,7 +1,5 @@
 const express = require('express')
 const stripe = require('stripe')(process.env.STRIPE_SECRET)
-const Message = require('pushover-promise').Message
-const msg = new Message(process.env.PUSHOVER_USER, process.env.PUSHOVER_TOKEN)
 const router = express.Router()
 const mailer = require('../helpers/mailer')
 const error = require('../helpers/error')
@@ -25,19 +23,9 @@ router.post('/', (req, res, next) => {
       res.redirect('/')
     })
     .then(() => {
-      if (process.env.NODE_ENV !== 'development') {
-        msg.push(`${req.body.firstName} ${req.body.lastName} just registered their interest!`)
-      }
-    })
-    .then(() => {
-      if (process.env.NODE_ENV !== 'development') {
-        mailer.notifyTeam(`${req.body.firstName} ${req.body.lastName}`, req.body.email)
-      }
-    })
-    .then(() => {
-      if (process.env.NODE_ENV !== 'development') {
-        mailer.sendWelcome(req.body.firstName, req.body.lastName, req.body.email)
-      }
+      // if (process.env.NODE_ENV !== 'development') {
+        mailer.userOnboarding(req.body.firstName, req.body.lastName, req.body.email)
+      // }
     })
     .catch((err) => {
       error.capture(err, {

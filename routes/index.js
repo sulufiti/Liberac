@@ -87,17 +87,15 @@ router.post('/charge', (req, res, next) => {
       customer: customer.id
     })
     .then(charge => {
-      console.log('charge', charge)
       res.send(charge)
-      knex('transaction')
+      knex('transactions')
       .insert({
         id: uuidV4(),
         stripe_id: charge.id,
         stripe_customer_id: charge.customer,
         stripe_status: charge.status,
-        sender: req.session.passport.user.id,
-        receiver: req.body.receiver_name,
-        receiver_account: req.body.bank_account,
+        receiver: req.body.receiver,
+        receiver_account: req.body.account,
         amount: charge.amount,
         currency: charge.currency.toUpperCase()
       })

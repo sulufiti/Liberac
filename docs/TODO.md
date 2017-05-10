@@ -4,13 +4,14 @@
 
 - [Overview](#overview)
 - [Application](#application)
- - [Front Page](#front-page)
- - [Login](#login)
- - [Registration](#registration)
- - [Dashboard](#dashboard)
- - [Routes](#routes)
- - [Templates](#templates)
+  - [Front Page](#front-page)
+  - [Login](#login)
+  - [Registration](#registration)
+  - [Dashboard](#dashboard)
+  - [Routes](#routes)
+  - [Templates](#templates)
 - [Server](#server)
+
 # Overview
 
 A list of things that should be done or at least considered if you want to deploy this application in production.

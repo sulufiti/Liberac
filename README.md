@@ -179,7 +179,7 @@ The contents of the public folder is served at `/`. If you were to place an imag
 
 ## Something broke! I'm stuck!
 
-If you've just generally lost or need help setting up Node, Docker or the repo, you can email [Marcus](mailto:marcus.crane@liberac.co.nz) or [message him on Slack](https://liberac.slack.com/messages/@marcus)
+If you've just generally lost or need help setting up Node, Docker or the repo, you can email [Marcus](mailto:marcus@thingsima.de) or [message him on Slack](https://liberac.slack.com/messages/@marcus)
 
 If it's an actual error that you're wanting to report, Node should spit out a file called npm-debug.log into the liberac folder upon any issues, as well as outputting those errors to the terminal.
 

@@ -48,7 +48,7 @@ brew install node@7
 
 Once that's done, double check that your terminal outputs 'v7.0.0' by running `node -v`
 
-![A screenshot of a terminal showing Node is running version 7.0.0](/docs/node_version.png?raw=true)
+![A screenshot of a terminal showing Node is running version 7.0.0](/docs/img/node_version.png?raw=true)
 
 #### Linux
 
@@ -84,6 +84,7 @@ You'll need to acquire API keys for those services (by contacting [marcus](mailt
 | PUSHOVER_USER | Used to send notifications to team members phones upon new signups. Currently, all team members are assigned under one account | [Pushover](https://pushover.net/) |
 | PUSHOVER_TOKEN | Same as above. The token to use for sending notifications | [Pushover](https://pushover.net/) |
 | SENTRY_DSN | Equivalent of an API token for Sentry which is used for error logging on the server. Disabled under development environment | [Sentry](https://sentry.io/welcome/) |
+| STRIPE_SECRET | Stripe API key used for processing payments on `/dashboard`. Set to the test key by default | [Stripe](https://stripe.com/nz) |
 
 ### Docker
 
@@ -95,7 +96,7 @@ To simplify things, we'll be using [Docker](https://www.docker.com/) which allow
 
 Docker community edition is available [here](https://store.docker.com/editions/community/docker-ce-desktop-mac?tab=description) by clicking the Get Docker button which will download `Docker.dmg`.
 
-![A screenshot of the Get Docker button](/docs/get_docker_button.png?raw=true)
+![A screenshot of the Get Docker button](/docs/img/get_docker_button.png?raw=true)
 
 Instructions and screenshots are also included on the Community Edition page for further reference.
 
@@ -103,27 +104,27 @@ Install like you would any application and then launch it. A cute whale carrying
 
 I highly recommend picking up Kitematic by clicking on the Docker icon in the top taskbar and clicking Kitematic which should direct you to download it.
 
-![A screenshot of the Docker menu with the Kitematic menu entry highlighted](/docs/get_kitematic.png?raw=true)
+![A screenshot of the Docker menu with the Kitematic menu entry highlighted](/docs/img/get_kitematic.png?raw=true)
 
 Upon opening Kitematic, you'll be presented with a list of popular containers. You should see an entry for PostgreSQL so click `CREATE` and wait for the image to download.
 
-![A screenshot of the Docker container selection menu](/docs/docker_main_menu.png?raw=true)
+![A screenshot of the Docker container selection menu](/docs/img/docker_main_menu.png?raw=true)
 
 Once it's done, you should see 'Postgres' at the top of the window with `RUNNING` in green beside it. We've still got a few more bits of setup left.
 
-![A screenshot showing Postgres is running](/docs/docker_postgres_container.png?raw=true)
+![A screenshot showing Postgres is running](/docs/img/docker_postgres_container.png?raw=true)
 
 Hit `Settings` in the top right and then `Ports` which should display `DOCKER PORT` on the left and `PUBLISHED IP:PORT` on the right. On older Macs, `PUBLISHED IP` may also be called something like `MAC PORT`.
 
-![A screenshot of the Docker settings tab](/docs/docker_settings.png?raw=true)
+![A screenshot of the Docker settings tab](/docs/img/docker_settings.png?raw=true)
 
 Click on the `PUBLISHED IP/MAC PORT` number and it'll change into a text box.
 
-![A screenshot of the Docker Published IP section](/docs/docker_ports.png?raw=true)
+![A screenshot of the Docker Published IP section](/docs/img/docker_ports.png?raw=true)
 
 Change it to `5432` which should now be identical to the Docker port on the left.
 
-![A screenshot of the Docker ports successfully set up](/docs/docker_configured_ports.png?raw=true)
+![A screenshot of the Docker ports successfully set up](/docs/img/docker_configured_ports.png?raw=true)
 
 Once that's done, you can close or minimise Docker. It'll stay running in the taskbar. Postgres is now ready and running.
 
@@ -135,25 +136,25 @@ If you're not used to fiddling with databases or Docker, this can get a bit conf
 
 In your terminal, connect to a bash shell within the docker container by entering `docker exec -it postgres bash`
 
-![A screenshot of a terminal about to connect to the docker container](/docs/db_docker_exec.png?raw=true)
+![A screenshot of a terminal about to connect to the docker container](/docs/img/db_docker_exec.png?raw=true)
 
 Next, we'll need to connect to the `postgres` user account by entering `su - postgres`
 
-![A screenshot of a terminal about to connect as the linux user called postgres](/docs/db_su_postgres.png?raw=true)
+![A screenshot of a terminal about to connect as the linux user called postgres](/docs/img/db_su_postgres.png?raw=true)
 
 After that, connect to Postgres itself by entering `psql`
 
-![A screenshot of a terminal about to connect to postgres](/docs/db_docker_psql.png?raw=true)
+![A screenshot of a terminal about to connect to postgres](/docs/img/db_docker_psql.png?raw=true)
 
 Note: The following commands end with a semi-colon `;` which is required for Postgres commands. It's not a typo. The case of the commands however doesn't matter. It's just like that due to convention.
 
 Once we're inside, we need to create a table called `development` which is where our development data will be stored. This is done by entering `CREATE DATABASE development;`.
 
-![A screenshot of a terminal about to create a database called development](/docs/db_create.png?raw=true)
+![A screenshot of a terminal about to create a database called development](/docs/img/db_create.png?raw=true)
 
 You should see `CREATE DATABASE` returned followed by a empty prompt again. You can check that the database was created by entering `\c development` which will then connect to our newly created database.
 
-![A screenshot of a terminal about to connect to the development database](/docs/db_confirm_success.png?raw=true)
+![A screenshot of a terminal about to connect to the development database](/docs/img/db_confirm_success.png?raw=true)
 
 Now we're ready to exit out by entering `\q` followed by `exit` and then `exit` once more. You should be completed out of the Docker container and back into your regular environment.
 
@@ -179,7 +180,7 @@ The contents of the public folder is served at `/`. If you were to place an imag
 
 ## Something broke! I'm stuck!
 
-If you've just generally lost or need help setting up Node, Docker or the repo, you can email [Marcus](mailto:marcus.crane@liberac.co.nz) or [message him on Slack](https://liberac.slack.com/messages/@marcus)
+If you've just generally lost or need help setting up Node, Docker or the repo, you can email [Marcus](mailto:marcus@thingsima.de) or [message him on Slack](https://liberac.slack.com/messages/@marcus)
 
 If it's an actual error that you're wanting to report, Node should spit out a file called npm-debug.log into the liberac folder upon any issues, as well as outputting those errors to the terminal.
 

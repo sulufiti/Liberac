@@ -84,6 +84,7 @@ You'll need to acquire API keys for those services (by contacting [marcus](mailt
 | PUSHOVER_USER | Used to send notifications to team members phones upon new signups. Currently, all team members are assigned under one account | [Pushover](https://pushover.net/) |
 | PUSHOVER_TOKEN | Same as above. The token to use for sending notifications | [Pushover](https://pushover.net/) |
 | SENTRY_DSN | Equivalent of an API token for Sentry which is used for error logging on the server. Disabled under development environment | [Sentry](https://sentry.io/welcome/) |
+| STRIPE_SECRET | Stripe API key used for processing payments on `/dashboard`. Set to the test key by default | [Stripe](https://stripe.com/nz) |
 
 ### Docker
 

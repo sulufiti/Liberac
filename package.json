@@ -40,7 +40,6 @@
     "mandrill-api": "^1.0.45",
     "moment": "^2.18.1",
     "passport": "^0.3.2",
-    "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "pg": "^6.1.5",
     "pushover-promise": "^1.0.0",

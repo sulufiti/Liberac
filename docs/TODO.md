@@ -4,12 +4,22 @@
 
 - [Overview](#overview)
 - [Application](#application)
+ - [Front Page](#front-page)
  - [Login](#login)
-
+ - [Registration](#registration)
+ - [Dashboard](#dashboard)
+ - [Routes](#routes)
+ - [Templates](#templates)
+- [Server](#server)
 # Overview
 
 A list of things that should be done or at least considered if you want to deploy this application in production.
+
 It's as comprehensive as I can make it (eg; everything I can think of/remember) but there may also be a number of other things to check out too
+
+Let me also get "Write more tests" out of the way. Most of the stuff I used eg; knex, stripe are already tested by their developers so integration tests were the only thing that I got around to.
+
+I haven't looked in a while but those are probably broken by now with the route revamp. Oh, and you should look into [Headless Chrome](https://developers.google.com/web/updates/2017/04/headless-chrome) instead of using Nightmarejs.
 
 # Application
 
@@ -48,3 +58,18 @@ It's as comprehensive as I can make it (eg; everything I can think of/remember) 
 ## Routes
 
 * Updating `req.flash` feels wonky and should probably be re-implemented better
+* Database inserts for front page in `/routes/index.js` should probably be abstracted out
+* Abstract Stripe processing out into its own file
+
+## Templates
+
+* Look more into [Swag](https://github.com/elving/swag)
+ - I successfully used this before to swap the hacky `{ indexjs: true }` objects for `{ scripts: 'index'  }` which is easier to parse visually but it failed to render on the server for some reason. It makes more sense that using a boolean (short of writing your own Handlebars helper)
+ 
+# Server
+
+* Find a nicer way of deploying to the Liberac VM
+ - The current process works but you still have to manually perform `npm install`, check that nothing has errored out etc
+* [Sentry](https://sentry.io) is fine for reporting errors but there's nothing for checking server logs (if that's even needed) or reporting general server errors like if pm2 errors out.
+* Renew [Pushover](http://pushover.net) if you want to keep using it
+* Consider piping signups into Slack rather than sending User Signup emails

@@ -1,9 +1,14 @@
 exports.up = function (knex, Promise) {
   return knex.schema.createTableIfNotExists('transactions', (table) => {
     table.uuid('id').primary()
-    table.uuid('sender').notNullable()
-    table.uuid('receiver').notNullable()
-    table.timestamp('transaction_time').defaultTo(knex.fn.now())
+    table.string('stripe_id').notNullable()
+    table.string('stripe_customer_id').notNullable()
+    table.string('stripe_status').notNullable()
+    table.string('receiver').notNullable()
+    table.string('receiver_account').notNullable()
+    table.integer('amount').notNullable()
+    table.string('currency').notNullable()
+    table.timestamp('created').defaultTo(knex.fn.now())
   })
 }
 

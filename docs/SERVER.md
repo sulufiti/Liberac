@@ -4,14 +4,14 @@
 
 - [Overview](#overview)
 - [Connecting to the Liberac VM](#connecting-to-the-liberac-vm)
- - [Generating an SSH key](#generating-an-ssh-key)
- - [Obtaining SSH access](#obtaining-ssh-access)
+  - [Generating an SSH key](#generating-an-ssh-key)
+  - [Obtaining SSH access](#obtaining-ssh-access)
 - [Deployment process](#deployment-process)
- - [How does it work?](#how-does-it-work)
- - [VM layout](#vm-layout)
- - [Pushing updates to the server](#pushing-updates-to-the-server)
- - [Updating staging](#updating-staging)
- - [Checks for deployment](#checks-for-deployment)
+  - [How does it work?](#how-does-it-work)
+  - [VM layout](#vm-layout)
+  - [Pushing updates to the server](#pushing-updates-to-the-server)
+  - [Updating staging](#updating-staging)
+  - [Checks for deployment](#checks-for-deployment)
 
 # Overview
 

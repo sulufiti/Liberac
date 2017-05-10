@@ -86,7 +86,26 @@ router.post('/charge', (req, res, next) => {
       currency: 'nzd',
       customer: customer.id
     })
-  .then(charge => res.send(charge)))
+    .then(charge => {
+      console.log('charge', charge)
+      res.send(charge)
+      knex('transaction')
+      .insert({
+        id: uuidV4(),
+        stripe_id: charge.id,
+        stripe_customer_id: charge.customer,
+        stripe_status: charge.status,
+        sender: req.session.passport.user.id,
+        receiver: req.body.receiver_name,
+        receiver_account: req.body.bank_account,
+        amount: charge.amount,
+        currency: charge.currency.toUpperCase()
+      })
+      .catch((err) => {
+        error.capture(err)
+      })
+    })
+  )
   .catch(err => {
     error.capture(err, {
       user: req.body
